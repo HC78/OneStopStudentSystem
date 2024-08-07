@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "decoded-nebula-426713-q3",
+  "private_key_id": "6c763bba3917899355be3b2353dda9bb1a813cb1",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDauTLIn6FFcfJf\nhIj8clBbXFLhSPncqcaetNu+mEbpVrEDoiX4VXBURO9ceLAH7x2jO0CxEnhBbp4p\nAD0Pd1X6rMQ947twyS5VBOIPq/BvWb9w6CIV/ZCh+EkkyOjfj0eWITh/x0ohABkI\ngj0Y1S4dQ2V0fkJO8IcXQ6fIiZ/aeVz47gD+ncu7DlNJrcaGTqNOcb5SRNfKrGhI\nM7vun9IUHR3gSWszmT+caGS7gKGddI/z28CJajya31Eyl2nIDDTe2ZCMHW9pwtHS\nLM0j8eMc4JckyaJkbKlOyUJ+SiOIYiYN2FWb5E2EL5eCnntbuqtooDITeoxpRcEi\nRrZLYIhbAgMBAAECggEAQ4OWIupvR/XfyE8rT61jk4fgh2zUv6HiTtvp1p+/h8g8\nNLBpAwowdbqfng4c3B4ZqmigU+gtGZlxFZvevTbrYcjRfH8evTZEaHbs5sR+n4h2\n+P2Wg+40pmJzBXlEtLlP8g4IGB0miyAyGffFrzQim2LR3s8YXbCOKoa2NEcTAkcQ\n7M1TTu5PtNcovb5yQPMcuMeRl9PZ/Z2YAPPkILhC4nbHeP87n041DnF6ApD6hJwj\nBaU5OLb41YTmqOG0Iu/QJtK/Vxv86K101kG80Di1kxnsAJ+SZPMtY42CMXn4lTaT\nywoD7u1eJJsPwsE2kZJUN4n6yxTTVBQhgSZaKd4rqQKBgQDvm4nAAGbXGM9u89oh\n3I2xBfjsns64UNHS9Hjjf9/Dm8UAnJkGBZ9BrBL5TADDYoU5ks4L/iLvF6uy0h7/\njxpe0HWeDaX6KnknAzq6tGuC+r1jsRY2X7iPNHkRL8w2mUtVuMxzATs6xbkPJgEa\njW2q0pNoR9RGv22YcsizqKIwuQKBgQDpr+XMrfz2myKod3kzEZggUPWqoxL81xsb\nyjfMO2Rlhp3hhiSfIbdY5kXPglE6UWbKZQYm6zZGcEeeBncFzhAf0BrWpiKevXul\nqVjnZ0/JDN1m9nL9aLAmPf0HT9gIfmVue+LqaBNQym6ONeqwP770eigEZIlrnCvg\nKEpRXvqvswKBgC5jXnfdnAtoskA41bJYkNYE4fxtgngMrZK54e2phBjKv4kuyDFy\nRTLhrYq2PC+Xk1NiKKIJwZmoa4VjSL0RZ3mTwjGnUsrsDiiPZ39eDrJ8+M2kKzi7\nr2+KKSY6qr6nTv55mJtrUZw/S2SzZuNNHj5EJmW6Ak7wILezAUhHDZ+BAoGATQJP\nS1Um4KmdEUFV6nNo23Vyj8nvruzAHTdVjfMgkah8DN7k4J/+yMgRx2FdnUdIBXin\nP1oR58KGh1gADySqAaHVxli3XfJ5dc1J4/ASxeF8cLrUiBfgvKl+4dL5EUt955vh\n2ndzrhMXvbuc3HoVVoGPAGuVMaYke1krrIcNO6sCgYEAmCwBxtdV1rAmhuXpe1Gk\nYRFZCnM3JbNeLzSDdhvpfPnDPiyuKTvk/JkPB/TZMENCpIjKiWT1iT6qYfFXCUBY\nc0Euw0WFRbPcLztmBPs7aLBxwJBvG3t2pVBY5SRo856oQjomSAgJXJv7hR4Gea+i\ndh9yiGtTcEKzIPy2/aSJTPs=\n-----END PRIVATE KEY-----\n",
+  "client_email": "one-stop-student-system@decoded-nebula-426713-q3.iam.gserviceaccount.com",
+  "client_id": "113220785451409728009",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/one-stop-student-system%40decoded-nebula-426713-q3.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

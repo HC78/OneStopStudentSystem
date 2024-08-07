@@ -1,0 +1,327 @@
+{
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": [ "Hi", "Hello", "Hey", "Good day", "How are you?" ],
+      "responses": [ "Hello!", "Good to see you!", "Hi there, how can I help?" ]
+    },
+    {
+      "tag": "farewell",
+      "patterns": [ "Goodbye", "Bye", "See you later", "Talk to you later" ],
+      "responses": [ "Sad to see you go :(", "Goodbye!", "Come back soon!" ]
+    },
+    {
+      "tag": "creator",
+      "patterns": [ "Who created you?", "Who is your developer?", "Who made you?" ],
+      "responses": [ "I was created by Seow Hui Chee." ]
+    },
+    {
+      "tag": "identity",
+      "patterns": [
+        "What is your name?",
+        "What should I call you?",
+        "Who are you?",
+        "What are you",
+        "Introduce Yourself"
+      ],
+      "responses": [ "You can call me TAR UMT query chatbot. I'm a Chatbot." ]
+    },
+    {
+      "tag": "communication",
+      "patterns": [
+        "How can I communicate with the university?",
+        "What are the communication channels for students and parents?"
+      ],
+      "responses": [
+        "You can communicate with the university through our official email (info@tarc.edu.my), tel (6)03-41450123, or by visiting the respective department."
+      ]
+    },
+    {
+      "tag": "casual_greeting",
+      "patterns": [ "What's up?", "How are you?", "How you doing?" ],
+      "responses": [
+        "I'm here to assist you with any questions or information you need. How can I assist you today?"
+      ]
+    },
+    {
+      "tag": "good_morning",
+      "patterns": [ "Good morning", "Morning" ],
+      "responses": [ "Good morning! How can I assist you today?" ]
+    },
+    {
+      "tag": "good_afternoon",
+      "patterns": [ "Good afternoon", "Afternoon" ],
+      "responses": [ "Good afternoon! How can I assist you today?" ]
+    },
+    {
+      "tag": "good_evening",
+      "patterns": [ "Good evening", "Evening" ],
+      "responses": [ "Good evening! How can I assist you today?" ]
+    },
+    {
+      "tag": "thank_you",
+      "patterns": [ "Thank you", "Thanks" ],
+      "responses": [
+        "You're welcome! If you have any more questions, feel free to ask."
+      ]
+    },
+    {
+      "tag": "sorry",
+      "patterns": [ "Sorry", "Apologies" ],
+      "responses": [
+        "No problem! If there's anything else you need assistance with, feel free to let me know."
+      ]
+    },
+    {
+      "tag": "hours",
+      "patterns": [
+        "What are the university working timings?",
+        "When is the university open?",
+        "What are the hours of operation?",
+        "What are the operational hours"
+      ],
+      "responses": [
+        "The university is open from 8.30 am to 5.30 pm for Monday to Friday. Close for Saturday and Sunday. "
+      ]
+    },
+    {
+      "tag": "contact",
+      "patterns": [
+        "How can I contact the university?",
+        "What is the university phone number",
+        "What is the university telephone number?",
+        "Can I get your contact number?"
+      ],
+      "responses": [ "You can contact the university at (6)03-41450123." ]
+    },
+    {
+      "tag": "location",
+      "patterns": [
+        "Where is the university located?",
+        "What is the university address?",
+        "How can I reach the college?"
+      ],
+      "responses": [
+        "The university is located at Jalan Genting Kelang, Setapak, 53300 Kuala Lumpur. You can find the location on Google Maps (https://maps.app.goo.gl/zoRdL5jF3vneKs3S6)."
+      ]
+    },
+    {
+      "tag": "hostel",
+      "patterns": [
+        "Does the college provide hostel facilities?",
+        "Where is the hostel located?",
+        "What are the hostel fees?"
+      ],
+      "responses": [
+        "The university provide hostel accomodation (location: https://maps.app.goo.gl/ezCAwd35tNnJTBuU8), consists of 10 blocks of 5-storey building with 1,000 standard rooms which can accommodate 2,000 students. Each room is on a twin-sharing basis with 400 rooms allocated for male and 600 rooms for female in separate blocks. Each floor has its own common bathrooms, toilets, pantry, water dispenser and drying area. Hostel availability is based on first-come-first-served basis. \n Rental fees : RM 243.00 per person per month and is paid on a semester basis. It provide lots facility. For detailed information about the hostel, please visit our college website (https://www.tarc.edu.my/dsa/a/accommodation/accommodation-kl-main-campus/)."
+      ]
+    },
+    {
+      "tag": "events",
+      "patterns": [
+        "What events are organized in the college?",
+        "Are there any upcoming events?",
+        "Tell me about the college events."
+      ],
+      "responses": [
+        "There are many event held at Yum Yum Cafeteria (https://maps.app.goo.gl/9qTMrSzNWaCWeAYG6) and The Rimba (https://maps.app.goo.gl/xCYqiUkDA29czSaYA)."
+      ]
+    },
+    {
+      "tag": "library",
+      "patterns": [
+        "Does the university have a library?",
+        "Where is the library located?",
+        "What are the library timings?"
+      ],
+      "responses": [
+        "The library is located at https://maps.app.goo.gl/FXLd4RwD7z2PYeNM6. The timings are from 8:30 am to 9:00 pm from Monday to Friday, 9:00 am to 2:00 pm on Saturday, and it is closed on Sunday. <iframe src=\"https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d704.1954516290003!2d101.72769535627513!3d3.2170536235931806!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc3869b40fb3bb%3A0x69267c00497dfef5!2sTAR%20UMT%20Library!5e0!3m2!1sen!2sus!4v1719762758660!5m2!1sen!2sus\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>"
+      ]
+    },
+    {
+      "tag": "facilities",
+      "patterns": [
+        "What facilities are available in the university?",
+        "Tell me about the university facilities.",
+        "Do you have a sports complex?"
+      ],
+      "responses": [
+        "The university provides various facilities including a sports complex (https://maps.app.goo.gl/E8Rm3WKkG39xdCyz7), 2 gym located at sport complex or club house(https://maps.app.goo.gl/nsVTKShzD9X8SX628), cafeteria, library and so on."
+      ]
+    },
+    {
+      "tag": "class_size",
+      "patterns": [
+        "How big are your classes?",
+        "Are the class sizes large or small?",
+        "Do you have small class sizes?"
+      ],
+      "responses": [
+        "Class sizes can vary depending on the course and program. As general, tutorial and practical is small class learning ; lecture is big class learning which may consist of multiple programme join together."
+      ]
+    },
+    {
+      "tag": "canteen",
+      "patterns": [
+        "Where is canteen or cafeteria?",
+        "What food provided at the canteen or cafeteria",
+        "How much is the price for food."
+      ],
+      "responses": [
+        "1. There are The Red Bricks Cafeteria (Block G, West Campus) [7.30am-5.00pm (Mon-Fri),8.00am-4.00pm (Sat)] :https://maps.app.goo.gl/DGRZHbtfxzLDcuR7A. 2. Yum Yum Cafeteria (Block L, West Campus) [7.30am-5.00pm (Mon-Fri), 8.00am-4.00pm (Sat)] : https://maps.app.goo.gl/g4rRsv3ZA1LHyE3D8. 3. Fort Margherita Cafe (Cyber Centre, West Campus) [7.30am-6.00pm (Mon-Fri),8.00am-4.00pm (Sat)]: https://maps.app.goo.gl/syXd2oSUR5N4o9bD8. 4. Casuarina Cafe (Block SC, East Campus) [7.30am-5.00pm (Mon-Fri),8.00am-3.00pm (Sat)] :https://maps.app.goo.gl/kDKfr2Qw966qwEYp6. 5.Lily's Cafe (Block SC, East Campus) [8.00am-6.00pm (Mon-Fri), 8.00am-3.00pm (Sat)]:https://maps.app.goo.gl/kDKfr2Qw966qwEYp6. 6.Heritage Kitchen (ClubHouse, West Campus) [7.30am-7.00pm (Mon-Fri), 8.00am-4.00pm (Sat)]: https://maps.app.goo.gl/RsAeeBmejiDs1Kmc7. 7.Sunnydae (Library Cafe, West Campus) [8.00am-7.00pm (Mon-Fri), 8.00am-4.00pm (Sat)]: https://maps.app.goo.gl/Mm2KEetfgs1m4yx56. Various kinds of food are provided at these canteens. The food prices at the Canteen/ Cafeteria on Campus are always cheaper and affordable if compared with the private food outlets outside the campus to ensure that students will remain consumed inside the campus rather than go to take the meals outside the campus. For more information: https://www.tarc.edu.my/dsa/food-and-beverage/"
+      ]
+    },
+    {
+      "tag": "classroom_class_venue",
+      "patterns": [
+        "I can't find classroom!",
+        "Where is the class venue?",
+        "I want map"
+      ],
+      "responses": [ "<img src='CampusMap.jpg' alt='Classroom Map'>" ]
+    },
+    {
+      "tag": "past_year_paper",
+      "patterns": [
+        "I can't find past year paper!",
+        "Where is past year paper?",
+        "Where is eprints?",
+        "Where is eprint?"
+      ],
+      "responses": [
+        "You can find past year paper at eprints: https://eprints.tarc.edu.my/"
+      ]
+    },
+    {
+      "tag": "parking_lot",
+      "patterns": [
+        "I can't find parking lot!",
+        "Where is parking lot?",
+        "Where is parking lot?",
+        "I want park car"
+      ],
+      "responses": [
+        "You can find parking lots beside sport complex (https://maps.app.goo.gl/8kKJvh3CZnXxKrjD7), beside club house(https://maps.app.goo.gl/Hv9ZSiYEHcht5vr8A) at west campus ; behind DK ABF (https://maps.app.goo.gl/Zyh4fu2yPnLWCBRPA), east campus parking(https://maps.app.goo.gl/SKCmWDkYa7qmFZ3c7)"
+      ]
+    },
+    {
+      "tag": "parking_pass",
+      "patterns": [
+        "Can I simply parking without any car pass?",
+        "How to apply car pass?",
+        "How to get vehicle entry pass?"
+      ],
+      "responses": [
+        "You need to apply the Vehicle Entry Pass by logging into TARUC Student Intranet (https://web.tarc.edu.my/portal/login.jsp)"
+      ]
+    },
+    {
+      "tag": "timetable",
+      "patterns": [
+        "What is student Intranet?",
+        "How to go to student Intranet",
+        "How to find timetable?",
+        "How to get announcement",
+        "How to pay billing fees",
+        "Where to see examination timetable?"
+      ],
+      "responses": [
+        "You can find announcement, timetable, billing, examination details and so on at TARUC Student Intranet (https://web.tarc.edu.my/portal/login.jsp)"
+      ]
+    },
+    {
+      "tag": "attendance_leave",
+      "patterns": [
+        "How to apply attendance leave",
+        "I am sick, what should I do",
+        "How to apply leave"
+      ],
+      "responses": [
+        "You can apply attendance leave at TARUC Student Intranet (https://web.tarc.edu.my/portal/login.jsp)"
+      ]
+    },
+    {
+      "tag": "financial_aids",
+      "patterns": [
+        "How to apply financial aid",
+        "How to apply loan fund",
+        "How to apply scholarship"
+      ],
+      "responses": [
+        "You can apply for financial aid or scholarship at TARUC Student Intranet (https://web.tarc.edu.my/portal/login.jsp), For more information: https://www.tarc.edu.my/dsa/financial-aid/financial-aid/"
+      ]
+    },
+    {
+      "tag": "transportation",
+      "patterns": [
+        "How to find bus schedule",
+        "University has provide buses?",
+        "Bus will be provided?",
+        "What is the bus time?"
+      ],
+      "responses": [
+        "TAR UMT has a fleet of air-conditioned buses to ferry students between the Kuala Lumpur Main Campus and the following nearby residential areas: 1 Wangsa Maju, 2 Teratai Residency/PV18, 3 Genting Kelang /PV18, 4. Melati Utama, 5 PV10, PV12, PV13, PV15, PV16 ; <img src='bus1.jpg' alt='bus1'> <img src='bus2.jpg' alt='bus2'> <img src='bus3.jpg' alt='bus3'>"
+      ]
+    },
+    {
+      "tag": "tutorial_class",
+      "patterns": [ "what is tutorial class?" ],
+      "responses": [
+        "Tutorial class is a small class with group mate, doing and discuss questions with tutor."
+      ]
+    },
+    {
+      "tag": "practical_class",
+      "patterns": [ "what is practical class?" ],
+      "responses": [
+        "Practical class is a small class with group mate, doing lab exercise or assignment using personal laptop or computer in computer lab with tutor."
+      ]
+    },
+    {
+      "tag": "lecture_class",
+      "patterns": [ "what is lecture class?" ],
+      "responses": [
+        "Lecture class is a big class with different programme that taking the same course, listen the lesson taught by lecturer."
+      ]
+    },
+    {
+      "tag": "block K",
+      "patterns": [
+        "where is block K?",
+        "where is blok K",
+        "location of block K?"
+      ],
+      "responses": [ "https://maps.app.goo.gl/YReHseQAmMVR7kWz5" ]
+    },
+    {
+      "tag": "CITC",
+      "patterns": [
+        "where is citc?",
+        "location of citc",
+        "I want to use school computer",
+        "I have no personal computer."
+      ],
+      "responses": [
+        "You can use computer provided at TAR UMT Cyber Center CITC : https://maps.app.goo.gl/FPft4zniysVrY8i57"
+      ]
+    },
+    {
+      "tag": "block A",
+      "patterns": [
+        "where is block A?",
+        "where is blok A",
+        "location of block A?"
+      ],
+      "responses": [ "https://maps.app.goo.gl/AezdNDa654Hm6FYP8" ]
+    },
+    {
+      "tag": "block B",
+      "patterns": [
+        "where is block B?",
+        "where is blok B",
+        "location of block B?"
+      ],
+      "responses": [ "https://maps.app.goo.gl/VCdn32jeNmtPN9sL8" ]
+    }
+  ]
+}

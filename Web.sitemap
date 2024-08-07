@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0">
+	<siteMapNode url="~/Homepage.aspx" title="Home" description="">
+		<siteMapNode url="~/Login.aspx" title="Login" description=""/>
+			<siteMapNode url="~/Register.aspx" title="Register" description=""/>
+		<siteMapNode url="~/ResetPsw.aspx" title="Reset password" description=""/>
+		<siteMapNode url="" title="Study" description="">
+			<siteMapNode url="~/NoteTaking.aspx" title="Note Taking" description="" />
+			<siteMapNode url="" title="GPA Grade Calculator" description="">
+				<siteMapNode url="~/GPABeforeJuly.aspx" title="Before July 2023 intake" description="" />
+				<siteMapNode url="~/GPAAfterJuly.aspx" title="After July 2023 intake" description="" />
+			</siteMapNode>
+			<siteMapNode url="~/Converter.aspx" title="Measurement Converter" description="" />
+			<siteMapNode url="~/Video.aspx" title="Video Teaching Pronunciation" description="" />
+			<siteMapNode url="~/ReminderTest.aspx" title="Calander Reminder" description="" />
+		</siteMapNode>
+		<siteMapNode url="" title="Health" description="">
+			<siteMapNode url="~/BMI.aspx" title="BMI Calculator" description="" />
+			<siteMapNode url="~/Calorie.aspx" title="Calorie Calculator" description="" />
+			<siteMapNode url="~/Exercise.aspx" title="Exercise Workout Schedule" description="" />
+		</siteMapNode>
+		<siteMapNode url="" title="Personal" description="">
+			<siteMapNode url="~/Profile.aspx" title="Personal Profile" description="" />
+			<siteMapNode url="~/ToDo.aspx" title="To-Do List" description="" />
+			<siteMapNode url="~/Goal.aspx" title="Goal Getter" description="" />
+			<siteMapNode url="~/Chatbot.aspx" title="AI Chatbot" description="" />
+		</siteMapNode>
+		<siteMapNode url="~/AdminRoleMng.aspx" title="Role Management" description="" />
+	</siteMapNode>
+</siteMap>

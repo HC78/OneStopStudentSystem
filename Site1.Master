@@ -1,0 +1,395 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="OneStopStudentSystem.Site1" %>
+
+<!DOCTYPE html>
+<html>
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
+    <style type="text/css">
+        body {
+            background-color: #FFE5D9;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 104px;
+            background-color: #FFE5D9;
+        }
+
+            .header-content img {
+                margin-right: 10px;
+            }
+
+            .header-content asp\:label {
+                font-size: xx-large;
+                font-family: Algerian;
+                font-weight: bold;
+                color: black;
+            }
+
+        ul.navBar, ul.navBar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: visible;
+            background-color: #FFE5D9;
+        }
+
+            ul.navBar li {
+                float: left;
+                position: relative;
+            }
+
+                ul.navBar li a {
+                    display: block;
+                    color: black;
+                    text-align: center;
+                    padding: 14px 16px;
+                    text-decoration: none;
+                }
+
+                    ul.navBar li a:hover {
+                        background-color: #E6C6B7;
+                    }
+
+                ul.navBar li.login a,
+                ul.navBar li.logout a {
+                    color: white;
+                    background-color: #836C72;
+                }
+
+                    ul.navBar li.login a:hover,
+                    ul.navBar li.logout a:hover {
+                        background-color: #D4B6BE;
+                    }
+
+                ul.navBar li ul {
+                    display: none;
+                    position: absolute;
+                    background-color: lightgrey;
+                    min-width: 160px;
+                    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+                    z-index: 1000;
+                }
+
+                ul.navBar li:hover > ul {
+                    display: block;
+                }
+
+                ul.navBar li ul li {
+                    float: none;
+                    position: relative;
+                }
+
+                    ul.navBar li ul li ul {
+                        left: 100%;
+                        top: 0;
+                    }
+
+                    ul.navBar li ul li a {
+                        padding: 12px 16px;
+                        text-decoration: none;
+                        display: block;
+                        color: black;
+                    }
+
+                        ul.navBar li ul li a:hover {
+                            background-color: #E6C6B7;
+                        }
+
+        .auto-style1 {
+            width: 360px;
+        }
+
+        .auto-style5 {
+            width: 131px;
+            height: 106px;
+        }
+
+        .auto-style6 {
+            width: 88px;
+        }
+
+        .auto-style8 {
+            height: 26px;
+        }
+
+        .auto-style10 {
+            left: 2px;
+            top: 162px;
+            height: 32px;
+        }
+
+        .auto-style14 {
+            width: 360px;
+            height: 26px;
+        }
+
+        .main-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .content-wrapper {
+            display: flex;
+            background-color: #FFF2EC;
+        }
+
+        .treeview-container {
+            flex: 0 0 250px;
+            top: 210px;
+            bottom: 0;
+        }
+
+        .main-content {
+            flex: 1;
+        }
+
+        .glow {
+            font-family: 'Algerian', sans-serif;
+            font-weight: bold;
+            color: #ffffff;
+            text-shadow: 0 0 10px #ff99cc, 0 0 20px #ff99cc, 0 0 30px #ffffff, 0 0 40px #ffffff;
+        }
+
+        @keyframes glowing {
+            0% {
+                text-shadow: 0 0 5px #ffffff;
+            }
+
+            50% {
+                text-shadow: 0 0 20px #ffffff, 0 0 30px #ffffff, 0 0 40px #ffffff, 0 0 50px #ffffff;
+            }
+
+            100% {
+                text-shadow: 0 0 5px #ffffff;
+            }
+        }
+
+        .glow-animation {
+            font-family: 'Algerian', sans-serif;
+            font-weight: bold;
+            color: #ffffff;
+            animation: glowing 2s infinite;
+        }
+
+        @keyframes jumping {
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .word {
+            display: inline-block;
+            font-family: 'Algerian', sans-serif;
+            font-weight: bold;
+            color: #660033;
+            animation: glowing 2s infinite;
+        }
+
+        .jump1 {
+            animation: jumping 1s infinite;
+        }
+
+        .jump2 {
+            animation: jumping 1.5s infinite;
+        }
+
+        .jump3 {
+            animation: jumping 2s infinite;
+        }
+
+        .auto-style15 {
+            width: 360px;
+            height: 32px;
+        }
+
+        .auto-style16 {
+            height: 32px;
+        }
+        .welcomeContainer{
+            padding-top:1000px;
+            margin-top:10000px;
+        }
+    </style>
+</head>
+<body style="background-color: #FFE5D9">
+    <form id="form1" runat="server" style="background-color: #FFF2EC">
+        <div>
+            <table style="width: 100%; background-color: #FFE5D9; z-index: 10; position: relative;">
+                <tr class="main-container" style="background-image: url('Image/todo.jpg'); background-size: cover; background-repeat: no-repeat; background-attachment: fixed;">
+                    <td colspan="3" class="header-content" style="align-items: center; align-content: center; background-color: #FFE5D9; background-image: url('Image/todo.jpg'); background-size: cover; background-repeat: no-repeat; background-attachment: fixed;">
+                        <img src="/Image/logo.png" alt="Logo" class="auto-style5">
+                        <asp:Label ID="Label1" runat="server" Font-Bold="True" ForeColor="#993333" CssClass="glow, glow-animation" Text='<span class="word jump1">One-Stop</span> <span class="word jump2">Student</span> <span class="word jump3">System</span>' Font-Names="Algerian" Font-Size="XX-Large"></asp:Label>
+                    </td>
+                </tr>
+                <tr style="background-color: #FFE5D9;">
+                    <td colspan="3" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;" class="auto-style8">
+                        <ul class="navBar" style="height: 50px">
+                            <li class="auto-style6"><a class="active" href="/homepage.aspx">Home</a></li>
+                            <li class="auto-style6">
+                                <a href="#">Study</a>
+                                <ul>
+                                    <li><a href="/NoteTaking.aspx">Note Taking</a></li>
+                                    <li><a href="#">GPA Grade Calculator</a>
+                                        <ul>
+                                            <li><a href="GPABeforeJuly.aspx">Before July 2023 Intake</a></li>
+                                            <li><a href="GPAAfterJuly.aspx">After July 2023 Intake</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="/Converter.aspx">Measurement Converter</a></li>
+                                    <li><a href="/Video.aspx">Video Teaching Pronunciation</a></li>
+                                    <li><a href="/Reminder.aspx">Calendar Reminder</a></li>
+                                </ul>
+                            </li>
+                            <li class="auto-style6">
+                                <a href="#">Health</a>
+                                <ul>
+                                    <li><a href="/BMI.aspx">BMI Calculator</a></li>
+                                    <li><a href="/Calorie.aspx">Calorie Calculator</a></li>
+                                    <li><a href="/Exercise.aspx">Exercise Workout Schedule</a></li>
+                                </ul>
+                            </li>
+                            <li class="auto-style6">
+                                <a href="#">Personal</a>
+                                <ul>
+                                    <li><a href="/Profile.aspx">Personal Profile</a></li>
+                                    <li><a href="/ToDo.aspx">To-Do List</a></li>
+                                    <li><a href="/Goal.aspx">Goal Getter</a></li>
+                                    <li><a href="/Chatbot.aspx">AI Chatbot</a></li>
+                                </ul>
+                            </li>
+                            <li class="login" style="float: right;">
+                                <asp:HyperLink ID="loginLink" runat="server" NavigateUrl="/Login.aspx">Login</asp:HyperLink></li>
+                            <li class="logout" style="float: right;">
+                                <asp:HyperLink ID="logoutLink" runat="server" NavigateUrl="/Login.aspx?logout=true" onclick="Logout_Click">Logout</asp:HyperLink>
+                            </li>
+
+                            <li style="float: right;">
+                                <div id="welcomeContainer" runat="server">
+                                    Welcome
+                                    <asp:Label ID="lblShowUsername" runat="server"></asp:Label>
+                                    !&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </div>
+
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+            <table style="width: 100%; background-color: #FFF2EC">
+                <tr class="content-wrapper">
+                    <td class="auto-style10" colspan="3">
+                        <asp:SiteMapPath ID="SiteMapPath1" runat="server" ShowStartingNode="false"></asp:SiteMapPath>
+                        <br />
+                    </td>
+                </tr>
+
+                <tr class="content-wrapper">
+                    <td class="auto-style1">
+                        <div class="treeview-container" style="z-index: 8; position: relative; top:0px">
+                            <asp:TreeView ID="TreeView1" runat="server" DataSourceID="SiteMapDataSource1" ShowStartingNode="false" OnSelectedNodeChanged="TreeView1_SelectedNodeChanged"></asp:TreeView>
+                            <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" />
+                        </div>
+                    </td>
+                    <td colspan="2">
+                        <div class="main-container">
+                            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="auto-style14"></td>
+                    <td class="auto-style8"></td>
+                    <td class="auto-style8"></td>
+                </tr>
+                <tr>
+                    <td class="auto-style15" style="background-color: #FFF2EC"></td>
+                    <td class="auto-style16"></td>
+                    <td class="auto-style16"></td>
+                </tr>
+                <tr>
+                    <td class="auto-style15" style="background-color: #FFF2EC">&nbsp;</td>
+                    <td class="auto-style16">&nbsp;</td>
+                    <td class="auto-style16">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style15" style="background-color: #FFF2EC">&nbsp;</td>
+                    <td class="auto-style16">&nbsp;</td>
+                    <td class="auto-style16">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style15" style="background-color: #FFF2EC">&nbsp;</td>
+                    <td class="auto-style16">&nbsp;</td>
+                    <td class="auto-style16">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style15" style="background-color: #FFF2EC">&nbsp;</td>
+                    <td class="auto-style16">&nbsp;</td>
+                    <td class="auto-style16">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style15" style="background-color: #FFF2EC">&nbsp;</td>
+                    <td class="auto-style16">&nbsp;</td>
+                    <td class="auto-style16">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style15" style="background-color: #FFF2EC">&nbsp;</td>
+                    <td class="auto-style16">&nbsp;</td>
+                    <td class="auto-style16">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style15" style="background-color: #FFF2EC">&nbsp;</td>
+                    <td class="auto-style16">&nbsp;</td>
+                    <td class="auto-style16">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style15" style="background-color: #FFF2EC">&nbsp;</td>
+                    <td class="auto-style16">&nbsp;</td>
+                    <td class="auto-style16">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style15" style="background-color: #FFF2EC">&nbsp;</td>
+                    <td class="auto-style16">&nbsp;</td>
+                    <td class="auto-style16">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style15" style="background-color: #FFF2EC">&nbsp;</td>
+                    <td class="auto-style16">&nbsp;</td>
+                    <td class="auto-style16">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style15" style="background-color: #FFF2EC">&nbsp;</td>
+                    <td class="auto-style16">&nbsp;</td>
+                    <td class="auto-style16">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style15" style="background-color: #FFF2EC">&nbsp;</td>
+                    <td class="auto-style16">&nbsp;</td>
+                    <td class="auto-style16">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style15" style="background-color: #FFF2EC">&nbsp;</td>
+                    <td class="auto-style16">&nbsp;</td>
+                    <td class="auto-style16">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style15" style="background-color: #FFF2EC">&nbsp;</td>
+                    <td class="auto-style16">&nbsp;</td>
+                    <td class="auto-style16">&nbsp;</td>
+                </tr>
+            </table>
+        </div>
+    </form>
+</body>
+</html>
