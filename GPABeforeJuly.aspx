@@ -161,6 +161,38 @@
             const aimedCGPA = parseFloat(document.getElementById('aimedCGPA').value);
             const totalCredit = parseFloat(document.getElementById('totalCredit').value);
 
+        if ( isNaN(currentCGPA) || isNaN(aimedCGPA) || isNaN(totalCredit) || subjectCredits.length === 0 ||
+            currentCGPA > 4.0 || currentCGPA < 0.0 || aimedCGPA > 4.0 || aimedCGPA < 0.0) {
+            let errorMessage = "";
+
+            // Check if all fields are filled with valid numerical values
+            if (isNaN(currentCGPA) || isNaN(aimedCGPA) || isNaN(totalCredit) || subjectCredits.length === 0) {
+                errorMessage += "Please enter valid numerical values for all fields.\n";
+            }
+
+            // Check if CGPA values are within the valid range
+            if (currentCGPA > 4.0) {
+                errorMessage += "Current CGPA should not be more than 4.0.\n";
+            }
+            if (currentCGPA < 0.0) {
+                errorMessage += "Current CGPA should not be less than 0.0.\n";
+            }
+            if (aimedCGPA > 4.0) {
+                errorMessage += "Aimed CGPA should not be more than 4.0.\n";
+            }
+            if (aimedCGPA < 0.0) {
+                errorMessage += "Aimed CGPA should not be less than 0.0.\n";
+            }
+
+            // If there are any errors, show the alert and stop further processing
+            if (errorMessage) {
+                alert(errorMessage);
+                return;
+            }
+        }
+
+
+
             const subjectCredits = [];
 
             // Loop through all dynamically added subject inputs
@@ -172,12 +204,6 @@
                         credit: credit
                     });
                 }
-            }
-
-            // Ensure all inputs are provided
-            if (isNaN(currentCGPA) || isNaN(aimedCGPA) || isNaN(totalCredit) || subjectCredits.length === 0) {
-                alert("Please enter valid numerical values for all fields.");
-                return;
             }
 
             // Define grade points for different grades
