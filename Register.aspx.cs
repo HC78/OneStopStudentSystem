@@ -32,38 +32,44 @@ namespace OneStopStudentSystem
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+            // First, check if the page is valid
             if (Page.IsValid)
             {
                 string emailAddress = txtEmail.Text;
                 string username = txtUsername.Text;
                 string mobileNumber = txtPhone.Text;
+                string errorMessage = "";
 
+                // Check if the username is unique
                 if (!IsUsernameUnique(username))
                 {
-                    lblError.Text = "Username already exists. Please choose a different username.";
-                    return;
+                    errorMessage += "*Username already exists. Please choose a different username.<br/>";
                 }
 
+                // Check if the email is unique
                 if (!IsEmailUnique(emailAddress))
                 {
-                    lblError.Text = "Email already exists. Please choose a different email.";
-                    return;
+                    errorMessage += "*Email already exists. Please choose a different email.<br/>";
                 }
 
+                // Check if the mobile number is unique
                 if (!IsPhoneUnique(mobileNumber))
                 {
-                    lblError.Text = "Mobile number already exists. Please choose a different mobile number.";
+                    errorMessage += "*Mobile number already exists. Please choose a different mobile number.<br/>";
+                }
+
+                // If there are any errors, display them and return early
+                if (!string.IsNullOrEmpty(errorMessage))
+                {
+                    lblError.Text = errorMessage;
                     return;
                 }
 
-                if (Page.IsValid)
-                {
-                    insertIntoDatabase();
-                }
-                else
-                {
-                    lblError.Text = "Please correct the validation errors.";
-                }
+                insertIntoDatabase();
+            }
+            else
+            {
+                lblError.Text = "Please correct the validation errors.";
             }
         }
 
