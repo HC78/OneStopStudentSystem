@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Register.aspx.cs" Inherits="OneStopStudentSystem.Register" MaintainScrollPositionOnPostback="true" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOM6DjQ9/KFR1F0GzlQME5/R2G7PbX5A6G7D1H5L" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOM6DjQ9/KFR1F0GzlQME5/R2G7PbX5A6G7D1H5L" crossorigin="anonymous">
     <style>
         .auto-style1 {
             height: 26px;
@@ -9,7 +9,7 @@
 
         .auto-style2 {
             height: 26px;
-            width: 17225px;
+            width: 32042px;
         }
 
         .auto-style15 {
@@ -23,7 +23,7 @@
         .auto-style17 {
             width: 463px;
             height: 1356px;
-            margin-left: 20px;
+            margin-left: 41px;
             margin-top: 0px;
         }
 
@@ -52,11 +52,16 @@
             .validation-message i {
                 margin-right: 5px;
             }
+        .auto-style18 {
+            width: 360px;
+            height: 32px;
+            margin-left: 14px;
+        }
     </style>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <table style="margin-left: 100px; margin-right: -20px;" class="auto-style15">
+    <table style="margin-right: -20px;" class="auto-style18">
         <tr>
             <td class="auto-style2">
                 <asp:Label ID="Label17" runat="server" Font-Size="X-Large" ForeColor="Black" Text="Sign Up" Font-Bold="True" Font-Names="Times New Roman"></asp:Label>
@@ -84,14 +89,14 @@
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtName" EnableClientScript="False" ErrorMessage="You must enter a name" ForeColor="Red" SetFocusOnError="True">*</asp:RequiredFieldValidator>
                 &nbsp;
             </td>
+            <td>&nbsp;</td>
         </tr>
         <tr>
             <td class="auto-style2">
                 <br />
                 <asp:Label ID="Label3" runat="server" Text="Mobile Number"></asp:Label>
                 &nbsp;
-                <asp:Label ID="Label15" runat="server" Text="*It cannot be changed after submission." ForeColor="#68565B"></asp:Label>
-
+                
 
                 <br />
                 <asp:TextBox ID="txtPhone" runat="server" Height="32px" Width="379px" BorderColor="#5F6F52" OnTextChanged="txtPhone_TextChanged" Style="border-radius: 7px;" BorderStyle="Solid" BorderWidth="1px"></asp:TextBox>
@@ -244,10 +249,10 @@
         <tr>
             <td class="auto-style2">
                 <br />
-                <asp:Button ID="btnSubmit" runat="server" BackColor="#68565B" BorderStyle="Solid" Height="55px" OnClick="btnSubmit_Click" Text="Register" Width="184px" Style="border-radius: 10px;" ForeColor="White" />
+                <asp:Button ID="btnSubmit" runat="server" BackColor="#68565B" BorderStyle="Solid" Height="55px" OnClick="btnSubmit_Click" Text="Register" Width="172px" Style="border-radius: 10px;" ForeColor="White" />
 
                 &nbsp;&nbsp;
-                <asp:Button ID="btnCancel" runat="server" BackColor="#5F6F52" BorderStyle="Solid" Height="55px" OnClick="btnCancel_Click" Text="Cancel" Width="184px" Style="border-radius: 10px;" ForeColor="White" />
+                <asp:Button ID="btnCancel" runat="server" BackColor="#5F6F52" BorderStyle="Solid" Height="55px" OnClick="btnCancel_Click" Text="Cancel" Width="172px" Style="border-radius: 10px;" ForeColor="White" />
 
                 &nbsp;</td>
         </tr>

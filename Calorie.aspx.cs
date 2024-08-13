@@ -61,24 +61,28 @@ namespace OneStopStudentSystem
                 string message = "";
                 if (targetWeight1 == previousTargetWeight)
                 {
-                    if (weight == targetWeight)
+                    if (currentWeight == targetWeight1)
                     {
-                        message = "Congratulations! You have achieved your target weight.";
+                        message = "Congratulations! You have achieved your target weight, " + targetWeight1.ToString("F0") + " kg";
                         isTargetAchieved = true;
                     }
                     else if (Math.Abs(currentWeight - targetWeight1) < Math.Abs(previousWeight - targetWeight1))
                     {
-                        message = "You are moving towards your target weight. Nice!";
+                        message = "You are moving towards your target weight, " + targetWeight1.ToString("F0") + " kg from " + previousWeight.ToString("F0") + " kg -> " + currentWeight.ToString("F0") + " kg. Nice!";
                         isTargetAchieved = true;
                     }
                     else
                     {
-                        message = "Sadly, you are further away from your target weight than before. Please keep it up.";
+                        message = "Sadly, you are further away from your target weight, " + targetWeight1.ToString("F0") + " kg than before (" + previousWeight.ToString("F0") + " kg -> " + currentWeight.ToString("F0") + " kg). Please keep it up.";
                         isTargetAchieved = false;
                     }
 
                     lblCong.Text = message;
                     lblCong.CssClass = "glow-bold";
+                }
+                else
+                {
+                    lblCong.Text = "";
                 }
                 try
                 {
@@ -119,7 +123,7 @@ namespace OneStopStudentSystem
             //not work
             hiddenIsTargetAchieved.Value = isTargetAchieved.ToString().ToLower();
 
-            ScriptManager.RegisterStartupScript(this, GetType(), "toggleNotice", "toggleNoticeVisibility();", true);
+            ScriptManager.RegisterStartupScript(this, GetType(), "toggleNotice", "toggleNoticeVisibility();", false);
         }
 
         private decimal GetPreviousTargetWeight(string studentID)

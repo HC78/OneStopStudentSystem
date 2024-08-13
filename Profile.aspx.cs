@@ -210,6 +210,7 @@ namespace OneStopStudentSystem
             if (Session["Username"] != null)
             {
                 string username = Session["Username"].ToString();
+                string userType = Session["UserType"].ToString();
                 string name = txtName.Text;
                 string dob = txtCal0.Text;
                 string gender = rblGender.SelectedValue;
@@ -231,8 +232,8 @@ namespace OneStopStudentSystem
                 }
                 else
                 {
-                    imagePath = Image1.ImageUrl.Replace("~/Image/", "");
-
+                    //  imagePath = Image1.ImageUrl.Replace("~/Image/", "");
+                    imagePath = GetImage(username, userType);
                     boyProfile.Visible = false;
                     girlProfile.Visible = false;
                 }
@@ -245,6 +246,61 @@ namespace OneStopStudentSystem
                 Response.Redirect("Login.aspx");
             }
         }
+
+
+        private string GetImage(string username, string userType)
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            string query = "";
+
+            // Define query based on user type
+            switch (userType)
+            {
+                case "Student":
+                    query = "SELECT studentImage FROM Student WHERE studentUsername = @Username";
+                    break;
+                case "Admin":
+                    query = "SELECT adminImage FROM Admin WHERE adminUsername = @Username";
+                    break;
+                case "TempUser":
+                    query = "SELECT tempUserImage FROM TempUser WHERE tempUserUsername = @Username";
+                    break;
+                default:
+                    throw new ArgumentException("Invalid user type.");
+            }
+            string imagePath = "";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Username", username);
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        if (userType == "Student")
+                        {
+                            imagePath = reader["studentImage"].ToString();
+                        }
+                        else if (userType == "Admin")
+                        {
+                            imagePath = reader["adminImage"].ToString();
+                        }
+                        else if (userType == "TempUser")
+                        {
+                            imagePath = reader["tempUserImage"].ToString();
+                        }
+                    }
+
+                    reader.Close();
+                }
+            }
+
+            return imagePath;
+        }
+
 
         private void UpdateUserProfile(string username, string name, string dob, string gender, string state, string email, string mobileNo, string imagePath)
         {
@@ -285,19 +341,19 @@ namespace OneStopStudentSystem
                     {
                         query += ", studentImage = @ProfileImage";
                     }
-                    query += " WHERE studentUsername = @Username";
-                    break;
-                case "Staff":
-                    query = "UPDATE Staff SET staffName = @Name, staffDOB = @DOB, staffGender = @Gender, staffState = @State, staffEmail = @Email, staffMobileNo = @MobileNo";
-                    if (!string.IsNullOrEmpty(imagePath))
+                    else
                     {
-                        query += ", staffImage = @ProfileImage";
+                        query += ", studentImage = @ProfileImage";
                     }
-                    query += " WHERE staffUsername = @Username";
-                    break;
+                    query += " WHERE studentUsername = @Username";
+                    break;        
                 case "Admin":
                     query = "UPDATE Admin SET adminName = @Name, adminDOB = @DOB, adminGender = @Gender, adminState = @State, adminEmail = @Email, adminMobileNo = @MobileNo";
                     if (!string.IsNullOrEmpty(imagePath))
+                    {
+                        query += ", adminImage = @ProfileImage";
+                    }
+                    else
                     {
                         query += ", adminImage = @ProfileImage";
                     }
@@ -306,6 +362,10 @@ namespace OneStopStudentSystem
                 case "TempUser":
                     query = "UPDATE TempUser SET tempUserName = @Name, tempUserDOB = @DOB, tempUserGender = @Gender, tempUserState = @State, tempUserEmail = @Email, tempUserMobileNo = @MobileNo";
                     if (!string.IsNullOrEmpty(imagePath))
+                    {
+                        query += ", tempUserImage = @ProfileImage";
+                    }
+                    else
                     {
                         query += ", tempUserImage = @ProfileImage";
                     }
@@ -331,7 +391,14 @@ namespace OneStopStudentSystem
                     {
                         command.Parameters.AddWithValue("@ProfileImage", imagePath);
                     }
-
+                    else
+                    {
+                        Image1.ImageUrl = "/Image/" + imagePath;
+                        Image1.Visible = true;
+                        boyProfile.Visible = false;
+                        girlProfile.Visible = false;
+                        command.Parameters.AddWithValue("@ProfileImage", imagePath);
+                    }
                     try
                     {
                         connection.Open();
