@@ -248,8 +248,10 @@
     <Content Include="Image\girlo3.png" />
     <Content Include="Image\girlProfile.jfif" />
     <Content Include="Image\girlst.png" />
+    <Content Include="Image\happy.gif" />
     <Content Include="Image\logo.png" />
     <Content Include="Image\picReg.jpg" />
+    <Content Include="Image\sad.gif" />
     <Content Include="Image\sebastianImg.jfif" />
     <Content Include="Image\send.jpg" />
     <Content Include="Image\sendi.jpg" />

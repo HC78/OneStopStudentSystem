@@ -159,19 +159,23 @@
             // Retrieve user inputs
             const currentCGPA = parseFloat(document.getElementById('currentCGPA').value);
             const aimedCGPA = parseFloat(document.getElementById('aimedCGPA').value);
+            const totalCredit = parseFloat(document.getElementById('totalCredit').value);
 
             const subjectCredits = [];
 
             // Loop through all dynamically added subject inputs
             for (let i = 1; i <= subjectCount; i++) {
                 const credit = parseFloat(document.getElementById(`credit${i}`).value);
-                subjectCredits.push(credit);
+                if (!isNaN(credit) && credit > 0) {
+                    subjectCredits.push({
+                        subject: i,
+                        credit: credit
+                    });
+                }
             }
 
-            const totalCredit = parseFloat(document.getElementById('totalCredit').value);
-
             // Ensure all inputs are provided
-            if (isNaN(currentCGPA) || isNaN(aimedCGPA) || subjectCredits.some(isNaN) || isNaN(totalCredit)) {
+            if (isNaN(currentCGPA) || isNaN(aimedCGPA) || isNaN(totalCredit) || subjectCredits.length === 0) {
                 alert("Please enter valid numerical values for all fields.");
                 return;
             }
@@ -185,14 +189,14 @@
                 'B-': 2.75,
                 'C+': 2.5,
                 'C': 2.0,
-                'F': 0.0,
+                'F': 0.0
             };
 
             // Calculate total quality points for the current CGPA
             const totalQualityPoints = currentCGPA * totalCredit;
 
             // Calculate total credits for the next semester dynamically
-            const totalNextSemesterCredits = subjectCredits.reduce((total, credit) => total + credit, 0);
+            const totalNextSemesterCredits = subjectCredits.reduce((total, subject) => total + subject.credit, 0);
 
             // Calculate total quality points needed for the aimed CGPA
             const totalAimedQualityPoints = aimedCGPA * (totalCredit + totalNextSemesterCredits);
@@ -200,12 +204,15 @@
             // Calculate the difference in quality points needed
             let requiredQualityPoints = totalAimedQualityPoints - totalQualityPoints;
 
+            // Sort subjects by credit hours in descending order
+            subjectCredits.sort((a, b) => b.credit - a.credit);
+
             // Initialize an array to store grade and remaining quality points for each subject
             const subjectResults = [];
 
             // Loop through each subject to calculate grade and remaining quality points
-            for (let i = 1; i <= subjectCount; i++) {
-                const subjectCredit = subjectCredits[i - 1];
+            for (const subject of subjectCredits) {
+                const subjectCredit = subject.credit;
                 let gradePoint = requiredQualityPoints / subjectCredit;
 
                 // Ensure the calculated grade point is within the valid range
@@ -215,25 +222,44 @@
                 const grade = markToGrade(Math.max(gradePoint, gradePoints['C']));
 
                 subjectResults.push({
-                    subject: i,
+                    subject: subject.subject,
                     grade: grade,
                 });
 
                 // Update remaining quality points for the next iteration
                 requiredQualityPoints -= gradePoint * subjectCredit;
+
+                // Stop if we have met or exceeded the required quality points
+                if (requiredQualityPoints <= 0) break;
             }
 
+            // Calculate maximum achievable CGPA
+            let maxAchievableQualityPoints = totalQualityPoints;
+            for (const subject of subjectCredits) {
+                maxAchievableQualityPoints += subject.credit * gradePoints['A']; // Assume 'A' grade
+            } 
+            const maxAchievableCGPA = maxAchievableQualityPoints / (totalCredit + totalNextSemesterCredits);
+
+            // Output results
             let resultsHTML = `<p>Grades needed for each subject:</p>`;
             subjectResults.forEach(result => {
                 resultsHTML += `<p>Subject ${result.subject}: ${result.grade}</p>`;
             });
 
             if (requiredQualityPoints > 0) {
-                resultsHTML += `<p>Sorry, cannot reach the target CGPA in the next semester with the provided subjects.</p>`;
+                resultsHTML += `<p style="color: red; font-weight: bold;">Unfortunately, eventhough you achieve A's in all subjects, you still cannot achieve the target CGPA in the next semester with the provided subjects.</p>`;
+                resultsHTML += `<p style="color: red; font-weight: bold;">The maximum achievable CGPA is ${maxAchievableCGPA.toFixed(4)}.</p>`;
+                resultsHTML += `<p style="color: red; font-weight: bold;">Keep trying hard, and you can improve in the next semester!</p>`;
+                resultsHTML += `<img src="/Image/sad.gif" alt="Sad" />`;
+            } else {
+                resultsHTML += `<p style="color: green; font-weight: bold;">Congratulations! You can achieve your target CGPA with the provided subject grade!</p>`;
+                resultsHTML += `<img src="/Image/happy.gif" alt="cong" />`;
             }
 
             document.getElementById('resultsContainer').innerHTML = resultsHTML;
         }
+
+        //https://calculategrades.net/my/tarumt.html ->demo
 
         function cancelForm() {
             document.getElementById('currentCGPA').value = '';

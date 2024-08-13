@@ -6,7 +6,7 @@ using System.Web.UI.WebControls;
 
 namespace fyp
 {
-    public partial class ToDo : System.Web.UI.Page
+    public partial class ToDo : System.Web.UI.Page 
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -415,5 +415,9 @@ namespace fyp
             }
         }
 
+        protected void GridView7_SelectedIndexChanged1(object sender, EventArgs e)
+        {
+
+        }
     }
 }
