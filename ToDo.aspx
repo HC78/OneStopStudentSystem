@@ -66,7 +66,7 @@
         <tr>
             <td class="auto-style21">
                 <asp:TextBox ID="myInput1" runat="server"></asp:TextBox>
-                <asp:Button ID="addBtn1" runat="server" Text="+" OnClick="addBtn1_Click" />
+                <asp:Button ID="addBtn1" runat="server" Text="+" OnClick="addBtn1_Click" Width="25px" />
             </td>
             <td class="auto-style17">
                 <asp:TextBox ID="myInput2" runat="server"></asp:TextBox>
@@ -75,7 +75,7 @@
         </tr>
         <tr>
             <td class="auto-style20" id="myUL1">
-                <asp:GridView ID="GridView7" runat="server" DataSourceID="SqlDataSource2" DataKeyNames="ToDoID" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" OnRowEditing="GridView7_RowEditing" OnRowDeleting="GridView7_RowDeleting"  OnRowUpdating="GridView7_RowUpdating" OnRowCancelingEdit="GridView7_RowCancelingEdit" CssClass="auto-style19" Width="463px" BackColor="White" BorderColor="#336666" BorderStyle="Double" BorderWidth="3px" CellPadding="4" GridLines="Horizontal">
+                <asp:GridView ID="GridView7" runat="server" DataSourceID="SqlDataSource2" DataKeyNames="ToDoID" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" OnRowEditing="GridView7_RowEditing" OnRowDeleting="GridView7_RowDeleting"  OnRowUpdating="GridView7_RowUpdating" OnRowCancelingEdit="GridView7_RowCancelingEdit" CssClass="auto-style19" Width="463px" BackColor="White" BorderColor="#336666" BorderStyle="Double" BorderWidth="3px" CellPadding="4" GridLines="Horizontal" OnSelectedIndexChanged="GridView7_SelectedIndexChanged1">
                     <Columns>
                         <asp:CommandField ShowEditButton="True" ShowCancelButton="True" ShowDeleteButton="True" />
                         <asp:TemplateField HeaderText="Content">
