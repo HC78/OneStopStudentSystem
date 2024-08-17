@@ -306,7 +306,7 @@
                
                 }
                 if (age < 18) {
-                    error += "Please enter valid university student age (more than 18 years old).\n";
+                    error += "Please enter valid university student age (more than 18 years old)\n";
                     
                 }
                 alert(error);

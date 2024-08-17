@@ -185,7 +185,7 @@
                 nutrientResult2.style.display = 'block';
             }
         }
-</script>
+    </script>
     <script>
         function calculateCalories() {
             const gender = document.getElementById('gender').value;
@@ -205,8 +205,48 @@
             const notice = document.getElementById('notice');
             notice.style.display = 'block';
 
+            var error = "";
             if (isNaN(age) || isNaN(weight) || isNaN(height) || isNaN(targetWeight) || isNaN(weeksToReachTarget)) {
-                alert("Please enter valid numbers for all fields.");
+                 if (isNaN(age)) {
+                   error+="Please enter age\n";
+      
+               }
+               if (isNaN(height)) {
+                   error += "Please enter height\n";
+   
+               }
+               if (isNaN(weight)) {
+                   error += "Please enter weight\n";
+     
+               }
+                 if (isNaN(targetWeight)) {
+                  error += "Please enter target weight\n";
+     
+              }  if (isNaN(weeksToReachTarget)) {
+                  error += "Please enter weeks to reach target\n";
+     
+              }
+               if (height <= 0) {
+                   error += "Please enter valid height\n";
+       
+               }
+               if (weight <= 0) {
+                   error += "Please enter valid weight\n";
+  
+               }
+                 if (targetWeight <= 0) {
+                  error += "Please enter valid target weight\n";
+  
+              }  if (weeksToReachTarget <= 0) {
+                  error += "Please enter valid weeks to reach target\n";
+  
+              }
+               if (age < 18) {
+                   error += "Please enter valid university student age (more than 18 years old)\n";
+       
+               }
+
+                alert(error);
                 document.getElementById('notice').style.display = 'none';
                 return;
             }

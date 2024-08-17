@@ -33,7 +33,16 @@
                 border-radius: 10px;
                 color: white;
                 margin-right: 10px;
+                transition: background-color 0.3s ease;
             }
+
+                .container button:hover {
+                    background-color: #485240;
+                }
+
+                .container button:active {
+                    background-color: #4A4A4A;
+                }
     </style>
 
 </asp:Content>
@@ -160,36 +169,36 @@
             const currentCGPA = parseFloat(document.getElementById('currentCGPA').value);
             const aimedCGPA = parseFloat(document.getElementById('aimedCGPA').value);
             const totalCredit = parseFloat(document.getElementById('totalCredit').value);
+           
+            if (isNaN(currentCGPA) || isNaN(aimedCGPA) || isNaN(totalCredit) || subjectCredits.length === 0 ||
+                currentCGPA > 4.0 || currentCGPA < 0.0 || aimedCGPA > 4.0 || aimedCGPA < 0.0) {
+                let errorMessage = "";
 
-        if ( isNaN(currentCGPA) || isNaN(aimedCGPA) || isNaN(totalCredit) || subjectCredits.length === 0 ||
-            currentCGPA > 4.0 || currentCGPA < 0.0 || aimedCGPA > 4.0 || aimedCGPA < 0.0) {
-            let errorMessage = "";
+                // Check if all fields are filled with valid numerical values
+                if (isNaN(currentCGPA) || isNaN(aimedCGPA) || isNaN(totalCredit) || subjectCredits.length === 0) {
+                    errorMessage += "Please enter valid numerical values for all fields.\n";
+                }
 
-            // Check if all fields are filled with valid numerical values
-            if (isNaN(currentCGPA) || isNaN(aimedCGPA) || isNaN(totalCredit) || subjectCredits.length === 0) {
-                errorMessage += "Please enter valid numerical values for all fields.\n";
-            }
+                // Check if CGPA values are within the valid range
+                if (currentCGPA > 4.0) {
+                    errorMessage += "Current CGPA should not be more than 4.0.\n";
+                }
+                if (currentCGPA < 0.0) {
+                    errorMessage += "Current CGPA should not be less than 0.0.\n";
+                }
+                if (aimedCGPA > 4.0) {
+                    errorMessage += "Aimed CGPA should not be more than 4.0.\n";
+                }
+                if (aimedCGPA < 0.0) {
+                    errorMessage += "Aimed CGPA should not be less than 0.0.\n";
+                }
 
-            // Check if CGPA values are within the valid range
-            if (currentCGPA > 4.0) {
-                errorMessage += "Current CGPA should not be more than 4.0.\n";
+                // If there are any errors, show the alert and stop further processing
+                if (errorMessage) {
+                    alert(errorMessage);
+                    return;
+                }
             }
-            if (currentCGPA < 0.0) {
-                errorMessage += "Current CGPA should not be less than 0.0.\n";
-            }
-            if (aimedCGPA > 4.0) {
-                errorMessage += "Aimed CGPA should not be more than 4.0.\n";
-            }
-            if (aimedCGPA < 0.0) {
-                errorMessage += "Aimed CGPA should not be less than 0.0.\n";
-            }
-
-            // If there are any errors, show the alert and stop further processing
-            if (errorMessage) {
-                alert(errorMessage);
-                return;
-            }
-        }
 
 
 
@@ -263,7 +272,7 @@
             let maxAchievableQualityPoints = totalQualityPoints;
             for (const subject of subjectCredits) {
                 maxAchievableQualityPoints += subject.credit * gradePoints['A']; // Assume 'A' grade
-            } 
+            }
             const maxAchievableCGPA = maxAchievableQualityPoints / (totalCredit + totalNextSemesterCredits);
 
             // Output results

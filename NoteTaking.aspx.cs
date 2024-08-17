@@ -81,7 +81,7 @@ namespace fyp
 
         }
 
-         private bool AddNoteToDatabase(string NoteTitle, string NoteDesc, string colour, string course, string week)
+        private bool AddNoteToDatabase(string NoteTitle, string NoteDesc, string colour, string course, string week)
         {
             bool complete = true;
 
@@ -116,38 +116,22 @@ namespace fyp
             string newNoteID = GenerateNextID();
 
             List<string> imagePaths = new List<string>();
-            List<string> duplicateFiles = new List<string>();
+       //     List<string> duplicateFiles = new List<string>();
             if (fileUpload.HasFiles)
             {
                 foreach (HttpPostedFile uploadedFile in fileUpload.PostedFiles)
                 {
                     string filename = Path.GetFileName(uploadedFile.FileName);
+
                     string serverPath = Server.MapPath("~/Image/") + filename;
 
-                    if (File.Exists(serverPath))
-                    {
-                        duplicateFiles.Add(filename);
-                    }
-                    else
-                    {
-                        try
-                        {
-                            uploadedFile.SaveAs(serverPath);
-                            imagePaths.Add(filename);
-                        }
-                        catch (Exception ex)
-                        {
-                            Console.WriteLine("An error occurred while uploading the image: " + ex.Message);
-                        }
-                    }
+                    
+                     uploadedFile.SaveAs(serverPath);
+                     imagePaths.Add(filename);
+                    
                 }
             }
 
-            if (duplicateFiles.Count > 0)
-            {
-                lblError.Text = "The following files are duplicates and were not uploaded: " + string.Join(", ", duplicateFiles);
-                return false;
-            }
             try
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
@@ -359,7 +343,7 @@ namespace fyp
             notePanel.Controls.Add(descLabel);
             notePanel.Controls.Add(new LiteralControl("<br />"));
 
-    
+
             // Add Edit Button
             Button editButton = new Button();
             editButton.ID = $"editButton_{noteID}";
