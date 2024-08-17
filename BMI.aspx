@@ -146,7 +146,7 @@
                     </asp:TemplateField>
                 </Columns>
             </asp:GridView>
-            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [dateTime], [Height], [Weight], [CalorieValue], [BMIValue] FROM [HealthyValue] WHERE ([studentID] = @studentID)">
+            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [dateTime], [Height], [Weight], [CalorieValue], [BMIValue] FROM [HealthyValue] WHERE ([studentID] = @studentID) ORDER BY [dateTime] Desc">
                 <SelectParameters>
                     <asp:SessionParameter Name="studentID" SessionField="UserID" Type="String" />
                 </SelectParameters>
@@ -283,13 +283,33 @@
             document.getElementById('<%= hiddenAge.ClientID %>').value = age;
             document.getElementById('<%= hiddenGender.ClientID %>').value = gender;
 
+            var error = "";
             if (isNaN(age) || isNaN(height) || isNaN(weight) || age <= 0 || height <= 0 || weight <= 0) {
-                alert("Please enter valid age, height, and weight values.");
-                return;
-            }
-
-            if (age < 18) {
-                alert("Please enter valid university student age (more than 18 years old).")
+                if (isNaN(age)) {
+                    error+="Please enter age\n";
+                   
+                }
+                if (isNaN(height)) {
+                    error += "Please enter height\n";
+                
+                }
+                if (isNaN(weight)) {
+                    error += "Please enter weight\n";
+                  
+                }
+                if (height <= 0) {
+                    error += "Please enter valid height\n";
+                    
+                }
+                if (weight <= 0) {
+                    error += "Please enter valid weight\n";
+               
+                }
+                if (age < 18) {
+                    error += "Please enter valid university student age (more than 18 years old).\n";
+                    
+                }
+                alert(error);
                 return;
             }
 

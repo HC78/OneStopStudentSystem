@@ -301,6 +301,97 @@ namespace OneStopStudentSystem
             return imagePath;
         }
 
+        private string GetMobileNum(string username, string userType)
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            string query = "";
+
+            // Define query based on user type
+            switch (userType)
+            {
+                case "Student":
+                    query = "SELECT studentMobileNo FROM Student WHERE studentUsername = @Username";
+                    break;
+                case "Admin":
+                    query = "SELECT adminMobileNo FROM Admin WHERE adminUsername = @Username";
+                    break;
+                case "TempUser":
+                    query = "SELECT tempUserMobileNo FROM TempUser WHERE tempUserUsername = @Username";
+                    break;
+                default:
+                    throw new ArgumentException("Invalid user type.");
+            }
+            string mobileNo = "";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Username", username);
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        if (userType == "Student")
+                        {
+                            mobileNo = reader["studentMobileNo"].ToString();
+                        }
+                        else if (userType == "Admin")
+                        {
+                            mobileNo = reader["adminMobileNo"].ToString();
+                        }
+                        else if (userType == "TempUser")
+                        {
+                            mobileNo = reader["tempUserMobileNo"].ToString();
+                        }
+                    }
+
+                    reader.Close();
+                }
+            }
+
+            return mobileNo;
+        }
+
+
+        private bool IsPhoneUnique(string mobile)
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            string query = "SELECT COUNT(*) FROM TempUser WHERE tempUserMobileNo = @mobile";
+            string queryStudent = "SELECT COUNT(*) FROM Student WHERE studentMobileNo = @mobile";
+            string queryAdmin = "SELECT COUNT(*) FROM Admin WHERE adminMobileNo = @mobile";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@mobile", mobile);
+                    connection.Open();
+                    int count = (int)command.ExecuteScalar();
+                    if (count > 0)
+                        return false;
+                }
+
+                using (SqlCommand command = new SqlCommand(queryStudent, connection))
+                {
+                    command.Parameters.AddWithValue("@mobile", mobile);
+                    int count = (int)command.ExecuteScalar();
+                    if (count > 0)
+                        return false;
+                }
+
+                using (SqlCommand command = new SqlCommand(queryAdmin, connection))
+                {
+                    command.Parameters.AddWithValue("@mobile", mobile);
+                    int count = (int)command.ExecuteScalar();
+                    if (count > 0)
+                        return false;
+                }
+            }
+
+            return true;
+        }
 
         private void UpdateUserProfile(string username, string name, string dob, string gender, string state, string email, string mobileNo, string imagePath)
         {
@@ -328,10 +419,21 @@ namespace OneStopStudentSystem
                 lblMessage.Visible = true; 
                 return;
             }
+            string userType = Session["UserType"].ToString();
 
+            String mobileNum=GetMobileNum(username, userType);
+            if (mobileNum != mobileNo)
+            {
+                if (!IsPhoneUnique(mobileNo))
+                {
+                    lblMessage.Text = "Mobile number already exists. Please choose a different mobile number.";
+                    lblMessage.Visible = true;
+                    return;
+                }
+            }
             string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             string query = "";
-            string userType = Session["UserType"].ToString();
+       
 
             switch (userType)
             {

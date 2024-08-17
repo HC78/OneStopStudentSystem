@@ -103,24 +103,29 @@ namespace fyp
 
         protected void BtnReset_Click(object sender, EventArgs e)
         {
+            List<string> errorMessages = new List<string>();
             string newPassword = txtPsw.Text.Trim();
             string confirmPassword = txtConfirmPsw.Text.Trim();
             string oldPsw = txtOldPsw.Text.Trim();
+            string username = Session["Username"] as string;
+            lblError.Text = "";
 
+            if (string.IsNullOrEmpty(username))
+            {
+                errorMessages.Add("Username not found in session.");
+            }
             if (newPassword != confirmPassword)
             {
-                lblError.Text = "Passwords do not match.";
-                return;
+                errorMessages.Add("Passwords do not match.");
             }
             if (newPassword == oldPsw)
             {
-                lblError.Text = "New Password Same with Old Password.";
-                return;
+                errorMessages.Add("New Password Same with Old Password.");
             }
-            string username = Session["Username"] as string;
-            if (string.IsNullOrEmpty(username))
+
+            if (errorMessages.Any())
             {
-                lblError.Text = "Username not found in session.";
+                lblError.Text = string.Join("<br />", errorMessages);
                 return;
             }
 
