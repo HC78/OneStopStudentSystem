@@ -71,7 +71,7 @@
                         </asp:TemplateField>
                     </Columns>
                 </asp:GridView>
-                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [dateTime], [Height], [Weight], [CalorieValue], [BMIValue], [TargetWeight] FROM [HealthyValue] WHERE ([studentID] = @studentID)">
+                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [dateTime], [Height], [Weight], [CalorieValue], [BMIValue], [TargetWeight] FROM [HealthyValue] WHERE ([studentID] = @studentID) ORDER BY [dateTime] Desc">
                     <SelectParameters>
                         <asp:SessionParameter Name="studentID" SessionField="UserID" Type="String" />
                     </SelectParameters>

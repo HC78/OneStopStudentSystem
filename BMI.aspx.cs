@@ -170,7 +170,6 @@ namespace OneStopStudentSystem
                             decimal previousWeight = readerPrevious.GetDecimal(0);
                             decimal previousBMI = readerPrevious.GetDecimal(1);
 
-                            // Compare and generate message
                             if (previousBMI < 18.5m) // Underweight
                             {
                                 if (latestWeight > previousWeight)
@@ -179,7 +178,7 @@ namespace OneStopStudentSystem
                                     lblCong.CssClass = "glow-bold";
                                 }
                             }
-                            else if (previousBMI >= 30m) // obese
+                            else if (previousBMI >= 30m) // Obese
                             {
                                 if (latestWeight < previousWeight)
                                 {
@@ -212,6 +211,7 @@ namespace OneStopStudentSystem
                 lblCong.Text = "An error occurred while comparing BMI data: " + ex.Message;
             }
         }
+
 
 
         [WebMethod]

@@ -225,7 +225,15 @@ namespace OneStopStudentSystem
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                bool isCompleted = Convert.ToBoolean(DataBinder.Eval(e.Row.DataItem, "IsCompleted"));
+                object isCompletedValue = DataBinder.Eval(e.Row.DataItem, "IsCompleted");
+
+                bool isCompleted = false; 
+
+                if (isCompletedValue != DBNull.Value && isCompletedValue != null)
+                {
+                    isCompleted = Convert.ToBoolean(isCompletedValue);
+                }
+
                 if (isCompleted)
                 {
                     e.Row.Style.Add("text-decoration", "line-through");

@@ -41,16 +41,31 @@
         .validation-message i {
             margin-right: 5px;
         }
+        .auto-style18 {
+            height: 26px;
+            width: 742px;
+        }
+        .auto-style19 {
+            width: 742px;
+        }
+        .auto-style20 {
+            width: 742px;
+            height: 8px;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-       <table>
+       <table style="margin-right: -120px;">
         <tr>
+            <td class="auto-style18">
+                &nbsp;</td>
             <td class="auto-style17">
                 <asp:Label ID="Label7" runat="server" Font-Size="X-Large" ForeColor="Black" Text="Reset Password" Font-Bold="True" Font-Names="Times New Roman"></asp:Label>
             </td>
         </tr>
         <tr>
+            <td class="auto-style19">
+                &nbsp;</td>
             <td class="auto-style3">
                 <asp:Label ID="lblError" runat="server" ForeColor="Red"></asp:Label>
                 <asp:ValidationSummary ID="ValidationSummary1" runat="server" ForeColor="Red" />
@@ -68,6 +83,8 @@
                 </td>
         </tr>
         <tr>
+            <td class="auto-style19">
+                &nbsp;</td>
             <td class="auto-style3">
                 <div id="passwordValidationMessage">
                 </div>
@@ -75,6 +92,8 @@
                 </td>
         </tr>
         <tr>
+            <td class="auto-style20">
+                &nbsp;</td>
             <td class="auto-style4">
                 <br />
                 <asp:Label ID="Label5" runat="server" Text="Confirm Password"></asp:Label>
@@ -85,16 +104,23 @@
             </td>
         </tr>
         <tr>
+            <td class="auto-style19">
+              
+                &nbsp;</td>
             <td class="auto-style3">
               
                 <br />
             </td>
         </tr>
         <tr>
+            <td class="auto-style19">
+                &nbsp;</td>
             <td class="auto-style3">
                 &nbsp;</td>
         </tr>
         <tr>
+            <td class="auto-style19">
+                &nbsp;</td>
             <td class="auto-style3">
                 <asp:Button ID="btnReset" runat="server" BackColor="#68565B" BorderStyle="Solid" Height="55px" OnClick="BtnReset_Click" Text="Reset Password" Width="184px" Style="border-radius: 10px;" ForeColor="White" />
                 &nbsp;

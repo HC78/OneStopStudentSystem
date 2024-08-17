@@ -222,7 +222,17 @@
             padding-top:1000px;
             margin-top:10000px;
         }
+        .treeview-node {
+        display: flex;
+        align-items: center;
+    }
+    .treeview-node i {
+        margin-right: 8px;
+        font-size: 16px; 
+    }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
 </head>
 <body style="background-color: #FFE5D9">
     <form id="form1" runat="server" style="background-color: #FFF2EC">
