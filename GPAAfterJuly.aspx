@@ -42,7 +42,6 @@
                 .container button:active {
                     background-color: #4A4A4A;
                 }
-
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -120,8 +119,8 @@
         <label for="currentCGPA">Current CGPA:</label>
         <input type="text" id="currentCGPA" placeholder="Enter current CGPA">
         </br>
-     <label for="aimedCGPA">Aimed CGPA:</label>
-        <input type="text" id="aimedCGPA" placeholder="Enter aimed CGPA">
+     <label for="aimedCGPA">Target CGPA:</label>
+        <input type="text" id="aimedCGPA" placeholder="Enter target CGPA">
         </br>
      <label for="totalCredit">Total Credits in Previous Semesters:</label>
         <input type="text" id="totalCredit" placeholder="Enter Total Credits in Previous Semesters">
@@ -137,7 +136,7 @@
         </div>
 
         <button type="button" onclick="addSubject()">Add Subject</button>
-
+        <button type="button" onclick="removeSubject()">Remove Subject</button>
         <button type="button" onclick="calculatePredictions()">Calculate Predictions</button>
 
 
@@ -150,12 +149,13 @@
         let subjectCount = 1;
 
         function addSubject() {
-            if (subjectCount <= 7) {
+            if (subjectCount < 7) {
                 subjectCount++;
                 const subjectsContainer = document.getElementById('subjectsContainer');
 
                 const newSubjectRow = document.createElement('div');
                 newSubjectRow.classList.add('subject-row');
+                newSubjectRow.id = `subjectRow${subjectCount}`;
 
                 const label = document.createElement('label');
                 label.textContent = `Credit for Subject ${subjectCount}:`;
@@ -171,7 +171,20 @@
 
                 subjectsContainer.appendChild(newSubjectRow);
             } else {
-                alert("Students will take up to 8 subjects in a semester.");
+                alert("Students can take up to 7 subjects in a semester.");
+            }
+        }
+
+        function removeSubject() {
+            if (subjectCount > 0) {
+                const lastSubjectRow = document.getElementById(`subjectRow${subjectCount}`);
+
+                if (lastSubjectRow) {
+                    lastSubjectRow.remove();
+                    subjectCount--;
+                }
+            } else {
+                alert("No subjects to remove.");
             }
         }
 
@@ -181,42 +194,17 @@
             const aimedCGPA = parseFloat(document.getElementById('aimedCGPA').value);
             const totalCredit = parseFloat(document.getElementById('totalCredit').value);
 
-            if (isNaN(currentCGPA) || isNaN(aimedCGPA) || isNaN(totalCredit) || subjectCredits.length === 0 ||
-                currentCGPA > 4.0 || currentCGPA < 0.0 || aimedCGPA > 4.0 || aimedCGPA < 0.0) {
-                let errorMessage = "";
-
-                // Check if all fields are filled with valid numerical values
-                if (isNaN(currentCGPA) || isNaN(aimedCGPA) || isNaN(totalCredit) || subjectCredits.length === 0) {
-                    errorMessage += "Please enter valid numerical values for all fields.\n";
-                }
-
-                // Check if CGPA values are within the valid range
-                if (currentCGPA > 4.0) {
-                    errorMessage += "Current CGPA should not be more than 4.0.\n";
-                }
-                if (currentCGPA < 0.0) {
-                    errorMessage += "Current CGPA should not be less than 0.0.\n";
-                }
-                if (aimedCGPA > 4.0) {
-                    errorMessage += "Aimed CGPA should not be more than 4.0.\n";
-                }
-                if (aimedCGPA < 0.0) {
-                    errorMessage += "Aimed CGPA should not be less than 0.0.\n";
-                }
-
-                // If there are any errors, show the alert and stop further processing
-                if (errorMessage) {
-                    alert(errorMessage);
-                    return;
-                }
-            }
-
             const subjectCredits = [];
+
+            // Initialize error message
+            let errorMessage = "";
 
             // Loop through all dynamically added subject inputs
             for (let i = 1; i <= subjectCount; i++) {
                 const credit = parseFloat(document.getElementById(`credit${i}`).value);
-                if (!isNaN(credit) && credit > 0) {
+                if (isNaN(credit) || credit <= 0) {
+                    errorMessage += `Please enter a valid positive numerical value for credit of subject ${i}\n`;
+                } else {
                     subjectCredits.push({
                         subject: i,
                         credit: credit
@@ -224,9 +212,18 @@
                 }
             }
 
-            // Ensure all inputs are provided
-            if (isNaN(currentCGPA) || isNaN(aimedCGPA) || isNaN(totalCredit) || subjectCredits.length === 0) {
-                alert("Please enter valid numerical values for all fields.");
+            // Validate input values
+            if (isNaN(currentCGPA) || isNaN(aimedCGPA) || isNaN(totalCredit)) {
+                errorMessage += "Please enter valid numerical values for all fields.\n";
+            } else if (currentCGPA < 0.0 || currentCGPA > 4.0) {
+                errorMessage += "Current CGPA should be between 0.0 and 4.0.\n";
+            } else if (aimedCGPA < 0.0 || aimedCGPA > 4.0) {
+                errorMessage += "Target CGPA should be between 0.0 and 4.0.\n";
+            }
+
+
+            if (errorMessage) {
+                alert(errorMessage);
                 return;
             }
 
