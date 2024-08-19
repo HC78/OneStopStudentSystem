@@ -33,7 +33,16 @@
                 border-radius: 10px;
                 color: white;
                 margin-right: 10px;
+                transition: background-color 0.3s ease;
             }
+
+                .container button:hover {
+                    background-color: #485240;
+                }
+
+                .container button:active {
+                    background-color: #4A4A4A;
+                }
     </style>
 
 </asp:Content>
@@ -97,8 +106,8 @@
         <label for="currentCGPA">Current CGPA:</label>
         <input type="text" id="currentCGPA" placeholder="Enter current CGPA">
         </br>
-    <label for="aimedCGPA">Aimed CGPA:</label>
-        <input type="text" id="aimedCGPA" placeholder="Enter aimed CGPA">
+    <label for="aimedCGPA">Target CGPA:</label>
+        <input type="text" id="aimedCGPA" placeholder="Enter target CGPA">
         </br>
     <label for="totalCredit">Total Credits Hours Earned:</label>
         <input type="text" id="totalCredit" placeholder="Enter Total Credits Hours Earned">
@@ -115,7 +124,7 @@
         </div>
 
         <button type="button" onclick="addSubject()">Add Subject</button>
-
+        <button type="button" onclick="removeSubject()">Remove Subject</button>
         &nbsp;
 
     <button type="button" onclick="calculatePredictions()">Calculate Predictions</button>
@@ -130,12 +139,13 @@
         let subjectCount = 1;
 
         function addSubject() {
-            if (subjectCount <= 7) {
+            if (subjectCount < 7) {
                 subjectCount++;
                 const subjectsContainer = document.getElementById('subjectsContainer');
 
                 const newSubjectRow = document.createElement('div');
                 newSubjectRow.classList.add('subject-row');
+                newSubjectRow.id = `subjectRow${subjectCount}`;
 
                 const label = document.createElement('label');
                 label.textContent = `Credit for Subject ${subjectCount}:`;
@@ -151,7 +161,20 @@
 
                 subjectsContainer.appendChild(newSubjectRow);
             } else {
-                alert("Students will take up to 8 subjects in a semester.");
+                alert("Students can take up to 7 subjects in a semester.");
+            }
+        }
+
+        function removeSubject() {
+            if (subjectCount > 0) {
+                const lastSubjectRow = document.getElementById(`subjectRow${subjectCount}`);
+
+                if (lastSubjectRow) {
+                    lastSubjectRow.remove();
+                    subjectCount--;
+                }
+            } else {
+                alert("No subjects to remove.");
             }
         }
 
@@ -161,49 +184,46 @@
             const aimedCGPA = parseFloat(document.getElementById('aimedCGPA').value);
             const totalCredit = parseFloat(document.getElementById('totalCredit').value);
 
-        if ( isNaN(currentCGPA) || isNaN(aimedCGPA) || isNaN(totalCredit) || subjectCredits.length === 0 ||
-            currentCGPA > 4.0 || currentCGPA < 0.0 || aimedCGPA > 4.0 || aimedCGPA < 0.0) {
+            const subjectCredits = [];
+
+            // Initialize error message
             let errorMessage = "";
 
-            // Check if all fields are filled with valid numerical values
-            if (isNaN(currentCGPA) || isNaN(aimedCGPA) || isNaN(totalCredit) || subjectCredits.length === 0) {
-                errorMessage += "Please enter valid numerical values for all fields.\n";
+            // Validate totalCredit
+            if (isNaN(totalCredit) || totalCredit <= 0) {
+                errorMessage += "Please enter a valid positive integer value for total credit field\n";
             }
 
-            // Check if CGPA values are within the valid range
-            if (currentCGPA > 4.0) {
-                errorMessage += "Current CGPA should not be more than 4.0.\n";
-            }
-            if (currentCGPA < 0.0) {
-                errorMessage += "Current CGPA should not be less than 0.0.\n";
-            }
-            if (aimedCGPA > 4.0) {
-                errorMessage += "Aimed CGPA should not be more than 4.0.\n";
-            }
-            if (aimedCGPA < 0.0) {
-                errorMessage += "Aimed CGPA should not be less than 0.0.\n";
+            // Validate currentCGPA
+            if (isNaN(currentCGPA)) {
+                errorMessage += "Please enter a valid numerical value for current CGPA\n";
+            } else if (currentCGPA < 0.0 || currentCGPA > 4.0) {
+                errorMessage += "Current CGPA should be between 0.0 and 4.0\n";
             }
 
-            // If there are any errors, show the alert and stop further processing
-            if (errorMessage) {
-                alert(errorMessage);
-                return;
+            // Validate aimedCGPA
+            if (isNaN(aimedCGPA)) {
+                errorMessage += "Please enter a valid numerical value for target CGPA\n";
+            } else if (aimedCGPA < 0.0 || aimedCGPA > 4.0) {
+                errorMessage += "Target CGPA should be between 0.0 and 4.0\n";
             }
-        }
-
-
-
-            const subjectCredits = [];
 
             // Loop through all dynamically added subject inputs
             for (let i = 1; i <= subjectCount; i++) {
                 const credit = parseFloat(document.getElementById(`credit${i}`).value);
-                if (!isNaN(credit) && credit > 0) {
+                if (isNaN(credit) || credit <= 0) {
+                    errorMessage += `Please enter a valid positive numerical value for credit of subject ${i}.\n`;
+                } else {
                     subjectCredits.push({
                         subject: i,
                         credit: credit
                     });
                 }
+            }
+
+            if (errorMessage) {
+                alert(errorMessage);
+                return;
             }
 
             // Define grade points for different grades
@@ -263,7 +283,7 @@
             let maxAchievableQualityPoints = totalQualityPoints;
             for (const subject of subjectCredits) {
                 maxAchievableQualityPoints += subject.credit * gradePoints['A']; // Assume 'A' grade
-            } 
+            }
             const maxAchievableCGPA = maxAchievableQualityPoints / (totalCredit + totalNextSemesterCredits);
 
             // Output results
@@ -273,13 +293,13 @@
             });
 
             if (requiredQualityPoints > 0) {
-                resultsHTML += `<p style="color: red; font-weight: bold;">Unfortunately, eventhough you achieve A's in all subjects, you still cannot achieve the target CGPA in the next semester with the provided subjects.</p>`;
+                resultsHTML += `<p style="color: red; font-weight: bold;">Unfortunately, even though you achieve A's in all subjects, you still cannot achieve the target CGPA in the next semester with the provided subjects.</p>`;
                 resultsHTML += `<p style="color: red; font-weight: bold;">The maximum achievable CGPA is ${maxAchievableCGPA.toFixed(4)}.</p>`;
                 resultsHTML += `<p style="color: red; font-weight: bold;">Keep trying hard, and you can improve in the next semester!</p>`;
                 resultsHTML += `<img src="/Image/sad.gif" alt="Sad" />`;
             } else {
                 resultsHTML += `<p style="color: green; font-weight: bold;">Congratulations! You can achieve your target CGPA with the provided subject grade!</p>`;
-                resultsHTML += `<img src="/Image/happy.gif" alt="cong" />`;
+                resultsHTML += `<img src="/Image/happy.gif" alt="Congratulation" />`;
             }
 
             document.getElementById('resultsContainer').innerHTML = resultsHTML;
