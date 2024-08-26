@@ -11,6 +11,18 @@ namespace OneStopStudentSystem
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["Username"] == null)
+            {
+                string alertMessage = "Please login first.";
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", $"alert('{alertMessage}'); window.location.href='Login.aspx';", true);
+                return;
+            }
+            else if ((string)Session["UserType"] != "Student")
+            {
+                string alertMessage = "Please login as a Student.";
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", $"alert('{alertMessage}'); window.location.href='Login.aspx';", true);
+                return;
+            }
         }
 
         protected async void SearchAndShowVideo(object sender, EventArgs e)

@@ -35,8 +35,8 @@ namespace OneStopStudentSystem
         private void GetUserProfile(string username)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
-            string query = "SELECT studentName, FORMAT(studentDOB, 'dd/MM/yyyy') AS studentDOB, studentGender, studentState, studentEmail, studentMobileNo, studentImage FROM Student WHERE studentUsername = @Username";
-            string query2 = "SELECT adminName, FORMAT(adminDOB, 'dd/MM/yyyy') AS adminDOB, adminGender, adminState, adminEmail, adminMobileNo, adminImage FROM Admin WHERE adminUsername = @Username";
+            string query = "SELECT studentName, FORMAT(studentDOB, 'dd/MM/yyyy') AS studentDOB, studentGender, studentState, studentEmail, studentMobileNo, studentImage FROM Student WHERE studentUsername = @Username OR studentEmail = @Email";
+            string query2 = "SELECT adminName, FORMAT(adminDOB, 'dd/MM/yyyy') AS adminDOB, adminGender, adminState, adminEmail, adminMobileNo, adminImage FROM Admin WHERE adminUsername = @Username OR adminEmail = @Email";
             string query3 = "SELECT tempUserName, FORMAT(tempUserDOB, 'dd/MM/yyyy') AS tempUserDOB, tempUserGender, tempUserState, tempUserEmail, tempUserMobileNo, tempUserImage FROM TempUser WHERE tempUserUsername = @Username";
 
             boyProfile.Visible = false;
@@ -49,6 +49,7 @@ namespace OneStopStudentSystem
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@Username", username);
+                    command.Parameters.AddWithValue("@Email", Session["Username"].ToString());
                     SqlDataReader reader = command.ExecuteReader();
 
                     if (reader.Read())
@@ -153,6 +154,7 @@ namespace OneStopStudentSystem
                 using (SqlCommand command = new SqlCommand(query2, connection))
                 {
                     command.Parameters.AddWithValue("@Username", username);
+                    command.Parameters.AddWithValue("@Email", Session["Username"].ToString());
                     SqlDataReader reader = command.ExecuteReader();
 
                     if (reader.Read())
@@ -257,10 +259,10 @@ namespace OneStopStudentSystem
             switch (userType)
             {
                 case "Student":
-                    query = "SELECT studentImage FROM Student WHERE studentUsername = @Username";
+                    query = "SELECT studentImage FROM Student WHERE studentUsername = @Username OR studentEmail = @Email";
                     break;
                 case "Admin":
-                    query = "SELECT adminImage FROM Admin WHERE adminUsername = @Username";
+                    query = "SELECT adminImage FROM Admin WHERE adminUsername = @Username OR adminEmail=@Email";
                     break;
                 case "TempUser":
                     query = "SELECT tempUserImage FROM TempUser WHERE tempUserUsername = @Username";
@@ -276,6 +278,7 @@ namespace OneStopStudentSystem
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@Username", username);
+                    command.Parameters.AddWithValue("@Email", Session["Username"].ToString());
                     SqlDataReader reader = command.ExecuteReader();
 
                     if (reader.Read())
@@ -310,10 +313,10 @@ namespace OneStopStudentSystem
             switch (userType)
             {
                 case "Student":
-                    query = "SELECT studentMobileNo FROM Student WHERE studentUsername = @Username";
+                    query = "SELECT studentMobileNo FROM Student WHERE studentUsername = @Username OR studentEmail = @Email";
                     break;
                 case "Admin":
-                    query = "SELECT adminMobileNo FROM Admin WHERE adminUsername = @Username";
+                    query = "SELECT adminMobileNo FROM Admin WHERE adminUsername = @Username OR adminEmail = @Email";
                     break;
                 case "TempUser":
                     query = "SELECT tempUserMobileNo FROM TempUser WHERE tempUserUsername = @Username";
@@ -329,6 +332,7 @@ namespace OneStopStudentSystem
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@Username", username);
+                    command.Parameters.AddWithValue("@Email", username);
                     SqlDataReader reader = command.ExecuteReader();
 
                     if (reader.Read())
@@ -447,7 +451,7 @@ namespace OneStopStudentSystem
                     {
                         query += ", studentImage = @ProfileImage";
                     }
-                    query += " WHERE studentUsername = @Username";
+                    query += " WHERE studentUsername = @Username OR studentEmail = @Email";
                     break;        
                 case "Admin":
                     query = "UPDATE Admin SET adminName = @Name, adminDOB = @DOB, adminGender = @Gender, adminState = @State, adminEmail = @Email, adminMobileNo = @MobileNo";
@@ -459,7 +463,7 @@ namespace OneStopStudentSystem
                     {
                         query += ", adminImage = @ProfileImage";
                     }
-                    query += " WHERE adminUsername = @Username";
+                    query += " WHERE adminUsername = @Username OR adminEmail = @Email";
                     break;
                 case "TempUser":
                     query = "UPDATE TempUser SET tempUserName = @Name, tempUserDOB = @DOB, tempUserGender = @Gender, tempUserState = @State, tempUserEmail = @Email, tempUserMobileNo = @MobileNo";

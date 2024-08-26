@@ -247,7 +247,9 @@
                             alert("No replace");
                             location.reload();
                         }
-                    } 
+                    } else {
+                        location.reload();
+                    }
                 }, function (error) {
                     console.error(error);
                 });

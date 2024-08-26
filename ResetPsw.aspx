@@ -71,7 +71,7 @@
                 <asp:ValidationSummary ID="ValidationSummary1" runat="server" ForeColor="Red" />
                 <br />
                 Old Password<asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtConfirmPsw" EnableClientScript="False" ErrorMessage="You must enter old password" ForeColor="Red" SetFocusOnError="True">*</asp:RequiredFieldValidator>
-                <br />
+                &nbsp;(Ignore if do not set password before)<br />
                 <asp:TextBox ID="txtOldPsw" runat="server" BackColor="White" BorderColor="#BCBCBC" BorderStyle="Solid" Height="32px" Width="379px"  style="border-radius: 7px;" OnTextChanged="txtPsw_TextChanged"></asp:TextBox>
                 <br />
                 <br />

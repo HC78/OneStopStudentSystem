@@ -135,7 +135,7 @@ namespace OneStopStudentSystem
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    string query = "SELECT TOP 1 TargetWeight FROM HealthyValue WHERE studentID = @StudentID ORDER BY dateTime DESC";
+                    string query = "SELECT TOP 1 TargetWeight FROM HealthyValue WHERE studentID = @StudentID AND CalorieValue IS NOT NULL ORDER BY dateTime DESC";
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@StudentID", studentID);
@@ -165,7 +165,7 @@ namespace OneStopStudentSystem
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    string query = "SELECT TOP 1 Weight FROM HealthyValue WHERE studentID = @StudentID ORDER BY dateTime DESC";
+                    string query = "SELECT TOP 1 Weight FROM HealthyValue WHERE studentID = @StudentID AND CalorieValue IS NOT NULL ORDER BY dateTime DESC";
                     SqlCommand cmd = new SqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@StudentID", studentID);
                     var result = cmd.ExecuteScalar();

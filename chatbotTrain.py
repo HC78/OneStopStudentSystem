@@ -184,7 +184,7 @@ intents = {
                 "Are the class sizes large or small?",
                 "Do you have small class sizes?",
             ],
-            "responses": [
+            "responses": [ 
                 "Class sizes can vary depending on the course and program. As general, tutorial and practical is small class learning ; lecture is big class learning which may consist of multiple programme join together."
             ],
         },
@@ -368,6 +368,60 @@ intents = {
             ],
             "responses": [
                 "This is academic calandar for July 2024 intake, you can know when is the sem start, when is sem break, when is examination date start in here.<br/> <img src='/Image/C1.jpg' style='max-width:750px; height:auto;'><img src='/Image/C3.jpg' style='max-width:750px; height:auto;'><img src='/Image/C2.jpg' style='max-width:750px; height:auto;'>"
+            ],
+        },
+        {
+            "tag": "programme course",
+            "patterns": [
+                "I want to change course, what are the programme offer?",
+                "Programme offer",
+                "Bachelor Degree programmes",
+                "Diploma Degree programmes",
+                "Foundation Degree programmes",
+            ],
+            "responses": [
+                "If you want to change course, the Bachelor Degree and Diploma programmes offered can be found at https://www.tarc.edu.my/admissions/programmes/programme-offered-a-z/undergraduate-programme/ <br/> The Foundation programmes offered can be found at https://www.tarc.edu.my/admissions/programmes/programme-offered-a-z/pre-university-programme/"
+            ],
+        },
+         {
+            "tag": "merit_scholarship",
+            "patterns": [
+                "I obtained good results in my examinations. Is there any merit scholarship and how do I apply?",
+                "merit scholarship"
+            ],
+            "responses": [
+                "The Merit Scholarship is awarded to outstanding Malaysian students in the form of tuition fee waiver of up to 100%. Reference can be made at https://www.tarc.edu.my/admissions/a/merit-scholarship/ <br/> Candidates who meet the scholarship criteria will be automatically offered the Merit Scholarship (Terms & Conditions Apply) at the point of admission."
+            ],
+        },
+           {
+            "tag": "Faculty_Branch_Campus_Transfer",
+            "patterns": [
+                "I want to transfer programme to another faculty, how?",
+                "I want to change the course to another branch, how?"
+                "I want to change the course to another faculty, how?"
+            ],
+            "responses": [
+                "New students who wish to transfer to a programme of another Faculty/Centre/Branch are to apply via Student Intranet. <a href='https://web.tarc.edu.my/portal/login.jsp' target='_blank' rel='noopener noreferrer'>Login to TARUC Student Intranet</a> <br/>Students who wish to transfer to a programme within the same Faculty or Centre are to complete the prescribed form and submit it to the respective Faculty/Centre for Pre-University Studies office/Branch. <br/>Approval for programme/campus transfer is NOT guaranteed.<br/>Students who have accepted the programme/campus transfer through payment of fees (where applicable) will NOT be allowed to transfer back into their original programme/campus."
+            ],
+        },
+           {
+            "tag": "withdrawal_programme",
+            "patterns": [
+                "I want to withdraw from programme, how",
+                "I want to exit the programme, how"
+            ],
+            "responses": [
+                "Students who wish to withdraw from their programmes must notify the Admissions Department.<br/>The date the University receives the student’s withdrawal notification is the official date of withdrawal even if the student has stopped attending classes earlier. <br/>Students who do not attend class or discontinues class attendance in a new semester without notifying the University of their withdrawal is liable to all fees due to the University for that semester and subsequently will be withdrawn from the University due to arrears of fees.<br/><a href='https://www.tarc.edu.my/files/admissions/form/221AB6F8-2569-4F9D-AC49-91B79E886656.pdf' target='_blank' rel='noopener noreferrer'>Withdrawal Form</a> "
+            ],
+        },
+            {
+            "tag": "horizontal_credit_transfer",
+            "patterns": [
+                "I want to transfer the credit hours to another course, how",
+                "I want to transfer credit"
+            ],
+            "responses": [
+                "Student who had withdrawn from their Bachelor Degree/Diploma programme and have enrolled into another programme of the same level may be eligible for horizontal credit transfer.<br/>The application for horizontal credit transfer is to be made at the respective Faculty latest by Friday of week 4 (for long semester) or week 3 (for short semester) after the commencement of the semester first joined. <br/><a href='https://www.tarc.edu.my/files/admissions/form/C938AE95-749D-4AF9-91F1-0C6F5546D9AC.pdf' target='_blank' rel='noopener noreferrer'>Horizontal Credit Transfer Form</a> "
             ],
         },
     ]

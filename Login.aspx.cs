@@ -40,6 +40,7 @@ namespace OneStopStudentSystem
 
             if (isAccLock == true)
             {
+                //can test with AddMinutes
                 if (lockTime.HasValue && lockTime.Value.AddHours(LockoutDurationHours) > DateTime.Now)
                 {
                     lblErrorMsg.Text = "Your account has been locked due to 3 invalid login attempt. Please try again after 24 hours or wait for admin to unlock account.";
@@ -256,7 +257,7 @@ namespace OneStopStudentSystem
 
         protected void linkForgotPsw_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Register.aspx");
+            Response.Redirect("ResetPsw.aspx");
         }
 
         protected void txtPhone_TextChanged(object sender, EventArgs e)

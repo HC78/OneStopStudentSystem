@@ -225,12 +225,12 @@ namespace fyp
                     cmd.Parameters.AddWithValue("@studentID", studentID);
                     if (!string.IsNullOrEmpty(searchWeek))
                     {
-                        cmd.Parameters.AddWithValue("@searchWeek", "%" + searchWeek + "%");
+                        cmd.Parameters.AddWithValue("@searchWeek", searchWeek);
                     }
 
                     if (!string.IsNullOrEmpty(searchCourse))
                     {
-                        cmd.Parameters.AddWithValue("@searchCourse", "%" + searchCourse + "%");
+                        cmd.Parameters.AddWithValue("@searchCourse", searchCourse);
                     }
 
                     SqlDataReader reader = cmd.ExecuteReader();

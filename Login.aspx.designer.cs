@@ -87,13 +87,13 @@ namespace OneStopStudentSystem
         protected global::System.Web.UI.WebControls.TextBox txtPsw;
 
         /// <summary>
-        /// linkForgotPsw control.
+        /// tip control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton linkForgotPsw;
+        protected global::System.Web.UI.WebControls.Label tip;
 
         /// <summary>
         /// btnLogin control.

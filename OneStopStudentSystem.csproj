@@ -197,6 +197,8 @@
     <Content Include="Error.aspx" />
     <Content Include="error_log.txt.txt" />
     <Content Include="Exercise.aspx" />
+    <Content Include="Image\CGPA.jpg" />
+    <Content Include="Image\feedback.png" />
     <Content Include="GCallback.aspx" />
     <Content Include="GLCallback.aspx" />
     <Content Include="GLCallbackCalendar.aspx" />
@@ -249,7 +251,9 @@
     <Content Include="Image\girlProfile.jfif" />
     <Content Include="Image\girlst.png" />
     <Content Include="Image\happy.gif" />
+    <Content Include="Image\heal.jpg" />
     <Content Include="Image\logo.png" />
+    <Content Include="Image\nt.png" />
     <Content Include="Image\picReg.jpg" />
     <Content Include="Image\sad.gif" />
     <Content Include="Image\sebastianImg.jfif" />

@@ -308,7 +308,17 @@
                 <tr class="content-wrapper">
                     <td class="auto-style1">
                         <div class="treeview-container" style="z-index: 8; position: relative; top:0px">
-                            <asp:TreeView ID="TreeView1" runat="server" DataSourceID="SiteMapDataSource1" ShowStartingNode="false" OnSelectedNodeChanged="TreeView1_SelectedNodeChanged"></asp:TreeView>
+                            <asp:TreeView ID="TreeView1" runat="server" DataSourceID="SiteMapDataSource1" ShowStartingNode="false" OnSelectedNodeChanged="TreeView1_SelectedNodeChanged"   NodeIndent="15" 
+              NodeStyle-ForeColor="#333333" 
+              NodeStyle-Font-Names="Arial" 
+              NodeStyle-Font-Size="14px" 
+              NodeStyle-HorizontalPadding="10px"
+              HoverNodeStyle-ForeColor="#ffffff"
+              HoverNodeStyle-BackColor="#937b82"
+              SelectedNodeStyle-ForeColor="#ffffff" 
+              SelectedNodeStyle-BackColor="#4d3f43"
+                                border-radius="30px"
+                                transition="background-color 30s ease"></asp:TreeView>
                             <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" />
                         </div>
                     </td>

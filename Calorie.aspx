@@ -62,7 +62,7 @@
                 <br />
                 <asp:Label ID="Label8" runat="server" Font-Size="Large" ForeColor="Black" Text="Recent Data : " Font-Bold="False" Font-Names="Times New Roman" Font-Underline="True"></asp:Label>
                 <br />
-                <asp:GridView ID="GridView1" runat="server" DataSourceID="SqlDataSource1" AllowPaging="True" AllowSorting="True" AutoPostBack="true">
+                <asp:GridView ID="GridView1" runat="server" DataSourceID="SqlDataSource1" AllowPaging="True" AllowSorting="True" AutoPostBack="true" PageSize="5">
                     <Columns>
                         <asp:TemplateField HeaderText="Apply Height & Weight">
                             <ItemTemplate>
@@ -71,7 +71,7 @@
                         </asp:TemplateField>
                     </Columns>
                 </asp:GridView>
-                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [dateTime], [Height], [Weight], [CalorieValue], [BMIValue], [TargetWeight] FROM [HealthyValue] WHERE ([studentID] = @studentID) ORDER BY [dateTime] Desc">
+                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [dateTime], [Height], [Weight], [CalorieValue], [TargetWeight] FROM [HealthyValue] WHERE ([studentID] = @studentID) AND CalorieValue IS NOT NULL ORDER BY [dateTime] Desc">
                     <SelectParameters>
                         <asp:SessionParameter Name="studentID" SessionField="UserID" Type="String" />
                     </SelectParameters>

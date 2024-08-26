@@ -46,6 +46,7 @@
             <td class="auto-style15">
                 <label for="category">Select Category:</label>
                 <select id="category" onchange="changeCategory()" class="auto-style16">
+                    <option value=""><--Select a category--></option>
                     <option value="length">Length</option>
                     <option value="weight">Weight and Mass</option>
                     <option value="volume">Volume</option>
@@ -62,7 +63,7 @@
                     <option value="case">Case</option>
                     <option value="calculator">Calculator</option>
                 </select>
-
+                 <br><br>
                 <div id="calculator" style="display: none;">
                     <label for="base">Select Base:</label>
                     <select id="base" onchange="changeBase()">
@@ -71,7 +72,7 @@
                         <option value="10" selected>Decimal</option>
                         <option value="16">Hexadecimal</option>
                     </select>
-
+                     <br>
                     <br>
                     <label for="number1">Number 1:</label>
                     <input type="text" id="number1">
@@ -83,10 +84,10 @@
                         <option value="*">*</option>
                         <option value="/">/</option>
                     </select>
-
+                    <br> <br>
                     <label for="number2">Number 2:</label>
                     <input type="text" id="number2">
-
+                     <br><br>
                     <button type="button" onclick="calculate()">Calculate</button>
                     <div id="calculatorResult" class="result">
                     </div>

@@ -98,6 +98,9 @@
                 &nbsp;
                 
 
+                <asp:Label ID="UM" runat="server" ForeColor="Red" Visible="False">*Need Unique Mobile No.</asp:Label>
+                
+
                 <br />
                 <asp:TextBox ID="txtPhone" runat="server" Height="32px" Width="379px" BorderColor="#5F6F52" OnTextChanged="txtPhone_TextChanged" Style="border-radius: 7px;" BorderStyle="Solid" BorderWidth="1px"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="txtPhone" EnableClientScript="False" ErrorMessage="You must enter a phone number" ForeColor="Red" SetFocusOnError="True">*</asp:RequiredFieldValidator>
@@ -118,6 +121,9 @@
                 <asp:Label ID="Label18" runat="server" Text="*It cannot be changed after submission." ForeColor="#68565B"></asp:Label>
 
 
+                &nbsp;<asp:Label ID="UE" runat="server" ForeColor="Red" Visible="False">*Need Unique Email Address</asp:Label>
+                
+
                 <br />
                 <asp:TextBox ID="txtEmail" runat="server" BorderColor="#5F6F52" BorderStyle="Solid" Height="32px" Width="379px" OnTextChanged="txtEmail_TextChanged" Style="border-radius: 7px;" BorderWidth="1px"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="txtEmail" EnableClientScript="False" ErrorMessage="You must enter a email address" ForeColor="Red" SetFocusOnError="True">*</asp:RequiredFieldValidator>
@@ -135,6 +141,9 @@
             <td class="auto-style2">
                 <br />
                 <asp:Label ID="Label16" runat="server" Text="Username"></asp:Label>
+                &nbsp;<asp:Label ID="UU" runat="server" ForeColor="Red" Visible="False">*Need Unique Username</asp:Label>
+                
+
                 <br />
                 <asp:TextBox ID="txtUsername" runat="server" BorderColor="#5F6F52" BorderStyle="Solid" Height="32px" Width="379px" Style="border-radius: 7px;" OnTextChanged="txtPsw_TextChanged" BorderWidth="1px"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtUsername" EnableClientScript="False" ErrorMessage="You must enter a username" ForeColor="Red" SetFocusOnError="True">*</asp:RequiredFieldValidator>

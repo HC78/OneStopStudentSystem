@@ -67,19 +67,33 @@ namespace fyp
                 {
                     connection.Open();
 
-                    // Check if old password matches
-                    using (SqlCommand selectCommand = new SqlCommand(selectQuery, connection))
-                    {
-                        selectCommand.Parameters.AddWithValue("@Username", username);
+                    // Retrieve the current password for validation
+            object result = null;
+            using (SqlCommand selectCommand = new SqlCommand(selectQuery, connection))
+            {
+                selectCommand.Parameters.AddWithValue("@Username", username);
+                result = selectCommand.ExecuteScalar();
+            }
 
-                        string currentPassword = selectCommand.ExecuteScalar() as string;
+            // Convert result to string, handling DBNull
+            string currentPassword = result as string;
 
-                        if (currentPassword == null || currentPassword != oldPsw)
-                        {
-                            lblError.Text = "Old password does not match.";
-                            return false;
-                        }
-                    }
+            // Check if the old password matches the current password
+            if (!string.IsNullOrEmpty(currentPassword))
+            {
+                if (oldPsw != currentPassword)
+                {
+                    lblError.Text = "Old password does not match.";
+                    return false;
+                }
+            }
+            else if (!string.IsNullOrEmpty(oldPsw))
+            {
+                // If old password is provided but current password is null or empty
+                lblError.Text = "Old password is not required.";
+                return false;
+            }
+
 
                     // Update to new password
                     using (SqlCommand updateCommand = new SqlCommand(updateQuery, connection))

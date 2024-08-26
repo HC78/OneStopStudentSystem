@@ -4,6 +4,7 @@
     <style type="text/css">
         .auto-style23 {
             width: 100%;
+            margin-left: 21px;
         }
 
         .auto-style24 {
@@ -12,6 +13,9 @@
 
         .auto-style25 {
             height: 52px;
+        }
+        .auto-style26 {
+            height: 39px;
         }
     </style>
 </asp:Content>
@@ -74,11 +78,11 @@
         </tr>
 
         <tr>
-            <td>
+            <td class="auto-style26">
                 <asp:Label ID="Label8" runat="server" Font-Size="X-Large" ForeColor="Black" Text="View Role Details" Font-Bold="True" Font-Names="Times New Roman"></asp:Label>
             </td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
+            <td class="auto-style26"></td>
+            <td class="auto-style26"></td>
         </tr>
         <tr>
             <td class="auto-style24">

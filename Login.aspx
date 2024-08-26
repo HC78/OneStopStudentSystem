@@ -49,7 +49,9 @@
                 <br />
                 <asp:TextBox ID="txtPsw" runat="server" BackColor="White" BorderColor="#5F6F52" BorderStyle="Solid" Height="32px" Width="379px"  style="border-radius: 7px; " OnTextChanged="txtPsw_TextChanged" TextMode="Password" BorderWidth="1px" ForeColor="Black"></asp:TextBox>
                 <br />
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;<asp:LinkButton ID="linkForgotPsw" runat="server" ForeColor="#5F6F52" OnClick="linkForgotPsw_Click">Forgot Password?</asp:LinkButton>
+                <asp:Label ID="tip" runat="server" ForeColor="#CC6600" Font-Size="Small">Tips: If you forget the password, try to login with Google account</asp:Label>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                
                 <br />
             </td>
         </tr>

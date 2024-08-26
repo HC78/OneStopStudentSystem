@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Web;
 using System.Web.Services;
 using System.Web.UI;
@@ -137,7 +138,7 @@ namespace OneStopStudentSystem
                     string queryLatest = @"
                 SELECT TOP 1 Weight, BMIValue
                 FROM HealthyValue
-                WHERE studentID = @StudentID
+                WHERE studentID = @StudentID AND BMIValue IS NOT NULL
                 ORDER BY dateTime DESC";
 
                     SqlCommand commandLatest = new SqlCommand(queryLatest, connection);
@@ -154,11 +155,11 @@ namespace OneStopStudentSystem
                         string queryPrevious = @"
                     SELECT TOP 1 Weight, BMIValue
                     FROM HealthyValue
-                    WHERE studentID = @StudentID
+                    WHERE studentID = @StudentID AND BMIValue IS NOT NULL
                     AND dateTime < (
                         SELECT MAX(dateTime)
                         FROM HealthyValue
-                        WHERE studentID = @StudentID)
+                        WHERE studentID = @StudentID  AND BMIValue IS NOT NULL)
                     ORDER BY dateTime DESC";
 
                         SqlCommand commandPrevious = new SqlCommand(queryPrevious, connection);
@@ -177,6 +178,11 @@ namespace OneStopStudentSystem
                                     lblCong.Text = "Congratulations! You have increased your weight from underweight ( " + previousWeight + "kg -> " + latestWeight + "kg ) keep it up!";
                                     lblCong.CssClass = "glow-bold";
                                 }
+                                else
+                                {
+                                    lblCong.Text = "Unfortunately, You have decreased your weight from underweight ( " + previousWeight + "kg -> " + latestWeight + "kg )";
+                                    lblCong.CssClass = "glow-bold";
+                                }
                             }
                             else if (previousBMI >= 30m) // Obese
                             {
@@ -185,12 +191,22 @@ namespace OneStopStudentSystem
                                     lblCong.Text = "Congratulations! You have successfully reduced your weight from obese ( " + previousWeight + "kg -> " + latestWeight + "kg ) keep it up!";
                                     lblCong.CssClass = "glow-bold";
                                 }
+                                else
+                                {
+                                    lblCong.Text = "Unfortunately, You have increased your weight from obese ( " + previousWeight + "kg -> " + latestWeight + "kg )";
+                                    lblCong.CssClass = "glow-bold";
+                                }
                             }
                             else if (previousBMI >= 25m) // Overweight
                             {
                                 if (latestWeight < previousWeight)
                                 {
                                     lblCong.Text = "Congratulations! You have successfully reduced your weight from overweight ( " + previousWeight + "kg -> " + latestWeight + "kg ) keep it up!";
+                                    lblCong.CssClass = "glow-bold";
+                                }
+                                else
+                                {
+                                    lblCong.Text = "Unfortunately, You have increased your weight from overweight ( " + previousWeight + "kg -> " + latestWeight + "kg )";
                                     lblCong.CssClass = "glow-bold";
                                 }
                             }
@@ -213,7 +229,7 @@ namespace OneStopStudentSystem
         }
 
 
-
+        //BELOW WRONG
         [WebMethod]
         public static string CompareBMI()
         {
@@ -245,16 +261,25 @@ namespace OneStopStudentSystem
                         readerLatest.Close();
 
                         // Get the previous record
-                        string queryPrevious = @"
+                        string queryPreviousNo = @"
                     SELECT TOP 1 Weight, BMIValue
                     FROM HealthyValue
-                    WHERE studentID = @StudentID
+                    WHERE studentID = @StudentID AND BMIValue IS NOT NULL
                     AND dateTime < (
                         SELECT MAX(dateTime)
                         FROM HealthyValue
-                        WHERE studentID = @StudentID)
+                        WHERE studentID = @StudentID AND BMIValue IS NOT NULL)
                     ORDER BY dateTime DESC";
 
+                        string queryPrevious = @"
+                             SELECT TOP 1 Weight, BMIValue
+                    FROM HealthyValue
+                    WHERE studentID = @StudentID AND BMIValue IS NOT NULL
+                    AND dateTime < (
+                        SELECT MAX(dateTime)
+                        FROM HealthyValue
+                        WHERE studentID = @StudentID AND BMIValue IS NOT NULL)
+                    ORDER BY dateTime DESC";
                         SqlCommand commandPrevious = new SqlCommand(queryPrevious, connection);
                         commandPrevious.Parameters.AddWithValue("@StudentID", studentID);
 
@@ -270,6 +295,10 @@ namespace OneStopStudentSystem
                                 if (latestWeight > previousWeight)
                                 {
                                     message = "Congratulations! You have increased your weight from underweight, keep it up!";
+                                }
+                                else
+                                {
+                                    message = "So sad, strive to decrease weight from underweight";
                                 }
                             }
                             else if (previousBMI >= 30m) // obese

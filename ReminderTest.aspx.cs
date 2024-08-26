@@ -107,6 +107,7 @@ namespace fyp
                     if (reminderTime > DateTime.Now)
                     {
                         ScheduleReminder(reminderTime, studentEmail, eventName, eventDesc, txtEventDate.Text, reminderID, txtTime.Text);
+                        lblPass.Visible = false;
                     }
                     else
                     {
@@ -175,6 +176,7 @@ namespace fyp
                         return;
                     }
                 }, null, delay, TimeSpan.Zero);
+                lblPass.Visible = false;
             }
             else
             {
@@ -558,6 +560,7 @@ namespace fyp
                                 if (reminderTime > DateTime.Now)
                                 {
                                     SendReminderUpdatedEmailAgain(studentEmail, eventName, dateTime, eventDesc); //to, name, dateTime, desc
+                                    lblPass.Visible = false;
                                 }
                                 else
                                 {
@@ -570,6 +573,7 @@ namespace fyp
                                 Console.WriteLine($"Event associated with reminder ID '{reminderID}' no longer exists. No reminder email will be sent.");
                             }
                         }, null, delay, TimeSpan.Zero);
+                        lblPass.Visible = false;
                     }
                     else
                     {

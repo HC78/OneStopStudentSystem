@@ -96,6 +96,15 @@ namespace OneStopStudentSystem
         protected global::System.Web.UI.WebControls.Label Label3;
 
         /// <summary>
+        /// UM control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label UM;
+
+        /// <summary>
         /// txtPhone control.
         /// </summary>
         /// <remarks>
@@ -141,6 +150,15 @@ namespace OneStopStudentSystem
         protected global::System.Web.UI.WebControls.Label Label18;
 
         /// <summary>
+        /// UE control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label UE;
+
+        /// <summary>
         /// txtEmail control.
         /// </summary>
         /// <remarks>
@@ -175,6 +193,15 @@ namespace OneStopStudentSystem
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label16;
+
+        /// <summary>
+        /// UU control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label UU;
 
         /// <summary>
         /// txtUsername control.

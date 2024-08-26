@@ -44,18 +44,33 @@ namespace OneStopStudentSystem
                 if (!IsUsernameUnique(username))
                 {
                     errorMessage += "*Username already exists. Please choose a different username.<br/>";
+                    UU.Visible = true;
+                }
+                else
+                {
+                    UU.Visible = false;
                 }
 
                 // Check if the email is unique
                 if (!IsEmailUnique(emailAddress))
                 {
                     errorMessage += "*Email already exists. Please choose a different email.<br/>";
+                    UE.Visible = true;
+                }
+                else
+                {
+                    UE.Visible= false;
                 }
 
                 // Check if the mobile number is unique
                 if (!IsPhoneUnique(mobileNumber))
                 {
                     errorMessage += "*Mobile number already exists. Please choose a different mobile number.<br/>";
+                    UM.Visible = true;
+                }
+                else
+                {
+                    UM.Visible= false;
                 }
 
                 // If there are any errors, display them and return early

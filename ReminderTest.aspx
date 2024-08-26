@@ -33,22 +33,22 @@
         </h2>
         <asp:Label ID="lblMessage" runat="server" Visible="False" ForeColor="Red"></asp:Label>
         &nbsp;<asp:Label ID="lblPass" runat="server" ForeColor="Red"></asp:Label>
-        <asp:ValidationSummary ID="ValidationSummary1" runat="server" ForeColor="Red" />
+        <asp:ValidationSummary ID="ValidationSummary1" runat="server" ForeColor="Red" ValidationGroup="AddEvent" />
         <br />
         <label for="txtEventName">Event Name:</label>
-        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtEventName" ErrorMessage="Event name is required" ForeColor="Red" Display="Dynamic">*</asp:RequiredFieldValidator>
+        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtEventName" ErrorMessage="Event name is required" ForeColor="Red" Display="Dynamic" ValidationGroup="AddEvent">*</asp:RequiredFieldValidator>
         <br />
         <asp:TextBox ID="txtEventName" runat="server" Height="27px" Width="690px"></asp:TextBox>
         <br />
         <br />
         <label for="txtEventDesc">Event Description:</label>
-        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtEventDesc" ErrorMessage="Event description is required" ForeColor="Red" Display="Dynamic">*</asp:RequiredFieldValidator>
+        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtEventDesc" ErrorMessage="Event description is required" ForeColor="Red" Display="Dynamic" ValidationGroup="AddEvent">*</asp:RequiredFieldValidator>
         <br />
         <asp:TextBox ID="txtEventDesc" runat="server" Height="27px" Width="690px"></asp:TextBox>
         <br />
         <br />
         <label for="txtEventDate">Event Date and Time (ex: 07-16-2024 00:29:58):</label>
-        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtEventDate" ErrorMessage="Event date is required" ForeColor="Red" Display="Dynamic">*</asp:RequiredFieldValidator>
+        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtEventDate" ErrorMessage="Event date is required" ForeColor="Red" Display="Dynamic" ValidationGroup="AddEvent">*</asp:RequiredFieldValidator>
         <asp:CustomValidator ID="CustomValidator1" runat="server" ControlToValidate="txtEventDate" ClientValidationFunction="validateEventDate" ErrorMessage="Event date time must be greater than now" ForeColor="Red" Display="Dynamic"></asp:CustomValidator>
         <br />
         <asp:TextBox ID="txtEventDate" runat="server" Height="27px" Width="690px"></asp:TextBox>
@@ -61,12 +61,12 @@
         <br />
         <br />
         <label for="txtTime">Email Reminder Sent Again x min before event start (ex: 30):</label>
-        <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtTime" ErrorMessage="Please mention before x min want to resent reminder" ForeColor="Red" Display="Dynamic">*</asp:RequiredFieldValidator>
+        <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtTime" ErrorMessage="Please mention before x min want to resent reminder" ForeColor="Red" Display="Dynamic" ValidationGroup="AddEvent">*</asp:RequiredFieldValidator>
         <br />
         <asp:TextBox ID="txtTime" runat="server" Height="27px" Width="690px" TextMode="Number"></asp:TextBox>
         <br />
         <br />
-        <asp:Button ID="btnCreateEvent" runat="server" BackColor="#68565B" BorderStyle="Solid" Height="55px" OnClick="BtnCreateEvent_Click" Text="Add" Width="184px" Style="border-radius: 10px;" ForeColor="White" />
+        <asp:Button ID="btnCreateEvent" runat="server" BackColor="#68565B" BorderStyle="Solid" Height="55px" OnClick="BtnCreateEvent_Click" Text="Add" Width="184px" Style="border-radius: 10px;" ForeColor="White" ValidationGroup="AddEvent"/>
         &nbsp;
         <asp:Button ID="btnCancel" runat="server" BackColor="#5F6F52" BorderStyle="Solid" Height="55px" OnClick="btnCancel_Click" Text="Cancel" Width="184px" Style="border-radius: 10px;" ForeColor="White" />
         <br />
@@ -90,7 +90,7 @@
             <SortedDescendingHeaderStyle BackColor="#93451F" />
         </asp:GridView>
 
-        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" DeleteCommand="DELETE FROM [Reminder] WHERE [ReminderID] = @ReminderID" InsertCommand="INSERT INTO [Reminder] ([dateTime], [eventName], [eventDesc], [ReminderID]) VALUES (@dateTime, @eventName, @eventDesc, @ReminderID)" SelectCommand="SELECT [dateTime], [eventName], [eventDesc], [reminderTime], [ReminderID] FROM [Reminder] WHERE ([studentID] = @studentID)" UpdateCommand="UPDATE [Reminder] SET [dateTime] = @dateTime, [eventName] = @eventName, [eventDesc] = @eventDesc WHERE [ReminderID] = @ReminderID">
+        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" DeleteCommand="DELETE FROM [Reminder] WHERE [ReminderID] = @ReminderID" InsertCommand="INSERT INTO [Reminder] ([dateTime], [eventName], [eventDesc], [ReminderID]) VALUES (@dateTime, @eventName, @eventDesc, @ReminderID)" SelectCommand="SELECT [dateTime], [eventName], [eventDesc], [reminderTime], [ReminderID] FROM [Reminder] WHERE ([studentID] = @studentID) ORDER BY [dateTime] desc" UpdateCommand="UPDATE [Reminder] SET [dateTime] = @dateTime, [eventName] = @eventName, [eventDesc] = @eventDesc WHERE [ReminderID] = @ReminderID">
             <DeleteParameters>
                 <asp:Parameter Name="ReminderID" Type="String" />
             </DeleteParameters>
