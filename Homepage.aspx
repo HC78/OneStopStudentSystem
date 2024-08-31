@@ -11,7 +11,7 @@
             position: relative;
         }
 
-        h3 {
+        h3 {  
             color: #ffffff;
             font-size: 50px;
             position: absolute;

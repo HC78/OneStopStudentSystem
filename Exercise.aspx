@@ -72,6 +72,10 @@
             <br />
             <asp:Label ID="lblMessage" runat="server" ForeColor="Red"></asp:Label>
             <br />
+            Suggestion:
+            <br />
+            <asp:Label ID="lblExerciseSuggestion" runat="server"></asp:Label>
+<br />
             Day:
             <select id="day">
                 <option value="Monday">Monday</option>

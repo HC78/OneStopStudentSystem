@@ -35,6 +35,46 @@ namespace OneStopStudentSystem
                 return;
             }
             ScheduleExerciseReminderJob(Session["UserID"].ToString());
+            LoadLatestExerciseSuggestion(Session["UserID"].ToString());
+        }
+
+        private void LoadLatestExerciseSuggestion(string studentID)
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+
+            string query = @"
+        SELECT TOP 1 Suggestion 
+        FROM HealthyValue 
+        WHERE studentID = @StudentID 
+        ORDER BY dateTime DESC"; // Get the most recent suggestion for the student
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@StudentID", studentID);
+
+                    try
+                    {
+                        connection.Open();
+                        object result = command.ExecuteScalar();
+
+                        if (result != null)
+                        {
+                            lblExerciseSuggestion.Text = result.ToString();
+                        }
+                        else
+                        {
+                            lblExerciseSuggestion.Text = "No exercise suggestion available."; 
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        lblExerciseSuggestion.Text = "Error retrieving exercise suggestion.";
+                        Console.WriteLine(ex.Message);
+                    }
+                }
+            }
         }
 
         private void ScheduleExerciseReminderJob(string studentID)

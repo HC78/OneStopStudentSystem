@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Calorie.aspx.cs" Inherits="OneStopStudentSystem.Calorie" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="calorie2.aspx.cs" Inherits="OneStopStudentSystem.calorie2" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
@@ -48,16 +48,6 @@
       color: #00FF00;
       text-shadow: 0 0 10px #00FF00; 
   }
-        .auto-style17 {
-            width: 135px;
-        }
-        .auto-style18 {
-            width: 635px;
-            height: 1036px;
-        }
-        .auto-style19 {
-            height: 81px;
-        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -70,107 +60,85 @@
                 <br />
                 <asp:Label ID="lblCong" runat="server" ForeColor="Red"></asp:Label>
                 <br />
-             </label>
-                            <table>
-                <tr>
-                    <td colspan="2">
-                        <asp:Label ID="Label8" runat="server" Font-Size="Large" ForeColor="Black" Text="Recent Data : " Font-Bold="False" Font-Names="Times New Roman" Font-Underline="True"></asp:Label>
-                    </td>
-                    <td class="auto-style17">
-                        &nbsp;</td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <asp:GridView ID="GridView1" runat="server" DataSourceID="SqlDataSource1" AllowPaging="True" AllowSorting="True" AutoPostBack="true" PageSize="5">
-                            <Columns>
-                                <asp:TemplateField HeaderText="Apply Height & Weight">
-                                    <ItemTemplate>
-                                        <button type="button" onclick='<%# "applyValues(\"" + Eval("Height") + "\", \"" + Eval("Weight") + "\", \"" + Eval("TargetWeight") + "\")" %>'>Apply</button>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                            </Columns>
-                        </asp:GridView>
-                        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [dateTime], [Height], [Weight], [CalorieValue], [TargetWeight] FROM [HealthyValue] WHERE ([studentID] = @studentID) AND CalorieValue IS NOT NULL ORDER BY [dateTime] Desc">
-                            <SelectParameters>
-                                <asp:SessionParameter Name="studentID" SessionField="UserID" Type="String" />
-                            </SelectParameters>
-                        </asp:SqlDataSource>
-                        <br />
-                        <asp:GridView ID="GridView2" runat="server" DataSourceID="SqlDataSource2">
-                            <Columns>
-                                <asp:TemplateField HeaderText="Apply Age & Gender">
-                                    <ItemTemplate>
-                                        <button type="button" onclick='<%# "applyValuesA(\"" + Eval("Age") + "\", \"" + Eval("studentGender") + "\")" %>'>Apply</button>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                            </Columns>
-                        </asp:GridView>
-                        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT studentGender, DATEDIFF(YEAR, studentDOB, GETDATE()) AS Age FROM Student WHERE studentID = @StudentID">
-                            <SelectParameters>
-                                <asp:SessionParameter Name="StudentID" SessionField="UserID" />
-                            </SelectParameters>
-                        </asp:SqlDataSource>
-                    </td>
-                    <td class="auto-style17" rowspan="8">
-                        <img alt="cal" class="auto-style18" src="Image/foodcal.jpg" /></td>
-                </tr>
-                <tr>
-                    <td>Age (years):<br />
-                        <input type="number" id="age" name="age" required class="auto-style15"></td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td>Gender:<br />
-                        <select id="gender" name="gender">
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
-                        </select></td>
-                    <td>
-                        &nbsp;</td>
-                </tr>
-                <tr>
-                    <td class="auto-style19">Height (cm):<br />
-                        <input type="number" id="height" name="height" required></td>
-                    <td class="auto-style19"></td>
-                </tr>
-                <tr>
-                    <td>Weight (kg):<br />
-                        <input type="number" id="weight" name="weight" required></td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td>Target Weight (kg):<br />
-                        <input type="number" id="targetWeight" name="targetWeight" required></td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td>Number of weeks to Reach Target Weight:<br />
-                        <input type="number" id="weeksToReachTarget" name="weeksToReachTarget" required></td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td>Activity Level:<p style="font-size: 12px; border-style: double; width: 590px; text-align: left;">
-                        &nbsp;Exercise: 15-30 minutes of elevated heart rate activity.<br />
-                        &nbsp;Intense exercise: 45-120 minutes of elevated heart rate activity.<br />
-                        &nbsp;Very intense exercise: 2+ hours of elevated heart rate activity.
-                        </p>
-                        <br />
-                       
-                        <select id="activityLevel" name="activityLevel">
-                            <option value="1.2">Sedentary: little or no exercise</option>
-                            <option value="1.375">Light: exercise 1-3 times/week</option>
-                            <option value="1.55">Moderate: exercise 4-5 times/week</option>
-                            <option value="1.725">Very Active: intense exercise 6-7 times/week</option>
-                            <option value="1.9">Extra Active: very intense exercise daily, or physical job</option>
-                        </select>
-                    </td>
-                    <td>
-                       
-                        &nbsp;</td>
-                </tr>
-            </table>
+                <asp:Label ID="Label8" runat="server" Font-Size="Large" ForeColor="Black" Text="Recent Data : " Font-Bold="False" Font-Names="Times New Roman" Font-Underline="True"></asp:Label>
+                <br />
+                <asp:GridView ID="GridView1" runat="server" DataSourceID="SqlDataSource1" AllowPaging="True" AllowSorting="True" AutoPostBack="true" PageSize="5">
+                    <Columns>
+                        <asp:TemplateField HeaderText="Apply Height & Weight">
+                            <ItemTemplate>
+                                <button type="button" onclick='<%# "applyValues(\"" + Eval("Height") + "\", \"" + Eval("Weight") + "\", \"" + Eval("TargetWeight") + "\")" %>'>Apply</button>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                    </Columns>
+                </asp:GridView>
+                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [dateTime], [Height], [Weight], [CalorieValue], [TargetWeight] FROM [HealthyValue] WHERE ([studentID] = @studentID) AND CalorieValue IS NOT NULL ORDER BY [dateTime] Desc">
+                    <SelectParameters>
+                        <asp:SessionParameter Name="studentID" SessionField="UserID" Type="String" />
+                    </SelectParameters>
+                </asp:SqlDataSource>
+                <br />
+                <asp:GridView ID="GridView2" runat="server" DataSourceID="SqlDataSource2">
+                    <Columns>
+                        <asp:TemplateField HeaderText="Apply Age & Gender">
+                            <ItemTemplate>
+                                <button type="button" onclick='<%# "applyValuesA(\"" + Eval("Age") + "\", \"" + Eval("studentGender") + "\")" %>'>Apply</button>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                    </Columns>
+                </asp:GridView>
+                <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT studentGender, DATEDIFF(YEAR, studentDOB, GETDATE()) AS Age FROM Student WHERE studentID = @StudentID">
+                    <SelectParameters>
+                        <asp:SessionParameter Name="StudentID" SessionField="UserID" />
+                    </SelectParameters>
+                </asp:SqlDataSource>
+                <br />
+                Age (years):</label>
+            <input type="number" id="age" name="age" required class="auto-style15">
         </div>
 
+        <div class="input-section">
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+        </div>
+
+        <div class="input-section">
+            <label for="height">Height (cm):</label>
+            <input type="number" id="height" name="height" required>
+        </div>
+
+        <div class="input-section">
+            <label for="weight">Weight (kg):</label>
+            <input type="number" id="weight" name="weight" required>
+        </div>
+
+        <div class="input-section">
+            <label for="targetWeight">Target Weight (kg):</label>
+            <input type="number" id="targetWeight" name="targetWeight" required>
+        </div>
+
+        <div class="input-section">
+            <label for="weeksToReachTarget">Number of weeks to Reach Target Weight:</label>
+            <input type="number" id="weeksToReachTarget" name="weeksToReachTarget" required>
+        </div>
+
+        <div class="input-section">
+            <label for="activityLevel">Activity Level:</label>
+            <p style="font-size: 12px; border-style: double; width: 590px; text-align: left;">
+                &nbsp;Exercise: 15-30 minutes of elevated heart rate activity.<br />
+                &nbsp;Intense exercise: 45-120 minutes of elevated heart rate activity.<br />
+                &nbsp;Very intense exercise: 2+ hours of elevated heart rate activity.
+            </p>
+            <select id="activityLevel" name="activityLevel">
+                <option value="1.2">Sedentary: little or no exercise</option>
+                <option value="1.375">Light: exercise 1-3 times/week</option>
+                <option value="1.55">Moderate: exercise 4-5 times/week</option>
+                <option value="1.725">Very Active: intense exercise 6-7 times/week</option>
+                <option value="1.9">Extra Active: very intense exercise daily, or physical job</option>
+            </select>
+        </div>
 
         <button type="button" onclick="calculateCalories()">Calculate</button>
         &nbsp;
@@ -182,7 +150,6 @@
         <div id="result"></div>
         <div id="daysToContinue"></div>
         <div id="errDaysToContinue"></div>
-
         <asp:HiddenField ID="hiddenIsTargetAchieved" runat="server" />
         <p style="color: red; display: none;" id="notice">
             ====RECOMENDED/OPTIMUM CALORIES(NOT ACCORDING YOUR TARGET WEIGHT)====
@@ -193,7 +160,6 @@
         </p>
         <div id="nutrientResult1"></div>
         <div id="nutrientResult2"></div>
-        <div id="mealSuggestions"></div>
     </div>
     <asp:HiddenField ID="hiddenMaintenanceCalories" runat="server" />
     <asp:HiddenField ID="hiddenWeight" runat="server" />
@@ -435,79 +401,6 @@
          `;
 
             document.getElementById('<%= btnSave.ClientID %>').classList.remove('hidden');
-
-            //===================
-          
-           // const proteinCalories = (proteinGoalMin + proteinGoalMax)/2
-          //  const fatCalories = (fatIntakeMin + fatIntakeMax) / 2
-          //  const carbCalories = (carbIntakeMin + carbIntakeMax) / 2
-
-            const tdee = bmr * activityLevel; // Total Daily Energy Expenditure
-
-            const proteinCalories = tdee * 0.3; // 30% of calories from protein
-            const fatCalories = tdee * 0.25; // 25% of calories from fat
-            const carbCalories = tdee * 0.45; // 45% of calories from carbohydrates
-
-            const proteinGrams = proteinCalories / 4; // 1 gram of protein = 4 calories
-            const fatGrams = fatCalories / 9; // 1 gram of fat = 9 calories
-            const carbGrams = carbCalories / 4; // 1 gram of carbohydrate = 4 calories
-
-            suggestMeals(proteinGrams, fatGrams, carbGrams);
-        }
-
-        function suggestMeals(proteinGrams, fatGrams, carbGrams) {
-            const meals = {
-                protein: [
-                    { name: "Grilled Chicken Breast", portion: "100g", protein: 31 },
-                    { name: "Salmon", portion: "100g", protein: 25 },
-                    { name: "Eggs", portion: "2 large (100g)", protein: 13 },
-                    { name: "Plain Yogurt", portion: "200g", protein: 20 },
-                    { name: "Tofu", portion: "100g", protein: 8 }
-                ],
-                fat: [
-                    { name: "Avocado", portion: "100g", fat: 15 },
-                    { name: "Olive Oil", portion: "1 tbsp", fat: 14 },
-                    { name: "Almonds", portion: "30g", fat: 15 },
-                ],
-                carbs: [
-                    { name: "Brown Rice", portion: "100g", carbs: 23 },
-                    { name: "Sweet Potato", portion: "100g", carbs: 20 },
-                    { name: "Oats", portion: "50g", carbs: 27 },
-                    { name: "Whole Wheat Bread", portion: "1 slice (30g)", carbs: 15 },
-                    { name: "Banana", portion: "1 medium (120g)", carbs: 27 }
-                ],
-            };
-
-            let mealSuggestionHTML = `Suggested Meals:`;
-            mealSuggestionHTML += ``; mealSuggestionHTML += ``;
-            // Suggest protein meals
-            mealSuggestionHTML += `<br/>Proteins: <br/> ${suggestMealOptions(meals.protein, proteinGrams, "protein")}`;
-            mealSuggestionHTML += ``; mealSuggestionHTML += ``;
-            // Suggest fat meals
-            mealSuggestionHTML += `<br/>Fats: <br/>${suggestMealOptions(meals.fat, fatGrams, "fat")}`;
-            mealSuggestionHTML += ``; mealSuggestionHTML += ``;
-            // Suggest carb meals
-            mealSuggestionHTML += `<br/>Carbohydrates:<br/> ${suggestMealOptions(meals.carbs, carbGrams, "carbs")}`;
-
-            mealSuggestionHTML += ``;
-
-            document.getElementById('mealSuggestions').innerHTML = mealSuggestionHTML;
-        }
-
-        function suggestMealOptions(meals, gramsNeeded, type) {
-            let suggestions = "";
-            let gramsPerMeal = gramsNeeded / meals.length;
-
-            meals.forEach(meal => {
-                let grams = meal[type];
-                let portions = (gramsPerMeal / grams).toFixed(2);
-                let portionString = meal.portion;
-                let portionSize = parseFloat(portionString); // Extract the numeric part
-                let eatPor = (portions * portionSize).toFixed(2);
-                suggestions += `${portions} x ${meal.portion} = ${eatPor}g of ${meal.name} (${grams}g ${type} per portion)<br>`;
-            });
-
-            return suggestions;
         }
 
         function cancelForm() {

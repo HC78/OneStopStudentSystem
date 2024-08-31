@@ -329,6 +329,7 @@
             BMIbodyPic.innerHTML = `<img src="Image/${pic}" alt="BMI body Picture">`;
 
             var recommendation = getRecommendation(interpretation);
+
             var BMIreco = document.getElementById("BMIreco");
             BMIreco.innerHTML = `Recommendation: ${recommendation}`;
 
@@ -393,20 +394,74 @@
             alert("Error: " + result.get_message());
         }
 
+        function storeExe(interpretation) {
+            var suggestion = "";
+
+            switch (interpretation) {
+                case 'Underweight':
+                    suggestion = "<u>Exercise suggestion:</u> <br/>" +
+                        "1. Strength Training: weight lifting, resistance band exercises and bodyweight exercises (e.g., squats, lunges, push-ups). <br/> Goal: Build muscle mass and strength. <br/> " +
+                        "2. Moderate Cardiovascular Exercise: brisk walking, cycling and swimming. <br/> Goal: Improve overall fitness without excessive calorie burning. <br/> " +
+                        "3. Core Workouts: planks, sit-ups and leg raises. <br/> Goal: Enhance core strength and stability.<br/> ";
+                    break;
+                case 'Normal':
+                    suggestion = "<u>Exercise suggestion:</u> <br/>" +
+                        "1. Balanced Strength Training: free weights, bodyweight exercises (e.g., squats, push-ups) and resistance training. <br/> Goal: Maintain muscle tone and strength. <br/> " +
+                        "2. Cardiovascular Exercise: running, cycling, swimming and aerobics. <br/> Goal: Sustain cardiovascular health and endurance. <br/> " +
+                        "3. Flexibility and Mobility: yoga, Pilates and stretching routines. <br/> Goal: Enhance flexibility and prevent injuries.<br/> ";
+                    break;
+                case 'Overweight':
+                    suggestion = "<u>Exercise suggestion:</u> <br/>" +
+                        "1. Low-Impact Cardio: walking, cycling and swimming. <br/> Goal: Burn calories while minimizing joint stress. <br/> " +
+                        "2. Strength Training: bodyweight exercises (e.g., squats, lunges) and resistance band training. <br/> Goal: Build muscle mass and boost metabolism. <br/> " +
+                        "3. Flexibility and Mobility: stretching and yoga. <br/> Goal: Improve flexibility and support overall physical activity.<br/> ";
+                    break;
+                case 'Obese':
+                    suggestion = "<u>Exercise suggestion:</u> <br/>" +
+                        "1. Low-Impact Cardiovascular Exercise: water aerobics, walking and stationary cycling. <br/> Goal: Reduce weight while minimizing stress on joints. <br/> " +
+                        "2. Strength Training: light resistance training and chair exercises. <br/> Goal: Increase muscle mass and metabolic rate. <br/> " +
+                        "3. Gentle Flexibility Workouts: yoga and stretching. <br/> Goal: Improve flexibility and mobility without overexertion.<br/> ";
+                    break;
+            }
+        }
+
         function getRecommendation(interpretation) {
             switch (interpretation) {
                 case 'Underweight':
-                    return "Focus on a balanced diet, including nutrient-dense foods, and consult a healthcare professional or a nutritionist for a balanced diet if needed.";
+                    return "Focus on a balanced diet, including nutrient-dense foods and consult a healthcare professional or a nutritionist for a balanced diet if needed. <br/> " +
+                        "<u>Exercise suggestion:</u> <br/>" +
+                        "1. Strength Training: weight lifting, resistance band exercises and bodyweight exercises (e.g., squats, lunges, push-ups). <br/> Goal: Build muscle mass and strength. <br/> " +
+                        "2. Moderate Cardiovascular Exercise: brisk walking, cycling and swimming. <br/> Goal: Improve overall fitness without excessive calorie burning. <br/> " +
+                        "3. Core Workouts: planks, sit-ups and leg raises. <br/> Goal: Enhance core strength and stability.<br/> ";
+
                 case 'Normal':
-                    return "Maintain a healthy lifestyle with regular exercise and a balanced diet.";
+                    return "Maintain a healthy lifestyle with regular exercise and a balanced diet. <br/>" +
+                        "<u>Exercise suggestion:</u> <br/>" +
+                        "1. Balanced Strength Training: free weights, bodyweight exercises (e.g., squats, push-ups) and resistance training. <br/> Goal: Maintain muscle tone and strength. <br/> " +
+                        "2. Cardiovascular Exercise: running, cycling, swimming and aerobics. <br/> Goal: Sustain cardiovascular health and endurance. <br/> " +
+                        "3. Flexibility and Mobility: yoga, Pilates and stretching routines. <br/> Goal: Enhance flexibility and prevent injuries.<br/> ";
+
                 case 'Overweight':
-                    return "Increase physical activity with a mix of aerobic and strength exercises, adopt a healthier diet and seek professional guidance if necessary.";
+                    return "Increase physical activity with a mix of aerobic and strength exercises, adopt a healthier diet and seek professional guidance if necessary. <br/>" +
+                        "<u>Exercise suggestion:</u> <br/>" +
+                        "1. Low-Impact Cardio: walking, cycling and swimming. <br/> Goal: Burn calories while minimizing joint stress. <br/> " +
+                        "2. Strength Training: bodyweight exercises (e.g., squats, lunges) and resistance band training. <br/> Goal: Build muscle mass and boost metabolism. <br/> " +
+                        "3. Flexibility and Mobility: stretching and yoga. <br/> Goal: Improve flexibility and support overall physical activity.<br/> ";
+
                 case 'Obese':
-                    return "Implement lifestyle changes, including a well-managed diet and regular exercise, and consult healthcare providers for personalized guidance.";
+                    return "Implement lifestyle changes, including a well-managed diet and regular exercise and consult healthcare providers for personalized guidance.<br/>" +
+                        "<u>Exercise suggestion:</u> <br/>" +
+                        "1. Low-Impact Cardiovascular Exercise: water aerobics, walking and stationary cycling. <br/> Goal: Reduce weight while minimizing stress on joints. <br/> " +
+                        "2. Strength Training: light resistance training and chair exercises. <br/> Goal: Increase muscle mass and metabolic rate. <br/> " +
+                        "3. Gentle Flexibility Workouts: yoga and stretching. <br/> Goal: Improve flexibility and mobility without overexertion.<br/> ";
+
                 default:
                     return "Consult with a healthcare professional for personalized advice.";
             }
         }
+
+  
+
 
         /*    function drawGauge(bmi) {
                 var canvas = document.getElementById("gaugeCanvas");

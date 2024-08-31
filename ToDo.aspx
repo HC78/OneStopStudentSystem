@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="ToDo.aspx.cs" Inherits="fyp.ToDo" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="ToDo.aspx.cs" Inherits="OneStopStudentSystem.ToDo" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
  
@@ -41,6 +41,9 @@
         .auto-style24 {
             width: 403px;
         }
+        .pointer-cursor {
+            cursor: pointer;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -75,13 +78,13 @@
         </tr>
         <tr>
             <td class="auto-style20" id="myUL1">
-                <asp:GridView ID="GridView7" runat="server" DataSourceID="SqlDataSource2" DataKeyNames="ToDoID" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" OnRowEditing="GridView7_RowEditing" OnRowDeleting="GridView7_RowDeleting"  OnRowUpdating="GridView7_RowUpdating" OnRowCancelingEdit="GridView7_RowCancelingEdit" CssClass="auto-style19" Width="463px" BackColor="White" BorderColor="#336666" BorderStyle="Double" BorderWidth="3px" CellPadding="4" GridLines="Horizontal" OnSelectedIndexChanged="GridView7_SelectedIndexChanged1">
+                <asp:GridView ID="GridView7" runat="server" DataSourceID="SqlDataSource2" DataKeyNames="ToDoID" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" OnRowEditing="GridView7_RowEditing" OnRowDeleting="GridView7_RowDeleting"  OnRowUpdating="GridView7_RowUpdating" OnRowCancelingEdit="GridView7_RowCancelingEdit" OnRowDataBound="GridView7_RowDataBound" CssClass="auto-style19" Width="463px" BackColor="White" BorderColor="#336666" BorderStyle="Double" BorderWidth="3px" CellPadding="4" GridLines="Horizontal" OnSelectedIndexChanged="GridView7_SelectedIndexChanged1">
                     <Columns>
                         <asp:CommandField ShowEditButton="True" ShowCancelButton="True" ShowDeleteButton="True" />
                         <asp:TemplateField HeaderText="Content">
                             <ItemTemplate>
                                 <asp:Label ID="Literal1" runat="server" Text='<%# Bind("ToDoContent") %>'></asp:Label>
-                                 <asp:CheckBox ID="chkComplete" runat="server" OnCheckedChanged="chkComplete_CheckedChanged" AutoPostBack="true" />
+                                 <asp:CheckBox ID="chkComplete" runat="server" OnCheckedChanged="chkComplete7_CheckedChanged" AutoPostBack="true" />
                             </ItemTemplate>           
                             <EditItemTemplate>
                                 <asp:Label ID="EditLabel" runat="server" Text="Please Write Edit ToDo Content HERE: "></asp:Label>
@@ -100,7 +103,7 @@
                     <SortedDescendingHeaderStyle BackColor="#275353" />
                 </asp:GridView>
 
-                <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [ToDoContent], [ToDoID] FROM [ToDoList] WHERE (([studentID] = @studentID) AND ([Category] = @Category))" DeleteCommand="DELETE FROM [ToDoList] WHERE [ToDoID] = @ToDoID" InsertCommand="INSERT INTO [ToDoList] ([ToDoContent], [ToDoID]) VALUES (@ToDoContent, @ToDoID)" UpdateCommand="UPDATE [ToDoList] SET [ToDoContent] = @ToDoContent WHERE [ToDoID] = @ToDoID">
+                <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [ToDoContent], [ToDoID], [IsCompleted] FROM [ToDoList] WHERE (([studentID] = @studentID) AND ([Category] = @Category))" DeleteCommand="DELETE FROM [ToDoList] WHERE [ToDoID] = @ToDoID" InsertCommand="INSERT INTO [ToDoList] ([ToDoContent], [ToDoID]) VALUES (@ToDoContent, @ToDoID)" UpdateCommand="UPDATE [ToDoList] SET [ToDoContent] = @ToDoContent WHERE [ToDoID] = @ToDoID">
                     <DeleteParameters>
                         <asp:Parameter Name="ToDoID" Type="String" />
                     </DeleteParameters>
@@ -121,13 +124,13 @@
                 <asp:Label ID="noTasksMessage1" runat="server" Text="No Do Any Task" Visible="False"></asp:Label>
             </td>
             <td class="auto-style15" id="myUL2">
-                 <asp:GridView ID="GridView8" runat="server" DataSourceID="SqlDataSource3" DataKeyNames="ToDoID" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" OnRowDeleting="GridView8_RowDeleting" OnRowEditing="GridView8_RowEditing" OnRowUpdating="GridView8_RowUpdating" OnRowCancelingEdit="GridView7_RowCancelingEdit" CssClass="auto-style19" Width="463px" BackColor="White" BorderColor="#3366CC" BorderStyle="None" BorderWidth="1px" CellPadding="4">
+                 <asp:GridView ID="GridView8" runat="server" DataSourceID="SqlDataSource3" DataKeyNames="ToDoID" OnRowDataBound="GridView8_RowDataBound" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" OnRowDeleting="GridView8_RowDeleting" OnRowEditing="GridView8_RowEditing" OnRowUpdating="GridView8_RowUpdating" OnRowCancelingEdit="GridView7_RowCancelingEdit" CssClass="auto-style19" Width="463px" BackColor="White" BorderColor="#3366CC" BorderStyle="None" BorderWidth="1px" CellPadding="4">
                     <Columns>
                         <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
                         <asp:TemplateField HeaderText="Content">
                             <ItemTemplate>
                                 <asp:Label ID="Literal2" runat="server" Text='<%# Bind("ToDoContent") %>'></asp:Label>
-                                 <asp:CheckBox ID="chkComplete" runat="server" OnCheckedChanged="chkComplete_CheckedChanged" AutoPostBack="true" />
+                                 <asp:CheckBox ID="chkComplete" runat="server" OnCheckedChanged="chkComplete8_CheckedChanged" AutoPostBack="true" />
                             </ItemTemplate>
                             <EditItemTemplate>
                                 <asp:Label ID="EditLabel" runat="server" Text="Please Write Edit ToDo Content HERE: "></asp:Label>
@@ -145,7 +148,7 @@
                      <SortedDescendingCellStyle BackColor="#D6DFDF" />
                      <SortedDescendingHeaderStyle BackColor="#002876" />
                 </asp:GridView>
-                <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [ToDoID], [ToDoContent] FROM [ToDoList] WHERE (([Category] = @Category) AND ([studentID] = @studentID))" DeleteCommand="DELETE FROM [ToDoList] WHERE [ToDoID] = @ToDoID" InsertCommand="INSERT INTO [ToDoList] ([ToDoID], [ToDoContent]) VALUES (@ToDoID, @ToDoContent)" UpdateCommand="UPDATE [ToDoList] SET [ToDoContent] = @ToDoContent WHERE [ToDoID] = @ToDoID">
+                <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [ToDoID], [ToDoContent], [IsCompleted] FROM [ToDoList] WHERE (([Category] = @Category) AND ([studentID] = @studentID))" DeleteCommand="DELETE FROM [ToDoList] WHERE [ToDoID] = @ToDoID" InsertCommand="INSERT INTO [ToDoList] ([ToDoID], [ToDoContent]) VALUES (@ToDoID, @ToDoContent)" UpdateCommand="UPDATE [ToDoList] SET [ToDoContent] = @ToDoContent WHERE [ToDoID] = @ToDoID">
                     <DeleteParameters>
                         <asp:Parameter Name="ToDoID" Type="String" />
                     </DeleteParameters>
@@ -190,13 +193,13 @@
         </tr>
         <tr>
             <td class="auto-style23" id="myUL3">
-                 <asp:GridView ID="GridView9" runat="server" DataSourceID="SqlDataSource4" DataKeyNames="ToDoID" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" OnRowDeleting="GridView9_RowDeleting" OnRowEditing="GridView9_RowEditing" OnRowUpdating="GridView9_RowUpdating" OnRowCancelingEdit="GridView9_RowCancelingEdit" CssClass="auto-style19" Width="463px" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" CellPadding="4">
+                 <asp:GridView ID="GridView9" runat="server" DataSourceID="SqlDataSource4" DataKeyNames="ToDoID" AllowPaging="True" OnRowDataBound="GridView9_RowDataBound" AllowSorting="True" AutoGenerateColumns="False" OnRowDeleting="GridView9_RowDeleting" OnRowEditing="GridView9_RowEditing" OnRowUpdating="GridView9_RowUpdating" OnRowCancelingEdit="GridView9_RowCancelingEdit" CssClass="auto-style19" Width="463px" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" CellPadding="4">
                     <Columns>
                         <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
                         <asp:TemplateField HeaderText="Content">
                             <ItemTemplate>
                                 <asp:Label ID="Literal3" runat="server" Text='<%# Bind("ToDoContent") %>'></asp:Label>
-                                 <asp:CheckBox ID="chkComplete" runat="server" OnCheckedChanged="chkComplete_CheckedChanged" AutoPostBack="true" />
+                                 <asp:CheckBox ID="chkComplete" runat="server" OnCheckedChanged="chkComplete9_CheckedChanged" AutoPostBack="true" />
                             </ItemTemplate>
                             <EditItemTemplate>
                                 <asp:Label ID="EditLabel" runat="server" Text="Please Write Edit ToDo Content HERE: "></asp:Label>
@@ -215,7 +218,7 @@
                      <SortedDescendingCellStyle BackColor="#F6F0C0" />
                      <SortedDescendingHeaderStyle BackColor="#7E0000" />
                 </asp:GridView>
-                <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [ToDoID], [ToDoContent] FROM [ToDoList] WHERE (([Category] = @Category) AND ([studentID] = @studentID))" DeleteCommand="DELETE FROM [ToDoList] WHERE [ToDoID] = @ToDoID" InsertCommand="INSERT INTO [ToDoList] ([ToDoID], [ToDoContent]) VALUES (@ToDoID, @ToDoContent)" UpdateCommand="UPDATE [ToDoList] SET [ToDoContent] = @ToDoContent WHERE [ToDoID] = @ToDoID">
+                <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [ToDoID], [ToDoContent], [IsCompleted] FROM [ToDoList] WHERE (([Category] = @Category) AND ([studentID] = @studentID))" DeleteCommand="DELETE FROM [ToDoList] WHERE [ToDoID] = @ToDoID" InsertCommand="INSERT INTO [ToDoList] ([ToDoID], [ToDoContent]) VALUES (@ToDoID, @ToDoContent)" UpdateCommand="UPDATE [ToDoList] SET [ToDoContent] = @ToDoContent WHERE [ToDoID] = @ToDoID">
                     <DeleteParameters>
                         <asp:Parameter Name="ToDoID" Type="String" />
                     </DeleteParameters>
@@ -235,13 +238,13 @@
                 <asp:Label ID="noTasksMessage3" runat="server" Text="No Do Any Task" Visible="False"></asp:Label>
             </td>
             <td class="auto-style18" id="myUL4">
-                 <asp:GridView ID="GridView10" runat="server" DataSourceID="SqlDataSource5" DataKeyNames="ToDoID" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" OnRowDeleting="GridView10_RowDeleting" OnRowEditing="GridView10_RowEditing" OnRowUpdating="GridView10_RowUpdating" OnRowCancelingEdit="GridView10_RowCancelingEdit" CssClass="auto-style19" Width="463px" BackColor="#CCCCCC" BorderColor="#999999" BorderStyle="Solid" BorderWidth="3px" CellPadding="4" CellSpacing="2" ForeColor="Black">
+                 <asp:GridView ID="GridView10" runat="server" DataSourceID="SqlDataSource5" DataKeyNames="ToDoID" AllowPaging="True" OnRowDataBound="GridView10_RowDataBound" AllowSorting="True" AutoGenerateColumns="False" OnRowDeleting="GridView10_RowDeleting" OnRowEditing="GridView10_RowEditing" OnRowUpdating="GridView10_RowUpdating" OnRowCancelingEdit="GridView10_RowCancelingEdit" CssClass="auto-style19" Width="463px" BackColor="#CCCCCC" BorderColor="#999999" BorderStyle="Solid" BorderWidth="3px" CellPadding="4" CellSpacing="2" ForeColor="Black">
                     <Columns>
                         <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
                         <asp:TemplateField HeaderText="Content">
                             <ItemTemplate>
                                 <asp:Label ID="Literal4" runat="server" Text='<%# Bind("ToDoContent") %>'></asp:Label>
-                                 <asp:CheckBox ID="chkComplete" runat="server" OnCheckedChanged="chkComplete_CheckedChanged" AutoPostBack="true" />
+                                   <asp:CheckBox ID="chkComplete" runat="server" OnCheckedChanged="chkComplete9_CheckedChanged" AutoPostBack="true" />
                             </ItemTemplate>
                             <EditItemTemplate>
                                 <asp:Label ID="EditLabel" runat="server" Text="Please Write Edit ToDo Content HERE: "></asp:Label>
@@ -260,7 +263,7 @@
                      <SortedDescendingCellStyle BackColor="#CAC9C9" />
                      <SortedDescendingHeaderStyle BackColor="#383838" />
                 </asp:GridView>
-                <asp:SqlDataSource ID="SqlDataSource5" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [ToDoContent], [ToDoID] FROM [ToDoList] WHERE (([Category] = @Category) AND ([studentID] = @studentID))" DeleteCommand="DELETE FROM [ToDoList] WHERE [ToDoID] = @ToDoID" InsertCommand="INSERT INTO [ToDoList] ([ToDoContent], [ToDoID]) VALUES (@ToDoContent, @ToDoID)" UpdateCommand="UPDATE [ToDoList] SET [ToDoContent] = @ToDoContent WHERE [ToDoID] = @ToDoID">
+                <asp:SqlDataSource ID="SqlDataSource5" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [ToDoContent], [ToDoID], [IsCompleted] FROM [ToDoList] WHERE (([Category] = @Category) AND ([studentID] = @studentID))" DeleteCommand="DELETE FROM [ToDoList] WHERE [ToDoID] = @ToDoID" InsertCommand="INSERT INTO [ToDoList] ([ToDoContent], [ToDoID]) VALUES (@ToDoContent, @ToDoID)" UpdateCommand="UPDATE [ToDoList] SET [ToDoContent] = @ToDoContent WHERE [ToDoID] = @ToDoID">
                     <DeleteParameters>
                         <asp:Parameter Name="ToDoID" Type="String" />
                     </DeleteParameters>
@@ -282,7 +285,14 @@
 
         </tr>
         <tr>
-            <td class="auto-style24">&nbsp;</td>
+            <td class="auto-style24">
+                <br />
+                <br />
+        <map name="workmap">
+             <area shape="poly" coords="369, 442, 197, 332, 198, 36, 528, 39, 525, 333, 439, 393, 78" id="workmapLink" class="pointer-cursor">
+        </map>
+              <img src="Image/doQ.jpg" alt="todoNav" usemap="#workmap">
+        </td>
             <td>&nbsp;</td>
         </tr>
     </table>
@@ -295,7 +305,13 @@
         } else {
             row.style.textDecoration = 'none';
         }
-    }
+        }
+    
+        document.getElementById('workmapLink').addEventListener('click', function(event) {
+                event.preventDefault(); 
+            window.open('https://sherigraham.com/keeping-list-important-get-started/', '_blank');
+        });
+ 
     </script>
 
 </asp:Content>

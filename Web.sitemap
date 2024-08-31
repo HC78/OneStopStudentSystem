@@ -6,22 +6,25 @@
 		<siteMapNode url="~/ResetPsw.aspx" title="Reset password" description=""/>
 		<siteMapNode url="" title="Study" description="">
 			<siteMapNode url="~/NoteTaking.aspx" title="Note Taking" description="" />
+			<siteMapNode url="~/NoteTaking2.aspx" title="Note Taking2" description="" />
 			<siteMapNode url="" title="GPA Grade Calculator" description="">
 				<siteMapNode url="~/GPABeforeJuly.aspx" title="Before July 2023 intake" description="" />
 				<siteMapNode url="~/GPAAfterJuly.aspx" title="After July 2023 intake" description="" />
 			</siteMapNode>
 			<siteMapNode url="~/Converter.aspx" title="Measurement Converter" description="" />
 			<siteMapNode url="~/Video.aspx" title="Video Teaching Pronunciation" description="" />
-			<siteMapNode url="~/ReminderTest.aspx" title="Calander Reminder" description="" />
+			<siteMapNode url="~/ReminderTest.aspx" title="Calender Reminder" description="" />
 		</siteMapNode>
 		<siteMapNode url="" title="Health" description="">
 			<siteMapNode url="~/BMI.aspx" title="BMI Calculator" description="" />
 			<siteMapNode url="~/Calorie.aspx" title="Calorie Calculator" description="" />
+			<siteMapNode url="~/calorie2.aspx" title="Calorie Calculator2" description="" />
 			<siteMapNode url="~/Exercise.aspx" title="Exercise Workout Schedule" description="" />
 		</siteMapNode>
 		<siteMapNode url="" title="Personal" description="">
 			<siteMapNode url="~/Profile.aspx" title="Personal Profile" description="" />
-			<siteMapNode url="~/ToDo.aspx" title="To-Do List" description="" />
+			<siteMapNode url="~/ToDoE.aspx" title="To-Do List" description="" />
+			<siteMapNode url="~/ToDo.aspx" title="To-Do List (Eisenhower matrix)" description="" />
 			<siteMapNode url="~/Goal.aspx" title="Goal Getter" description="" />
 			<siteMapNode url="~/Chatbot.aspx" title="AI Chatbot" description="" />
 		</siteMapNode>

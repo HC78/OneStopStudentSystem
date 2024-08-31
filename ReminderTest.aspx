@@ -66,7 +66,7 @@
         <asp:TextBox ID="txtTime" runat="server" Height="27px" Width="690px" TextMode="Number"></asp:TextBox>
         <br />
         <br />
-        <asp:Button ID="btnCreateEvent" runat="server" BackColor="#68565B" BorderStyle="Solid" Height="55px" OnClick="BtnCreateEvent_Click" Text="Add" Width="184px" Style="border-radius: 10px;" ForeColor="White" ValidationGroup="AddEvent"/>
+        <asp:Button ID="btnCreateEvent" runat="server" BackColor="#68565B" BorderStyle="Solid" Height="55px" OnClick="BtnCreateEvent_Click" Text="Add" Width="184px" Style="border-radius: 10px;" ForeColor="White" ValidationGroup="AddEvent" />
         &nbsp;
         <asp:Button ID="btnCancel" runat="server" BackColor="#5F6F52" BorderStyle="Solid" Height="55px" OnClick="btnCancel_Click" Text="Cancel" Width="184px" Style="border-radius: 10px;" ForeColor="White" />
         <br />
@@ -130,9 +130,9 @@
 
         function disablePastDates(sender, args) {
             var today = new Date();
-            today.setHours(0, 0, 0, 0); 
+            today.setHours(0, 0, 0, 0);
 
-            var days = sender._days.body.rows;
+            var days = sender._days.body.rows; //Accesses the rows of the calendar table that contains the days of the month
             for (var i = 0; i < days.length; i++) {
                 for (var j = 0; j < days[i].cells.length; j++) {
                     var cell = days[i].cells[j];
@@ -140,7 +140,7 @@
 
                     if (cellDate < today) {
                         cell.className += " disabled-date";
-                        cell.style.pointerEvents = "none"; 
+                        cell.style.pointerEvents = "none";
                     } else {
                         cell.className = cell.className.replace("disabled-date", "");
                         cell.style.pointerEvents = "auto";

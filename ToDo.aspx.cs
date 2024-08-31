@@ -1,12 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Linq;
+using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace fyp
+namespace OneStopStudentSystem
 {
-    public partial class ToDo : System.Web.UI.Page 
+    public partial class ToDo : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -33,9 +36,10 @@ namespace fyp
                 GridView8.DataBind();
                 GridView9.DataBind();
                 GridView10.DataBind();
+       
             }
         }
-
+      
         protected void addBtn1_Click(object sender, EventArgs e)
         {
 
@@ -355,9 +359,9 @@ namespace fyp
                     }
                 }
 
-                CheckTasksForCategory(1, noTasksMessage1); 
+                CheckTasksForCategory(1, noTasksMessage1);
                 CheckTasksForCategory(2, noTasksMessage2);
-                CheckTasksForCategory(3, noTasksMessage3); 
+                CheckTasksForCategory(3, noTasksMessage3);
                 CheckTasksForCategory(4, noTasksMessage4);
             }
             catch (Exception ex)
@@ -366,7 +370,7 @@ namespace fyp
             }
         }
 
-        protected void chkComplete_CheckedChanged(object sender, EventArgs e)
+        protected void chkComplete7_CheckedChanged(object sender, EventArgs e)
         {
             CheckBox chkComplete = (CheckBox)sender;
             GridViewRow row = (GridViewRow)chkComplete.NamingContainer;
@@ -374,10 +378,45 @@ namespace fyp
             bool isCompleted = chkComplete.Checked;
 
             UpdateTaskCompletionStatus(toDoID, isCompleted);
- 
+
             row.Style["text-decoration"] = isCompleted ? "line-through" : "none";
         }
 
+        protected void chkComplete8_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox chkComplete = (CheckBox)sender;
+            GridViewRow row = (GridViewRow)chkComplete.NamingContainer;
+            string toDoID = GridView8.DataKeys[row.RowIndex].Value.ToString();
+            bool isCompleted = chkComplete.Checked;
+
+            UpdateTaskCompletionStatus(toDoID, isCompleted);
+
+            row.Style["text-decoration"] = isCompleted ? "line-through" : "none";
+        }
+
+        protected void chkComplete9_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox chkComplete = (CheckBox)sender;
+            GridViewRow row = (GridViewRow)chkComplete.NamingContainer;
+            string toDoID = GridView9.DataKeys[row.RowIndex].Value.ToString();
+            bool isCompleted = chkComplete.Checked;
+
+            UpdateTaskCompletionStatus(toDoID, isCompleted);
+
+            row.Style["text-decoration"] = isCompleted ? "line-through" : "none";
+        }
+
+        protected void chkComplete10_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox chkComplete = (CheckBox)sender;
+            GridViewRow row = (GridViewRow)chkComplete.NamingContainer;
+            string toDoID = GridView10.DataKeys[row.RowIndex].Value.ToString();
+            bool isCompleted = chkComplete.Checked;
+
+            UpdateTaskCompletionStatus(toDoID, isCompleted);
+
+            row.Style["text-decoration"] = isCompleted ? "line-through" : "none";
+        }
         private void UpdateTaskCompletionStatus(string toDoID, bool isCompleted)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
@@ -403,6 +442,7 @@ namespace fyp
                 Console.WriteLine("An error occurred while updating task completion status: " + ex.Message);
             }
         }
+
         protected void GridView_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
@@ -414,6 +454,96 @@ namespace fyp
                 e.Row.Style["text-decoration"] = isCompleted ? "line-through" : "none";
             }
         }
+
+        protected void GridView7_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                CheckBox chkComplete = (CheckBox)e.Row.FindControl("chkComplete");
+
+                // Ensure chkComplete is not null
+                if (chkComplete != null)
+                {
+                    // Check if DataItem is not null
+                    if (e.Row.DataItem != null)
+                    {
+                        var isCompletedObj = DataBinder.Eval(e.Row.DataItem, "IsCompleted");
+                        bool isCompleted = isCompletedObj != null && Convert.ToBoolean(isCompletedObj);
+
+                        chkComplete.Checked = isCompleted;
+                        e.Row.Style["text-decoration"] = isCompleted ? "line-through" : "none";
+                    }
+                }
+            }
+        }
+
+        protected void GridView8_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                CheckBox chkComplete = (CheckBox)e.Row.FindControl("chkComplete");
+
+                // Ensure chkComplete is not null
+                if (chkComplete != null)
+                {
+                    // Check if DataItem is not null
+                    if (e.Row.DataItem != null)
+                    {
+                        var isCompletedObj = DataBinder.Eval(e.Row.DataItem, "IsCompleted");
+                        bool isCompleted = isCompletedObj != null && Convert.ToBoolean(isCompletedObj);
+
+                        chkComplete.Checked = isCompleted;
+                        e.Row.Style["text-decoration"] = isCompleted ? "line-through" : "none";
+                    }
+                }
+            }
+        }
+
+        protected void GridView9_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                CheckBox chkComplete = (CheckBox)e.Row.FindControl("chkComplete");
+
+                // Ensure chkComplete is not null
+                if (chkComplete != null)
+                {
+                    // Check if DataItem is not null
+                    if (e.Row.DataItem != null)
+                    {
+                        var isCompletedObj = DataBinder.Eval(e.Row.DataItem, "IsCompleted");
+                        bool isCompleted = isCompletedObj != null && Convert.ToBoolean(isCompletedObj);
+
+                        chkComplete.Checked = isCompleted;
+                        e.Row.Style["text-decoration"] = isCompleted ? "line-through" : "none";
+                    }
+                }
+            }
+        }
+
+        protected void GridView10_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                CheckBox chkComplete = (CheckBox)e.Row.FindControl("chkComplete");
+
+                // Ensure chkComplete is not null
+                if (chkComplete != null)
+                {
+                    // Check if DataItem is not null
+                    if (e.Row.DataItem != null)
+                    {
+                        var isCompletedObj = DataBinder.Eval(e.Row.DataItem, "IsCompleted");
+                        bool isCompleted = isCompletedObj != null && Convert.ToBoolean(isCompletedObj);
+
+                        chkComplete.Checked = isCompleted;
+                        e.Row.Style["text-decoration"] = isCompleted ? "line-through" : "none";
+                    }
+                }
+            }
+        }
+
+
 
         protected void GridView7_SelectedIndexChanged1(object sender, EventArgs e)
         {

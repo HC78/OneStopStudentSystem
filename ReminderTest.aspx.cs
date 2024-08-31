@@ -513,6 +513,7 @@ namespace fyp
             string oldEventName = ViewState["OriginalEventName"] as string;
             string oldEventDesc = ViewState["OriginalEventDesc"] as string;
             string oldDateTime = ViewState["OriginalReminderTime"] as string;
+            DateTime odateTime = SelectDateTime(reminderID);
 
             string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
 
@@ -537,6 +538,9 @@ namespace fyp
 
                 string studentID = Session["UserID"].ToString();
                 string studentEmail = GetStudentEmail(studentID);
+                string accessToken = GetAccessToken(Session["UserID"].ToString());
+              
+                DateTime eventDate = Convert.ToDateTime(dateTime);
                 SendReminderUpdatedEmail(studentEmail, eventName, dateTime, eventDesc);
 
                 int reminderMinutes;
@@ -546,6 +550,8 @@ namespace fyp
                     DateTime reminderTime = eventDateTime.AddMinutes(-reminderMinutes);
 
                     TimeSpan delay = reminderTime - DateTime.Now;
+                    DeleteGoogleCalendarEvent(accessToken, oldEventName, odateTime);
+                    CreateGoogleCalendarEvent(accessToken, eventName, eventDesc, eventDate);
 
                     // Check if the reminder time is in the future
                     if (delay.TotalMilliseconds > 0)
@@ -686,6 +692,51 @@ namespace fyp
 
             return eventExists;
         }
+        protected DateTime SelectDateTime(string reminderID)
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            DateTime dateTime = DateTime.MinValue; // Default value if not found
+
+            try
+            {
+                bool eventExists = CheckIfEventExists(reminderID);
+
+                if (eventExists)
+                {
+                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    {
+                        string query = "SELECT dateTime FROM Reminder WHERE ReminderID = @ID";
+
+                        using (SqlCommand command = new SqlCommand(query, connection))
+                        {
+                            command.Parameters.AddWithValue("@ID", reminderID);
+
+                            connection.Open();
+                            SqlDataReader reader = command.ExecuteReader();
+
+                            if (reader.Read())
+                            {
+                                dateTime = Convert.ToDateTime(reader["dateTime"]);
+                            }
+                            else
+                            {
+                                Console.WriteLine($"Reminder with ID {reminderID} not found.");
+                            }
+
+                            reader.Close();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("An error occurred: " + ex.Message);
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", $"alert('Failed to retrieve reminder date/time: {ex.Message}');", true);
+            }
+
+            return dateTime;
+        }
+
 
         protected void GridView7_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
@@ -729,11 +780,12 @@ namespace fyp
                                 command.ExecuteNonQuery();
                                 lblMessage.Text = "Event deleted successfully!";
                                 lblMessage.Visible = true;
+                                lblPass.Visible = false;
                                 GridView7.DataBind();
 
                                 string studentID = Session["UserID"].ToString();
                                 string studentEmail = GetStudentEmail(studentID);
-                                //  SendDeletionConfirmationEmail(studentEmail, eventName, eventDateTime);
+                                 SendDeletionConfirmationEmail(studentEmail, eventName, eventDateTime);
                             }
                             else
                             {
@@ -756,8 +808,8 @@ namespace fyp
             }
         }
 
-        //dk
-        private void SendDeletionConfirmationEmail(string toEmail, string eventName, string eventDateTime)
+      
+        private void SendDeletionConfirmationEmail(string toEmail, string eventName, DateTime eventDateTime)
         {
             try
             {

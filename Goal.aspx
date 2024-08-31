@@ -87,10 +87,10 @@
         </tr>
         <tr>
             <td class="auto-style17">
-                <asp:GridView ID="GridView7" runat="server" DataSourceID="SqlDataSource2" DataKeyNames="GoalID" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" OnRowEditing="GridView7_RowEditing" OnRowDeleting="GridView7_RowDeleting" OnRowUpdating="GridView7_RowUpdating" OnRowCancelingEdit="GridView7_RowCancelingEdit" CssClass="auto-style19" Width="463px" BackColor="#DEBA84" BorderColor="#DEBA84" BorderStyle="None" BorderWidth="1px" CellPadding="3" CellSpacing="2" style="width:690px">
+                <asp:GridView ID="GridView7" runat="server" DataSourceID="SqlDataSource2" DataKeyNames="GoalID" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" OnRowEditing="GridView7_RowEditing" OnRowDeleting="GridView7_RowDeleting" OnRowUpdating="GridView7_RowUpdating" OnRowCancelingEdit="GridView7_RowCancelingEdit" CssClass="auto-style19" Width="463px" BackColor="#DEBA84" BorderColor="#DEBA84" BorderStyle="None" BorderWidth="1px" CellPadding="3" CellSpacing="2" style="width:690px" OnRowDataBound="GridView7_RowDataBound">
                     <Columns>
                         <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
-                        <asp:BoundField DataField="GoalID" HeaderText="GoalID" SortExpression="GoalID" ReadOnly="True" />
+                     
                         <asp:BoundField DataField="GoalTitle" HeaderText="GoalTitle" SortExpression="GoalTitle" />
                         <asp:BoundField DataField="GoalReward" HeaderText="GoalReward" SortExpression="GoalReward" />
                         <asp:BoundField DataField="GoalMilestone" HeaderText="GoalMilestone" SortExpression="GoalMilestone" />

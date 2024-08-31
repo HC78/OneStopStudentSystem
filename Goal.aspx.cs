@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -26,10 +27,24 @@ namespace OneStopStudentSystem
             if (!IsPostBack)
             {
                 GridView7.DataBind();
+         
             }
             GridView7.RowDataBound += GridView7_RowDataBound;
-        }
 
+        }
+        private void BindGridView()
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string query = "SELECT GoalID, GoalTitle, IsCompleted FROM Goal";
+                SqlDataAdapter da = new SqlDataAdapter(query, conn);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                GridView7.DataSource = dt;
+                GridView7.DataBind();
+            }
+        }
         protected void BtnAdd_Click(object sender, EventArgs e)
         {
             if (AddGoalToDatabase(txtGoal.Text, txtReward.Text, txtMilestones.Text, txtQuote.Text))
@@ -240,6 +255,7 @@ namespace OneStopStudentSystem
                 }
             }
         }
+
 
         protected void chkCompleted_CheckedChanged(object sender, EventArgs e)
         {

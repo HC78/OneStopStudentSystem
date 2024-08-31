@@ -48,6 +48,12 @@ namespace OneStopStudentSystem
             string newHealthID = GenerateNextID();
 
             string BMI = hiddenBMI.Value;
+            double bmiD;
+            if (!double.TryParse(BMI, out bmiD))
+            {
+                Console.WriteLine("Invalid BMI value.");
+                return; 
+            }
             string weight = hiddenWeight.Value;
             string height = hiddenHeight.Value;
 
@@ -59,10 +65,11 @@ namespace OneStopStudentSystem
                 {
                     using (SqlConnection connection = new SqlConnection(connectionString))
                     {
-                        string query = "INSERT INTO HealthyValue (healthID, dateTime, BMIValue, CalorieValue, Height, Weight, studentID) VALUES (@ID, @dateTime, @BMI, @Calorie, @height, @weight, @StudentID)";
+                        string query = "INSERT INTO HealthyValue (healthID, dateTime, BMIValue, CalorieValue, Height, Weight, studentID, Suggestion) VALUES (@ID, @dateTime, @BMI, @Calorie, @height, @weight, @StudentID, @Suggestion)";
 
                         using (SqlCommand command = new SqlCommand(query, connection))
                         {
+                            string suggestion = GetBMISuggestion(bmiD); // Get suggestion based on BMI
                             command.Parameters.AddWithValue("@ID", newHealthID);
                             command.Parameters.AddWithValue("@dateTime", DateTime.Now.ToString());
                             command.Parameters.AddWithValue("@BMI",BMI);
@@ -70,11 +77,12 @@ namespace OneStopStudentSystem
                             command.Parameters.AddWithValue("@height", height);
                             command.Parameters.AddWithValue("@weight", weight);
                             command.Parameters.AddWithValue("@StudentID", studentID);
-
+                            command.Parameters.AddWithValue("@Suggestion", suggestion);
                             connection.Open();
                             command.ExecuteNonQuery();
                         }
                     }
+                  
                     compareBMI();
                     GridView1.DataBind();
                     lblMessage.Text = "Data saved successfully.";
@@ -93,7 +101,33 @@ namespace OneStopStudentSystem
             }
         }
 
-
+        private string GetBMISuggestion(double bmi)
+        {
+            if (bmi < 18.5)
+            {
+                return "1. Strength Training: weight lifting, resistance band exercises, and bodyweight exercises (e.g., squats, lunges, push-ups). <br/> Goal: Build muscle mass and strength. <br/> " +
+                       "2. Moderate Cardiovascular Exercise: brisk walking, cycling, and swimming. <br/> Goal: Improve overall fitness without excessive calorie burning. <br/> " +
+                       "3. Core Workouts: planks, sit-ups, and leg raises. <br/> Goal: Enhance core strength and stability.<br/> ";
+            }
+            else if (bmi >= 18.5 && bmi < 24.9)
+            {
+                return "1. Balanced Strength Training: free weights, bodyweight exercises (e.g., squats, push-ups) and resistance training. <br/> Goal: Maintain muscle tone and strength. <br/> " +
+                       "2. Cardiovascular Exercise: running, cycling, swimming, and aerobics. <br/> Goal: Sustain cardiovascular health and endurance. <br/> " +
+                       "3. Flexibility and Mobility: yoga, Pilates, and stretching routines. <br/> Goal: Enhance flexibility and prevent injuries.<br/> ";
+            }
+            else if (bmi >= 25 && bmi < 29.9)
+            {
+                return "1. Low-Impact Cardio: walking, cycling, and swimming. <br/> Goal: Burn calories while minimizing joint stress. <br/> " +
+                       "2. Strength Training: bodyweight exercises (e.g., squats, lunges) and resistance band training. <br/> Goal: Build muscle mass and boost metabolism. <br/> " +
+                       "3. Flexibility and Mobility: stretching and yoga. <br/> Goal: Improve flexibility and support overall physical activity.<br/> ";
+            }
+            else
+            {
+                return "1. Low-Impact Cardiovascular Exercise: water aerobics, walking, and stationary cycling. <br/> Goal: Reduce weight while minimizing stress on joints. <br/> " +
+                       "2. Strength Training: light resistance training and chair exercises. <br/> Goal: Increase muscle mass and metabolic rate. <br/> " +
+                       "3. Gentle Flexibility Workouts: yoga and stretching. <br/> Goal: Improve flexibility and mobility without overexertion.<br/> ";
+            }
+        }
         private string GenerateNextID()
         {
             string newID = "H0001";

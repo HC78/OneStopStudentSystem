@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 
 namespace fyp
 {
-    public partial class NoteTaking : System.Web.UI.Page
+    public partial class noteTaking2 : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -125,10 +125,10 @@ namespace fyp
 
                     string serverPath = Server.MapPath("~/Image/") + filename;
 
-                    
-                     uploadedFile.SaveAs(serverPath);
-                     imagePaths.Add(filename);
-                    
+
+                    uploadedFile.SaveAs(serverPath);
+                    imagePaths.Add(filename);
+
                 }
             }
 

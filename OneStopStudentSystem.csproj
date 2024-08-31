@@ -189,6 +189,7 @@
     </Content>
     <Content Include="BMI.aspx" />
     <Content Include="Calorie.aspx" />
+    <Content Include="calorie2.aspx" />
     <Content Include="Chatbot.aspx" />
     <Content Include="chatbot.py" />
     <Content Include="chatbotTrain.py" />
@@ -241,6 +242,7 @@
     <Content Include="Image\cgirlo.png" />
     <Content Include="Image\cgirlover.png" />
     <Content Include="Image\cgirlu.png" />
+    <Content Include="Image\foodcal.jpg" />
     <Content Include="Image\girlmildt.png" />
     <Content Include="Image\girlmt.png" />
     <Content Include="Image\girln.png" />
@@ -255,6 +257,7 @@
     <Content Include="Image\logo.png" />
     <Content Include="Image\nt.png" />
     <Content Include="Image\picReg.jpg" />
+    <Content Include="Image\query.jpg" />
     <Content Include="Image\sad.gif" />
     <Content Include="Image\sebastianImg.jfif" />
     <Content Include="Image\send.jpg" />
@@ -266,6 +269,7 @@
     <Content Include="Image\twinkling.png" />
     <Content Include="Login.aspx" />
     <Content Include="NoteTaking.aspx" />
+    <Content Include="noteTaking2.aspx" />
     <Content Include="oauth2callback.aspx" />
     <Content Include="privacyPolicy.aspx" />
     <Content Include="Profile.aspx" />
@@ -276,6 +280,7 @@
     <Content Include="ResetPsw.aspx" />
     <Content Include="StyleSheet1.css" />
     <Content Include="tnc.aspx" />
+    <Content Include="ToDoE.aspx" />
     <Content Include="ToDo.aspx" />
     <Content Include="ToDoList.aspx" />
     <Content Include="ToDoLit.aspx" />
@@ -305,6 +310,13 @@
     </Compile>
     <Compile Include="Calorie.aspx.designer.cs">
       <DependentUpon>Calorie.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="calorie2.aspx.cs">
+      <DependentUpon>calorie2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="calorie2.aspx.designer.cs">
+      <DependentUpon>calorie2.aspx</DependentUpon>
     </Compile>
     <Compile Include="Chatbot.aspx.cs">
       <DependentUpon>Chatbot.aspx</DependentUpon>
@@ -362,6 +374,13 @@
     </Compile>
     <Compile Include="GPABeforeJuly.aspx.designer.cs">
       <DependentUpon>GPABeforeJuly.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="noteTaking2.aspx.cs">
+      <DependentUpon>noteTaking2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="noteTaking2.aspx.designer.cs">
+      <DependentUpon>noteTaking2.aspx</DependentUpon>
     </Compile>
     <Compile Include="oauth2callback.aspx.cs">
       <DependentUpon>oauth2callback.aspx</DependentUpon>
@@ -483,6 +502,13 @@
     </Compile>
     <Compile Include="tnc.aspx.designer.cs">
       <DependentUpon>tnc.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ToDoE.aspx.cs">
+      <DependentUpon>ToDoE.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ToDoE.aspx.designer.cs">
+      <DependentUpon>ToDoE.aspx</DependentUpon>
     </Compile>
     <Compile Include="ToDo.aspx.cs">
       <DependentUpon>ToDo.aspx</DependentUpon>

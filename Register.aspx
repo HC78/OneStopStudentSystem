@@ -57,6 +57,10 @@
             height: 32px;
             margin-left: 14px;
         }
+        .auto-style19 {
+            width: 469px;
+            height: 331px;
+        }
     </style>
 </asp:Content>
 
@@ -266,7 +270,14 @@
                 &nbsp;</td>
         </tr>
         <tr>
-            <td class="auto-style2">&nbsp;</td>
+            <td class="auto-style2">
+                <br />
+                <br />
+                <img src="Image/query.jpg" alt="Workplace" usemap="#workmap" class="auto-style19">
+        <map name="workmap">
+            <area shape="rect" coords="17, 218, 287, 308" alt="Phone" href="tel:+6019-6503103">
+            <area shape="rect" coords="27, 111, 389, 187" alt="Email" href="mailto:lgk7878@gmail.com"> 
+        </map></td>
         </tr>
     </table>
 <script type="text/javascript">

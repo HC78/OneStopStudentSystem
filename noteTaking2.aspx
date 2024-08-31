@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="NoteTaking.aspx.cs" Inherits="fyp.NoteTaking" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="noteTaking2.aspx.cs" Inherits="fyp.noteTaking2" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
@@ -49,6 +49,10 @@
             color: white;
         }
 
+        .auto-style17 {
+            height: 132px;
+        }
+
         .auto-style18 {
             height: 106px;
         }
@@ -60,26 +64,20 @@
         .lblError0, .lblError1, lblError2, lblError3 {
             visibility: hidden;
         }
-        .auto-style20 {
-            width: 229px;
-        }
     </style>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <table style="width: 100%;">
         <tr>
-            <td class="auto-style20">
+            <td>
                 <asp:Label ID="Label7" runat="server" Font-Size="X-Large" ForeColor="Black" Text="Note Taking" Font-Bold="True" Font-Names="Times New Roman"></asp:Label>
             </td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>
-                &nbsp;</td>
         </tr>
         <tr>
-            <td class="auto-style20" rowspan="11">
+            <td>
+                <asp:Label ID="lblError" runat="server" ForeColor="Red"></asp:Label>
+                <br />
                 <asp:GridView ID="GridView1" runat="server" DataSourceID="SqlDataSource1" AllowPaging="True" AllowSorting="True" AutoPostBack="true" AutoGenerateColumns="False">
                     <Columns>
                         <asp:BoundField DataField="Course" HeaderText="Course" SortExpression="Course" />
@@ -95,10 +93,6 @@
                         </asp:TemplateField>
                     </Columns>
                 </asp:GridView>
-            </td>
-            <td>
-                <asp:Label ID="lblError" runat="server" ForeColor="Red"></asp:Label>
-                <br />
                 <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT DISTINCT [Course], [noteColor] FROM [NoteTaking] WHERE ([studentID] = @studentID)">
                     <SelectParameters>
                         <asp:SessionParameter Name="studentID" SessionField="UserID" Type="String" />
@@ -140,6 +134,7 @@
         </tr>
         <tr>
             <td>
+                <br />
                 <asp:Label ID="Label9" runat="server" Text="Colour : "></asp:Label>
                 <br />
                 <input type="color" id="ColorPicker" runat="server" value="#eeeeee" /><br />
@@ -170,8 +165,6 @@
             </td>
         </tr>
         <tr>
-            <td class="auto-style20">
-                &nbsp;</td>
             <td>
                 <asp:Button ID="btnAdd" runat="server" BackColor="#68565B" BorderStyle="Solid" Height="55px" OnClick="BtnAdd_Click" Text="Add Note" Width="184px" Style="border-radius: 10px;" ForeColor="White" />
                 &nbsp;
@@ -179,7 +172,7 @@
             </td>
         </tr>
         <tr>
-            <td colspan="2">
+            <td class="auto-style17">
                 <br />
                 <asp:Label ID="LabelSearchWeek" runat="server" Text="Search by Week:"></asp:Label>
                 <asp:TextBox ID="txtSearchWeek" runat="server"></asp:TextBox>
@@ -188,13 +181,21 @@
                 <asp:TextBox ID="txtSearchCourse" runat="server"></asp:TextBox>
                 &nbsp;<br />
                 <asp:Button ID="btnSearch" runat="server" BackColor="#68565B" BorderStyle="Solid" Height="35px" OnClick="BtnSearch_Click" Text="Search" Width="113px" Style="border-radius: 10px;" ForeColor="White" />
-                &nbsp;<br />
+                &nbsp;</td>
+        </tr>
+        <tr>
+            <td>
+                <br />
                 <asp:Label ID="noNoteMessage1" runat="server" Text="No Any Note" Visible="False"></asp:Label>
+            </td>
+        </tr>
+        <tr>
+            <td>
                 <asp:Panel ID="noteContainer" runat="server" CssClass="note-container">
                 </asp:Panel>
             </td>
         </tr>
-        </table>
+    </table>
 
     <script>
         function applyValues(course, noteColor) {

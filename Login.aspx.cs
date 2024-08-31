@@ -16,7 +16,7 @@ namespace OneStopStudentSystem
     public partial class Login : System.Web.UI.Page
     {
         private const int MaxFailedLoginAttempts = 3;
-        private const int LockoutDurationHours = 24;
+        private const int LockoutDurationMin = 30;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Request.QueryString["logout"] == "true")
@@ -41,9 +41,9 @@ namespace OneStopStudentSystem
             if (isAccLock == true)
             {
                 //can test with AddMinutes
-                if (lockTime.HasValue && lockTime.Value.AddHours(LockoutDurationHours) > DateTime.Now)
+                if (lockTime.HasValue && lockTime.Value.AddMinutes(LockoutDurationMin) > DateTime.Now)
                 {
-                    lblErrorMsg.Text = "Your account has been locked due to 3 invalid login attempt. Please try again after 24 hours or wait for admin to unlock account.";
+                    lblErrorMsg.Text = "Your account has been locked due to 3 invalid login attempt. Please try again after 30 minutes or wait for admin to unlock account.";
                     lblErrorMsg.Visible = true;
                     return;
                 }
