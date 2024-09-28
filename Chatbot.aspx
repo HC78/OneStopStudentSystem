@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Chatbot.aspx.cs" Inherits="OneStopStudentSystem.Chatbot" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" MaintainScrollPositionOnPostBack="true" CodeBehind="Chatbot.aspx.cs" Inherits="OneStopStudentSystem.Chatbot" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>

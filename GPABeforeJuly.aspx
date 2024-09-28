@@ -113,14 +113,15 @@
         <input type="text" id="totalCredit" placeholder="Enter Total Credits Hours Earned">
 
         <div id="subjectsContainer">
-            <h4>Tips: Next Semester Subjects (Arrange it according to ability - confident to less confident)&nbsp; </h4>
+            <h4>Tips: Next Semester Subjects (Arrange it according to ability - confident to less confident)&nbsp;</h4>
 
             <div class="subject-row">
+                <label for="subjectName1">Subject 1 Name:</label>
+                <input type="text" id="subjectName1" class="subject-name" placeholder="Enter subject 1 name">
                 <label for="credit1">Credit for Subject 1:</label>
                 <input type="text" id="credit1" class="subject-credit" placeholder="Enter credit for subject 1">
                 <br />
             </div>
-
         </div>
 
         <button type="button" onclick="addSubject()">Add Subject</button>
@@ -147,17 +148,30 @@
                 newSubjectRow.classList.add('subject-row');
                 newSubjectRow.id = `subjectRow${subjectCount}`;
 
-                const label = document.createElement('label');
-                label.textContent = `Credit for Subject ${subjectCount}:`;
+                // Subject Name Input
+                const nameLabel = document.createElement('label');
+                nameLabel.textContent = `Subject ${subjectCount} Name:`;
 
-                const input = document.createElement('input');
-                input.type = 'text';
-                input.classList.add('subject-credit');
-                input.placeholder = `Enter credit for subject ${subjectCount}`;
-                input.id = `credit${subjectCount}`;
+                const nameInput = document.createElement('input');
+                nameInput.type = 'text';
+                nameInput.classList.add('subject-name');
+                nameInput.placeholder = `Enter subject ${subjectCount} name`;
+                nameInput.id = `subjectName${subjectCount}`;
 
-                newSubjectRow.appendChild(label);
-                newSubjectRow.appendChild(input);
+                // Credit Input
+                const creditLabel = document.createElement('label');
+                creditLabel.textContent = `Credit for Subject ${subjectCount}:`;
+
+                const creditInput = document.createElement('input');
+                creditInput.type = 'text';
+                creditInput.classList.add('subject-credit');
+                creditInput.placeholder = `Enter credit for subject ${subjectCount}`;
+                creditInput.id = `credit${subjectCount}`;
+
+                newSubjectRow.appendChild(nameLabel);
+                newSubjectRow.appendChild(nameInput);
+                newSubjectRow.appendChild(creditLabel);
+                newSubjectRow.appendChild(creditInput);
 
                 subjectsContainer.appendChild(newSubjectRow);
             } else {
@@ -210,13 +224,18 @@
 
             // Loop through all dynamically added subject inputs
             for (let i = 1; i <= subjectCount; i++) {
+                const subjectName = document.getElementById(`subjectName${i}`).value.trim();
                 const credit = parseFloat(document.getElementById(`credit${i}`).value);
+                if (subjectName === "") {
+                    errorMessage += `Please enter a valid subject name for subject ${i}\n`;
+                }
                 if (isNaN(credit) || credit <= 0) {
                     errorMessage += `Please enter a valid positive numerical value for credit of subject ${i}.\n`;
                 } else {
                     subjectCredits.push({
                         subject: i,
-                        credit: credit
+                        subjectName: subjectName, // Store subject name here
+                        subjectCredit: credit // Store subject credit here
                     });
                 }
             }
@@ -242,7 +261,7 @@
             const totalQualityPoints = currentCGPA * totalCredit;
 
             // Calculate total credits for the next semester dynamically
-            const totalNextSemesterCredits = subjectCredits.reduce((total, subject) => total + subject.credit, 0);
+            const totalNextSemesterCredits = subjectCredits.reduce((total, subject) => total + subject.subjectCredit, 0);
 
             // Calculate total quality points needed for the aimed CGPA
             const totalAimedQualityPoints = aimedCGPA * (totalCredit + totalNextSemesterCredits);
@@ -251,14 +270,14 @@
             let requiredQualityPoints = totalAimedQualityPoints - totalQualityPoints;
 
             // Sort subjects by credit hours in descending order
-            subjectCredits.sort((a, b) => b.credit - a.credit);
+            subjectCredits.sort((a, b) => b.subjectCredit - a.subjectCredit);
 
             // Initialize an array to store grade and remaining quality points for each subject
             const subjectResults = [];
 
             // Loop through each subject to calculate grade and remaining quality points
             for (const subject of subjectCredits) {
-                const subjectCredit = subject.credit;
+                const subjectCredit = subject.subjectCredit;
                 let gradePoint = requiredQualityPoints / subjectCredit;
 
                 // Ensure the calculated grade point is within the valid range
@@ -269,6 +288,8 @@
 
                 subjectResults.push({
                     subject: subject.subject,
+                    subjectName: subject.subjectName, // Include subject name in results
+                    subjectCredit: subject.subjectCredit, // Include subject credit in results
                     grade: grade,
                 });
 
@@ -282,15 +303,16 @@
             // Calculate maximum achievable CGPA
             let maxAchievableQualityPoints = totalQualityPoints;
             for (const subject of subjectCredits) {
-                maxAchievableQualityPoints += subject.credit * gradePoints['A']; // Assume 'A' grade
+                maxAchievableQualityPoints += subject.subjectCredit * gradePoints['A'];
             }
             const maxAchievableCGPA = maxAchievableQualityPoints / (totalCredit + totalNextSemesterCredits);
 
             // Output results
             let resultsHTML = `<p>Grades needed for each subject:</p>`;
             subjectResults.forEach(result => {
-                resultsHTML += `<p>Subject ${result.subject}: ${result.grade}</p>`;
+                resultsHTML += `<p>Subject ${result.subject} (${result.subjectName}, ${result.subjectCredit} credits): ${result.grade}</p>`;
             });
+
 
             if (requiredQualityPoints > 0) {
                 resultsHTML += `<p style="color: red; font-weight: bold;">Unfortunately, even though you achieve A's in all subjects, you still cannot achieve the target CGPA in the next semester with the provided subjects.</p>`;
@@ -299,7 +321,7 @@
                 resultsHTML += `<img src="/Image/sad.gif" alt="Sad" />`;
             } else {
                 resultsHTML += `<p style="color: green; font-weight: bold;">Congratulations! You can achieve your target CGPA with the provided subject grade!</p>`;
-                resultsHTML += `<img src="/Image/happy.gif" alt="Congratulation" />`;
+                resultsHTML += `<img src="/Image/happy.gif" alt="Happy" />`;
             }
 
             document.getElementById('resultsContainer').innerHTML = resultsHTML;
@@ -340,7 +362,6 @@
 
             document.getElementById('resultsContainer').innerHTML = '';
         }
-
 
 
         function markToGrade(gradePoint) {

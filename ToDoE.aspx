@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="ToDoE.aspx.cs" Inherits="OneStopStudentSystem.ToDoE" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="ToDoE.aspx.cs" Inherits="OneStopStudentSystem.ToDoE" MaintainScrollPositionOnPostBack="true"%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 

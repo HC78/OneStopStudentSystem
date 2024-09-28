@@ -50,67 +50,52 @@
             <asp:Label ID="Label17" runat="server" Font-Size="X-Large" ForeColor="Black" Text="GPA Grade Calculator" Font-Bold="True" Font-Names="Times New Roman"></asp:Label>
         </h1>
 
-        <h3>Grade Table for after July 2023 intake students</h3>
+        <h3>Grade Table for before July 2023 intake students</h3>
         <table>
             <tr>
                 <th>Grade</th>
                 <th>Mark Range</th>
                 <th>Grade Point</th>
-                <th>Description</th>
-            </tr>
-            <tr>
-                <td>A+</td>
-                <td>90 - 100</td>
-                <td>4.0000</td>
-                <td>High Distinction</td>
             </tr>
             <tr>
                 <td>A</td>
-                <td>80 - 89</td>
+                <td>80-100</td>
                 <td>4.0000</td>
-                <td>Distinction</td>
             </tr>
             <tr>
                 <td>A-</td>
-                <td>75 - 79</td>
-                <td>3.6700</td>
-                <td>Distinction</td>
+                <td>75-79</td>
+                <td>3.7500</td>
             </tr>
             <tr>
                 <td>B+</td>
-                <td>70 - 74</td>
-                <td>3.3300</td>
-                <td>Merit</td>
+                <td>70-74</td>
+                <td>3.5000</td>
             </tr>
             <tr>
                 <td>B</td>
-                <td>65 - 69</td>
+                <td>65-69</td>
                 <td>3.0000</td>
-                <td>Merit</td>
             </tr>
             <tr>
                 <td>B-</td>
-                <td>60 - 64</td>
-                <td>2.6700</td>
-                <td>Merit</td>
+                <td>60-64</td>
+                <td>2.7500</td>
             </tr>
             <tr>
                 <td>C+</td>
-                <td>55 - 59</td>
-                <td>2.3300</td>
-                <td>Pass</td>
+                <td>55-59</td>
+                <td>2.5000</td>
             </tr>
             <tr>
                 <td>C</td>
-                <td>50 - 54</td>
+                <td>50-54</td>
                 <td>2.0000</td>
-                <td>Pass</td>
             </tr>
             <tr>
                 <td>F</td>
-                <td>0 - 49</td>
+                <td>0-49</td>
                 <td>0.0000</td>
-                <td>Fail</td>
             </tr>
         </table>
         <br />
@@ -119,28 +104,32 @@
         <label for="currentCGPA">Current CGPA:</label>
         <input type="text" id="currentCGPA" placeholder="Enter current CGPA">
         </br>
-     <label for="aimedCGPA">Target CGPA:</label>
+    <label for="aimedCGPA">Target CGPA:</label>
         <input type="text" id="aimedCGPA" placeholder="Enter target CGPA">
         </br>
-     <label for="totalCredit">Total Credits in Previous Semesters:</label>
-        <input type="text" id="totalCredit" placeholder="Enter Total Credits in Previous Semesters">
+    <label for="totalCredit">Total Credits Hours Earned:</label>
+        <input type="text" id="totalCredit" placeholder="Enter Total Credits Hours Earned">
 
         <div id="subjectsContainer">
-            <h4>Next Semester Subjects (Arrange it according to ability - confident to less confident)</h4>
+            <h4>Tips: Next Semester Subjects (Arrange it according to ability - confident to less confident)&nbsp;</h4>
 
             <div class="subject-row">
+                <label for="subjectName1">Subject 1 Name:</label>
+                <input type="text" id="subjectName1" class="subject-name" placeholder="Enter subject 1 name">
                 <label for="credit1">Credit for Subject 1:</label>
                 <input type="text" id="credit1" class="subject-credit" placeholder="Enter credit for subject 1">
+                <br />
             </div>
-
         </div>
 
         <button type="button" onclick="addSubject()">Add Subject</button>
         <button type="button" onclick="removeSubject()">Remove Subject</button>
-        <button type="button" onclick="calculatePredictions()">Calculate Predictions</button>
+        &nbsp;
 
+    <button type="button" onclick="calculatePredictions()">Calculate Predictions</button>
 
         <button type="button" id="btnCancel" onclick="cancelForm()" style="background-color: #5F6F52; border-style: solid; height: 55px; width: 184px; border-radius: 10px; color: white;">Cancel</button>
+
         <div id="resultsContainer">
         </div>
     </div>
@@ -157,17 +146,30 @@
                 newSubjectRow.classList.add('subject-row');
                 newSubjectRow.id = `subjectRow${subjectCount}`;
 
-                const label = document.createElement('label');
-                label.textContent = `Credit for Subject ${subjectCount}:`;
+                // Subject Name Input
+                const nameLabel = document.createElement('label');
+                nameLabel.textContent = `Subject ${subjectCount} Name:`;
 
-                const input = document.createElement('input');
-                input.type = 'text';
-                input.classList.add('subject-credit');
-                input.placeholder = `Enter credit for subject ${subjectCount}`;
-                input.id = `credit${subjectCount}`;
+                const nameInput = document.createElement('input');
+                nameInput.type = 'text';
+                nameInput.classList.add('subject-name');
+                nameInput.placeholder = `Enter subject ${subjectCount} name`;
+                nameInput.id = `subjectName${subjectCount}`;
 
-                newSubjectRow.appendChild(label);
-                newSubjectRow.appendChild(input);
+                // Credit Input
+                const creditLabel = document.createElement('label');
+                creditLabel.textContent = `Credit for Subject ${subjectCount}:`;
+
+                const creditInput = document.createElement('input');
+                creditInput.type = 'text';
+                creditInput.classList.add('subject-credit');
+                creditInput.placeholder = `Enter credit for subject ${subjectCount}`;
+                creditInput.id = `credit${subjectCount}`;
+
+                newSubjectRow.appendChild(nameLabel);
+                newSubjectRow.appendChild(nameInput);
+                newSubjectRow.appendChild(creditLabel);
+                newSubjectRow.appendChild(creditInput);
 
                 subjectsContainer.appendChild(newSubjectRow);
             } else {
@@ -199,28 +201,42 @@
             // Initialize error message
             let errorMessage = "";
 
+            // Validate totalCredit
+            if (isNaN(totalCredit) || totalCredit <= 0) {
+                errorMessage += "Please enter a valid positive integer value for total credit field\n";
+            }
+
+            // Validate currentCGPA
+            if (isNaN(currentCGPA)) {
+                errorMessage += "Please enter a valid numerical value for current CGPA\n";
+            } else if (currentCGPA < 0.0 || currentCGPA > 4.0) {
+                errorMessage += "Current CGPA should be between 0.0 and 4.0\n";
+            }
+
+            // Validate aimedCGPA
+            if (isNaN(aimedCGPA)) {
+                errorMessage += "Please enter a valid numerical value for target CGPA\n";
+            } else if (aimedCGPA < 0.0 || aimedCGPA > 4.0) {
+                errorMessage += "Target CGPA should be between 0.0 and 4.0\n";
+            }
+
             // Loop through all dynamically added subject inputs
             for (let i = 1; i <= subjectCount; i++) {
+                const subjectName = document.getElementById(`subjectName${i}`).value.trim();
                 const credit = parseFloat(document.getElementById(`credit${i}`).value);
+                if (subjectName === "") {
+                    errorMessage += `Please enter a valid subject name for subject ${i}\n`;
+                }
                 if (isNaN(credit) || credit <= 0) {
-                    errorMessage += `Please enter a valid positive numerical value for credit of subject ${i}\n`;
+                    errorMessage += `Please enter a valid positive numerical value for credit of subject ${i}.\n`;
                 } else {
                     subjectCredits.push({
                         subject: i,
-                        credit: credit
+                        subjectName: subjectName, // Store subject name here
+                        subjectCredit: credit // Store subject credit here
                     });
                 }
             }
-
-            // Validate input values
-            if (isNaN(currentCGPA) || isNaN(aimedCGPA) || isNaN(totalCredit)) {
-                errorMessage += "Please enter valid numerical values for all fields.\n";
-            } else if (currentCGPA < 0.0 || currentCGPA > 4.0) {
-                errorMessage += "Current CGPA should be between 0.0 and 4.0.\n";
-            } else if (aimedCGPA < 0.0 || aimedCGPA > 4.0) {
-                errorMessage += "Target CGPA should be between 0.0 and 4.0.\n";
-            }
-
 
             if (errorMessage) {
                 alert(errorMessage);
@@ -240,12 +256,11 @@
                 'F': 0.0
             };
 
-
             // Calculate total quality points for the current CGPA
             const totalQualityPoints = currentCGPA * totalCredit;
 
             // Calculate total credits for the next semester dynamically
-            const totalNextSemesterCredits = subjectCredits.reduce((total, subject) => total + subject.credit, 0);
+            const totalNextSemesterCredits = subjectCredits.reduce((total, subject) => total + subject.subjectCredit, 0);
 
             // Calculate total quality points needed for the aimed CGPA
             const totalAimedQualityPoints = aimedCGPA * (totalCredit + totalNextSemesterCredits);
@@ -254,14 +269,14 @@
             let requiredQualityPoints = totalAimedQualityPoints - totalQualityPoints;
 
             // Sort subjects by credit hours in descending order
-            subjectCredits.sort((a, b) => b.credit - a.credit);
+            subjectCredits.sort((a, b) => b.subjectCredit - a.subjectCredit);
 
             // Initialize an array to store grade and remaining quality points for each subject
             const subjectResults = [];
 
             // Loop through each subject to calculate grade and remaining quality points
             for (const subject of subjectCredits) {
-                const subjectCredit = subject.credit;
+                const subjectCredit = subject.subjectCredit;
                 let gradePoint = requiredQualityPoints / subjectCredit;
 
                 // Ensure the calculated grade point is within the valid range
@@ -272,6 +287,8 @@
 
                 subjectResults.push({
                     subject: subject.subject,
+                    subjectName: subject.subjectName, // Include subject name in results
+                    subjectCredit: subject.subjectCredit, // Include subject credit in results
                     grade: grade,
                 });
 
@@ -285,29 +302,31 @@
             // Calculate maximum achievable CGPA
             let maxAchievableQualityPoints = totalQualityPoints;
             for (const subject of subjectCredits) {
-                maxAchievableQualityPoints += subject.credit * gradePoints['A']; // Assume 'A' grade
+                maxAchievableQualityPoints += subject.subjectCredit * gradePoints['A'];
             }
             const maxAchievableCGPA = maxAchievableQualityPoints / (totalCredit + totalNextSemesterCredits);
 
             // Output results
             let resultsHTML = `<p>Grades needed for each subject:</p>`;
             subjectResults.forEach(result => {
-                resultsHTML += `<p>Subject ${result.subject}: ${result.grade}</p>`;
+                resultsHTML += `<p>Subject ${result.subject} (${result.subjectName}, ${result.subjectCredit} credits): ${result.grade}</p>`;
             });
 
+
             if (requiredQualityPoints > 0) {
-                resultsHTML += `<p style="color: red; font-weight: bold;">Unfortunately, eventhough you achieve A's in all subjects, you still cannot achieve the target CGPA in the next semester with the provided subjects.</p>`;
+                resultsHTML += `<p style="color: red; font-weight: bold;">Unfortunately, even though you achieve A's in all subjects, you still cannot achieve the target CGPA in the next semester with the provided subjects.</p>`;
                 resultsHTML += `<p style="color: red; font-weight: bold;">The maximum achievable CGPA is ${maxAchievableCGPA.toFixed(4)}.</p>`;
                 resultsHTML += `<p style="color: red; font-weight: bold;">Keep trying hard, and you can improve in the next semester!</p>`;
                 resultsHTML += `<img src="/Image/sad.gif" alt="Sad" />`;
             } else {
                 resultsHTML += `<p style="color: green; font-weight: bold;">Congratulations! You can achieve your target CGPA with the provided subject grade!</p>`;
-                resultsHTML += `<img src="/Image/happy.gif" alt="cong" />`;
+                resultsHTML += `<img src="/Image/happy.gif" alt="Happy" />`;
             }
 
             document.getElementById('resultsContainer').innerHTML = resultsHTML;
         }
 
+        //https://calculategrades.net/my/tarumt.html ->demo
 
         function cancelForm() {
             document.getElementById('currentCGPA').value = '';
@@ -325,7 +344,7 @@
             initialSubjectRow.classList.add('subject-row');
 
             const label = document.createElement('label');
-            label.textContent = `Credit for Subject 1: `; 
+            label.textContent = `Credit for Subject 1: `;
 
             const input = document.createElement('input');
             input.type = 'text';

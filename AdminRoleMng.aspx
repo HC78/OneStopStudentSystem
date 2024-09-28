@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="AdminRoleMng.aspx.cs" Inherits="OneStopStudentSystem.AdminRoleMng" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" MaintainScrollPositionOnPostBack="true" CodeBehind="AdminRoleMng.aspx.cs" Inherits="OneStopStudentSystem.AdminRoleMng" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">

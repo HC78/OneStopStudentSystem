@@ -185,7 +185,7 @@
 
         <button type="button" onclick="calculateBMI()">Calculate BMI</button>
         <button type="button" id="btnCancel" onclick="cancelForm()" style="background-color: #5F6F52; border-style: solid; height: 55px; width: 184px; border-radius: 10px; color: white;">Cancel</button>
-        <asp:Button ID="btnSave" runat="server" OnClick="btnSave_Click" BackColor="#68565B" ForeColor="White" Text="Save" Width="158px" CssClass="hidden" />
+        <asp:Button ID="btnSave" runat="server" OnClick="btnSave_Click" OnClientClick="onSaveButtonClick()" BackColor="#68565B" ForeColor="White" Text="Save" Width="158px" CssClass="hidden" />
 
         <div id="result"></div>
         <div id="BMIbodyPic"></div>
@@ -376,13 +376,22 @@
 
             // Update chart with current BMI data
 
-            updateChart(new Date(), bmi);
+        //    updateChart(new Date(), bmi);
             PageMethods.CompareBMI(onSuccess, onError);
             // Display the gaugeCanvas
             //  var gaugeCanvas = document.getElementById("gaugeCanvas");
             // gaugeCanvas.style.display = "block";
 
         }
+
+        function onSaveButtonClick() {
+            // Call updateChart only when save button is clicked
+            var bmi = parseFloat(document.getElementById('<%= hiddenBMI.ClientID %>').value);
+            if (!isNaN(bmi)) {
+                updateChart(new Date(), bmi);
+            }
+        }
+
         function onSuccess(result) {
             var lblCong = document.getElementById('<%= lblCong.ClientID %>');
             lblCong.innerText = result;
@@ -461,51 +470,7 @@
         }
 
   
-
-
-        /*    function drawGauge(bmi) {
-                var canvas = document.getElementById("gaugeCanvas");
-                var context = canvas.getContext("2d");
-    
-                // Clear the canvas
-                context.clearRect(0, 0, canvas.width, canvas.height);
-    
-                // Draw the gauge background
-                context.beginPath();
-                context.arc(canvas.width / 2, canvas.height, canvas.width / 2 - 5, 0, Math.PI, false);
-                context.strokeStyle = "#ddd";
-                context.lineWidth = 20; // Wider gauge
-                context.stroke();
-    
-                // Calculate angle for the gauge pointer (limited to 180 degrees)
-                var minBMI = 0;
-                var maxBMI = 100;
-                var scale = 180 / (maxBMI - minBMI);
-                var angle = Math.min(180, (bmi - minBMI) * scale);
-    
-                // Draw colored section (limited to 180 degrees)
-                context.beginPath();
-                context.arc(canvas.width / 2, canvas.height, canvas.width / 2 - 5, 0, degreesToRadians(angle), false);
-                context.strokeStyle = getColor(bmi);
-                context.lineWidth = 20; // Wider gauge
-                context.stroke();
-            }
-            function degreesToRadians(degrees) {
-                return degrees * (Math.PI / 180);
-            }
-    
-            function getColor(bmi) {
-                if (bmi < 18.5) {
-                    return "#20D5FB"; // Underweight
-                } else if (bmi < 25) {
-                    return "#9BB722"; // Normal
-                } else if (bmi < 30) {
-                    return "#FFD623"; // Overweight
-                } else {
-                    return "#FF6C35"; // Obese
-                }
-            }
-    */
+     
 
         function getBodyColor(age, bmi, gender, interpretation) {
             if (age <= 20) {
