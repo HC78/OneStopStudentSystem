@@ -37,6 +37,9 @@ namespace OneStopStudentSystem
                 return;
             }
 
+            // Log the user input for debugging or analysis
+            LogUserInput(userInput);
+
             // Display user question
             litChat.Text += $"<div class='chat-bubble user-bubble'>{userInput}</div>";
 
@@ -51,8 +54,17 @@ namespace OneStopStudentSystem
 
             // Scroll to bottom
             ScriptManager.RegisterStartupScript(this, GetType(), "scrollChatbox", "document.getElementById('chatbox').scrollTop = document.getElementById('chatbox').scrollHeight;", true);
+
+            // Read out the chatbot response
+            ScriptManager.RegisterStartupScript(this, GetType(), "readResponse", $"readOutLoud('{response}', '{hfSelectedVoiceType.Value}');", true);
         }
 
+        private void LogUserInput(string input)
+        {
+            // Log the user input (for example, write to a file)
+            string logFilePath = @"C:\Users\SEOW HUI CHEE\source\repos\OneStopStudentSystem\user_input_log.txt";
+            File.AppendAllText(logFilePath, $"{DateTime.Now}: {input}{Environment.NewLine}");
+        }
         private string GetChatbotResponse(string userInput)
         {
             string batchFilePath = @"C:\Users\SEOW HUI CHEE\source\repos\OneStopStudentSystem\run_chatbot.bat";
@@ -102,6 +114,11 @@ namespace OneStopStudentSystem
         protected void BtnCancel_Click(object sender, EventArgs e)
         {
             txtQuestion.Text = "";
+        }
+
+        protected void voiceSelect_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            hfSelectedVoiceType.Value = voiceSelect.SelectedValue;
         }
     }
 }
