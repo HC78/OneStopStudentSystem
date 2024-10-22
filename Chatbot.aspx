@@ -70,6 +70,11 @@
             border: none;
             color: white;
             cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .active-button {
+            background-color: #ffa500 !important; /* Color when button is active */
         }
 
         label {
@@ -81,12 +86,11 @@
             text-align: center;
         }
 
-          .rounded-img-btn {
+        .rounded-img-btn {
             border-radius: 10px;
             overflow: hidden;
         }
-    </style>
-</asp:Content>
+    </style></asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
                 <asp:Label ID="Label17" runat="server" Font-Size="X-Large" ForeColor="Black" Text="AI Chatbot" Font-Bold="True" Font-Names="Times New Roman"></asp:Label>
@@ -110,11 +114,11 @@
         </div>
     </div>
 
-    <script>
-    const btnVoice = document.getElementById('btnVoice');
-    const txtQuestion = document.getElementById('<%= txtQuestion.ClientID %>');
-    const btnSpeak = document.getElementById('btnSpeak');
-    const voiceSelect = document.getElementById('<%= voiceSelect.ClientID %>');
+     <script>
+         const btnVoice = document.getElementById('btnVoice');
+         const txtQuestion = document.getElementById('<%= txtQuestion.ClientID %>');
+         const btnSpeak = document.getElementById('btnSpeak');
+         const voiceSelect = document.getElementById('<%= voiceSelect.ClientID %>');
     const hfSelectedVoiceType = document.getElementById('<%= hfSelectedVoiceType.ClientID %>');
 
     let voices = [];
@@ -128,66 +132,92 @@
         txtQuestion.value = transcript;  // Set the text input to the recognized speech
         recognition.stop();  // Stop recognizing
         document.getElementById('<%= Ask.ClientID %>').click();  // Trigger the ask button click
-    };
+         };
 
-    recognition.onerror = function (event) {
-        console.error(event.error);
-        recognition.stop();  // Stop recognizing
-    };
+         recognition.onstart = function () {
+             // Change btnVoice color when recognition starts
+             btnVoice.style.backgroundColor = 'lightgreen';
+         };
 
-    btnVoice.addEventListener('click', function () {
-        recognition.start();  // Start voice recognition
-    });
+         recognition.onend = function () {
+             // Revert btnVoice color when recognition stops
+             btnVoice.style.backgroundColor = 'bisque';
+         };
 
-    btnSpeak.addEventListener('click', function () {
-        const chatBubbles = document.querySelectorAll('.bot-bubble');
-        if (chatBubbles.length > 0) {
-            const lastBotBubble = chatBubbles[chatBubbles.length - 1];
-            const message = lastBotBubble.innerText;
-            readOutLoud(message, hfSelectedVoiceType.value);
-        }
-    });
+         recognition.onerror = function (event) {
+             console.error(event.error);
+             recognition.stop();  // Stop recognizing
+             btnVoice.style.backgroundColor = 'bisque';  // Revert button color on error
+         };
 
-    function loadVoices() {
-        voices = window.speechSynthesis.getVoices();
-        console.log('Voices loaded:', voices);
-    }
+         btnVoice.addEventListener('click', function () {
+             recognition.start();  // Start voice recognition
+         });
 
-    // Load voices initially
-    loadVoices();
+         btnSpeak.addEventListener('click', function () {
+             const chatBubbles = document.querySelectorAll('.bot-bubble');
+             if (chatBubbles.length > 0) {
+                 const lastBotBubble = chatBubbles[chatBubbles.length - 1];
+                 const message = lastBotBubble.innerText;
+                 readOutLoud(message, hfSelectedVoiceType.value);
+             }
+         });
 
-    // Re-load voices when they become available
-    window.speechSynthesis.onvoiceschanged = loadVoices;
+         function loadVoices() {
+             voices = window.speechSynthesis.getVoices();
+             console.log('Voices loaded:', voices);
+         }
 
-    function readOutLoud(message, selectedVoiceType) {
-        console.log('Reading out loud:', message);
+         // Load voices initially
+         loadVoices();
 
-        // Cancel any pending utterances
-        window.speechSynthesis.cancel();
+         // Re-load voices when they become available
+         window.speechSynthesis.onvoiceschanged = loadVoices;
 
-        const speech = new SpeechSynthesisUtterance();
-        speech.text = message;
-        speech.volume = 1;
-        speech.rate = 1;
-        speech.pitch = 1;
+         function readOutLoud(message, selectedVoiceType) {
+             console.log('Reading out loud:', message);
 
-        // Filter for male or female voices based on selection
-        let filteredVoices;
-        if (selectedVoiceType === 'male') {
-            filteredVoices = voices.filter(voice => voice.name.toLowerCase().includes('male') || voice.name.includes('David') || voice.name.includes('Alex'));
-        } else if (selectedVoiceType === 'female') {
-            filteredVoices = voices.filter(voice => voice.name.toLowerCase().includes('female') || voice.name.includes('Siri') || voice.name.includes('Victoria'));
-        }
+             // Cancel any pending utterances
+             window.speechSynthesis.cancel();
 
-        // Use the first filtered voice if available, otherwise use the default
-        if (filteredVoices.length > 0) {
-            speech.voice = filteredVoices[0];
-        } else {
-            console.warn(`No ${selectedVoiceType} voice found. Using default.`);
-            speech.voice = voices[0]; // Use the default voice
-        }
+             const speech = new SpeechSynthesisUtterance();
+             speech.text = message;
+             speech.volume = 1;
+             speech.rate = 1;
+             speech.pitch = 1;
 
-        window.speechSynthesis.speak(speech);
-    }
-    </script>
+             // Filter for male or female voices based on selection
+             let filteredVoices;
+             if (selectedVoiceType === 'male') {
+                 filteredVoices = voices.filter(voice => voice.name.toLowerCase().includes('male') || voice.name.includes('David') || voice.name.includes('Alex'));
+             } else if (selectedVoiceType === 'female') {
+                 filteredVoices = voices.filter(voice => voice.name.toLowerCase().includes('female') || voice.name.includes('Siri') || voice.name.includes('Victoria'));
+             }
+
+             // Use the first filtered voice if available, otherwise use the default
+             if (filteredVoices.length > 0) {
+                 speech.voice = filteredVoices[0];
+             } else {
+                 console.warn(`No ${selectedVoiceType} voice found. Using default.`);
+                 speech.voice = voices[0]; // Use the default voice
+             }
+
+             // Change btnSpeak color when voice output starts
+             btnSpeak.style.backgroundColor = 'lightblue';
+
+             // Start speaking
+             speech.onstart = function () {
+                 console.log('Speech started');
+             };
+
+             // Revert btnSpeak color when voice output ends
+             speech.onend = function () {
+                 console.log('Speech ended');
+                 btnSpeak.style.backgroundColor = 'bisque';
+             };
+
+             window.speechSynthesis.speak(speech);
+         }
+     </script>
+
 </asp:Content>
