@@ -42,7 +42,7 @@ This system uses the Google Calendar API to integrate with Google Calendar which
 
 <i>Video Teaching Pronunciation</i><br/>
 ![image](https://github.com/user-attachments/assets/06b54720-d30e-494b-b5e6-fdd5b6d9a0ff)
-User can choose to input a confuse and mispronounced word into the textbox by typing with keyboard or via voice input recognition. Then it will fetch the related pronunciation video from YouTube and display out.
+<br/>User can choose to input a confuse and mispronounced word into the textbox by typing with keyboard or via voice input recognition. Then it will fetch the related pronunciation video from YouTube and display out.
 <br/> ---------------------------------------------------------------------------------------------------------------------------------------------------<br/>
 
 
