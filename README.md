@@ -11,7 +11,7 @@ It also uses OWIN (Open Web Interface for .NET) middleware for managing authenti
 The application includes a chatbot feature developed using Python. The chatbot is trained using the Natural Language Toolkit (NLTK) and scikit-learn libraries for intent classification. To integrate Python scripts with the ASP.NET application, batch files (.bat) are used to execute Python scripts from the server-side code. The batch file handles the execution of Python scripts, captures user input and returns responses to the web application. 
 This system uses the Google Calendar API to integrate with Google Calendar which allows student to add, edit, delete events directly from this system. Youtube API is used to allow students to search for YouTube videos and display the results directly on the page. It also uses Gmail's SMTP (Simple Mail Transfer Protocol) server for sending email reminders which implemented using .NET's SmtpClient class. 
 
-<br/> ---------------------------------------------------------------------------------------------------------------------------------------------------<br/>
+<br/> ---------------------------------------------------------------------------------------------------------------------------------<br/>
 
 <i>Note Taking</i><br/>
 ![image](https://github.com/user-attachments/assets/dc2d4773-12af-4cc8-b12c-9de0b568ee2c)
@@ -22,7 +22,7 @@ This system uses the Google Calendar API to integrate with Google Calendar which
 
 ![image](https://github.com/user-attachments/assets/ec697805-d79a-4fcf-aa2e-a5c96e895a88)
 <br/>Once you upload a photo in a particular note, then you would like to edit the note by uploading photos, it will detect whether you have uploaded duplicate photo and not allowed to have duplicate photo exist. 
-<br/> ---------------------------------------------------------------------------------------------------------------------------------------------------<br/>
+<br/> ---------------------------------------------------------------------------------------------------------------------------------<br/>
 
 <i>GPA Grade Calculator </i><br/>
 ![image](https://github.com/user-attachments/assets/261a517a-9d02-4a32-8a3d-f813a7e7a45a)
@@ -33,17 +33,15 @@ This system uses the Google Calendar API to integrate with Google Calendar which
 
 ![image](https://github.com/user-attachments/assets/18e10b4c-f773-41c4-8436-4c3df2fc9dc8)
 <br/>Students can adjust the number of subject input self but can only take up to 7 subjects in a semester.
-<br/> ---------------------------------------------------------------------------------------------------------------------------------------------------<br/>
+<br/> ---------------------------------------------------------------------------------------------------------------------------------<br/>
 
 <i>Measurement Converter</i><br/>
 ![image](https://github.com/user-attachments/assets/4e623ae3-d4ab-449a-add9-d4624c3f2b10)
 <br/>It consist convert unit such as temperature, case, energy, calculator and so on. It will offer enhanced customization options which is to select the preferred number notation such as normal (123.45) or exponential (1.2345E2), as well as specify the desired decimal places for display to improve readability and usability.
-<br/> ---------------------------------------------------------------------------------------------------------------------------------------------------<br/>
+<br/> ---------------------------------------------------------------------------------------------------------------------------------<br/>
 
 <i>Video Teaching Pronunciation</i><br/>
 ![image](https://github.com/user-attachments/assets/06b54720-d30e-494b-b5e6-fdd5b6d9a0ff)
 <br/>User can choose to input a confuse and mispronounced word into the textbox by typing with keyboard or via voice input recognition. Then it will fetch the related pronunciation video from YouTube and display out.
-<br/> ---------------------------------------------------------------------------------------------------------------------------------------------------<br/>
-
-
+<br/> ---------------------------------------------------------------------------------------------------------------------------------<br/>
 
