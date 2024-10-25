@@ -91,7 +91,7 @@ intents = {
             "patterns": ["Thank you", "Thanks"],
             "responses": [
                 "You're welcome! If you have any more questions, feel free to ask."
-            ],
+            ], 
         },
         {
             "tag": "sorry",
