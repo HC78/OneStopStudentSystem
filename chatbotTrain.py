@@ -379,8 +379,8 @@ intents = {
                 "Diploma Degree programmes",
                 "Foundation Degree programmes",
             ],
-            "responses": [
-                "If you want to change course, the Bachelor Degree and Diploma programmes offered can be found at https://www.tarc.edu.my/admissions/programmes/programme-offered-a-z/undergraduate-programme/ <br/> The Foundation programmes offered can be found at https://www.tarc.edu.my/admissions/programmes/programme-offered-a-z/pre-university-programme/"
+              "responses": [
+                "If you want to change course, the Bachelor Degree and Diploma programmes offered can be found at <a href='https://www.tarc.edu.my/admissions/programmes/programme-offered-a-z/undergraduate-programme/' target='_blank' rel='noopener noreferrer'>Bachelor & Diploma Programmes</a>.<br/>The Foundation programmes offered can be found at <a href='https://www.tarc.edu.my/admissions/programmes/programme-offered-a-z/pre-university-programme/' target='_blank' rel='noopener noreferrer'>Foundation Programmes</a>."
             ],
         },
          {
@@ -389,9 +389,9 @@ intents = {
                 "I obtained good results in my examinations. Is there any merit scholarship and how do I apply?",
                 "merit scholarship"
             ],
-            "responses": [
-                "The Merit Scholarship is awarded to outstanding Malaysian students in the form of tuition fee waiver of up to 100%. Reference can be made at https://www.tarc.edu.my/admissions/a/merit-scholarship/ <br/> Candidates who meet the scholarship criteria will be automatically offered the Merit Scholarship (Terms & Conditions Apply) at the point of admission."
-            ],
+              "responses": [
+            "The Merit Scholarship is awarded to outstanding Malaysian students in the form of a tuition fee waiver of up to 100%. More information can be found at <a href='https://www.tarc.edu.my/admissions/a/merit-scholarship/' target='_blank' rel='noopener noreferrer'>Merit Scholarship</a>.<br/>Candidates who meet the scholarship criteria will be automatically offered the Merit Scholarship (Terms & Conditions Apply) at the point of admission."
+        ],
         },
            {
             "tag": "Faculty_Branch_Campus_Transfer",
