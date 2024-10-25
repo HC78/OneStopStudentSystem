@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/ef56ab84-c19d-45b7-b60a-b6f72a5a1bc1)<b>Abstract</b><br/>
+![image](https://github.com/user-attachments/assets/3c80cbb3-9a3d-42bb-9a9c-e857c758ffb8)<b>Abstract</b><br/>
 This One-Stop Student System aims to solve common challenges faced by students such as browser cluttering and memory usage, physical health concerns, time management issues, lack of motivation and goal setting, information access and communication barriers problem. This system provides a comprehensive study system that simplifies and enhances the student experience by integrating academic, health and personal management tools into a single interface. The system scope is the three main modules, study, health and personal categories, each of the categories containing multiple features to meet a wide range of student needs and expectations. For instance, the study module consists of note taking, grade calculator, measurement converter, video teaching pronunciation and calendar reminder function for academic support, the health module offers BMI calculator, calorie calculator and exercise workout schedule for health monitoring and the personal module include to-do list, goal getter and AI chatbot to assist with various daily tasks.
 <br/><br/>The Feature-Driven Development (Agile methodology) is adopted throughout the development process to ensure frequent progress updates, early feedback and adaptability to changing requirements. Thorough testing is conducted to ensure the system's usability, reliability and functionality to ensure that the system is user-friendly and well-functioning.
 <br/><br/>The four objectives of the system have been achieved with all the functions provided in the system. However, the system also highlighted some potential areas for future improvement, such as adding a game module to help students relax and integrating VR technology to allow students to explore the campus environment virtually which are outside the current project scope. Overall, the One-Stop Student System provides students with convenient access to a wide range of study, health and personal category functions which ease the students’ study journey. 
@@ -129,10 +129,26 @@ This system uses the Google Calendar API to integrate with Google Calendar which
 <i>Goal Getter</i><br/>
 ![image](https://github.com/user-attachments/assets/a80f3792-282d-4107-b70c-14a2a75b9ad7)
 <br/>Similar like to-do list, user can add, edit and delete goal.
-
 <br/> ---------------------------------------------------------------------------------------------------------------------------------<br/>
 
 <i>AI Chatbot</i><br/>
-![image](https://github.com/user-attachments/assets/bffcf366-f290-41d6-b3da-976991f0b777)
-<br/>New student can ask queries related to TAR UMT university and get response in real time. User can ask  
+![image](https://github.com/user-attachments/assets/3b7449d3-66aa-4d30-8470-773840c2e1e0)
+<br/>User (New students) can ask queries related to TAR UMT university and get response in real time. User can ask queries by typing or voice input. 
+<br/>Users can click hyperlinks in responses which will open in a new tab and redirect them to the corresponding webpage.
+
+![image](https://github.com/user-attachments/assets/857d05cd-a1fd-4972-975d-cd5b43c95c04)
+<br/>User can choose the voice between male or female to read out the response.
+
+![image](https://github.com/user-attachments/assets/9da9a7be-5e42-4215-bfd3-6ff8888a423e)
+<br/>It includes responses that display pictures.
+
+![image](https://github.com/user-attachments/assets/b57b9ee3-9557-4f60-8db4-42cb255c4be3)
+<br/>The Google Map iframe is embedded directly in the chatbot’s response to allow users to view the map within the chat. 
+<br/> ---------------------------------------------------------------------------------------------------------------------------------<br/>
+
+<i>Role Management</i><br/>
+![image](https://github.com/user-attachments/assets/8cbd8e8f-a8e0-4823-9e6e-aba01dd052e6)
+<br/>Admin can select the role admin or student to view their details. Student role has extra 3 field which are FailedLoginAttempts, IsAccountLocked and AccountLockTime.
+<br/>The admin can view student accounts that have been locked due to three invalid login attempts by click the Locked Account Users checkbox and has the button to unlock these accounts.
+<br/> ---------------------------------------------------------------------------------------------------------------------------------<br/>
 
