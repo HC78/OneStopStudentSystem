@@ -55,7 +55,7 @@ This system uses the Google Calendar API to integrate with Google Calendar which
 ![image](https://github.com/user-attachments/assets/3b784719-5156-464d-ad4f-80cac5ffa7ff)
 <br/>The event date set must be greater than now.
 
-![image](https://github.com/user-attachments/assets/83fc219b-085e-4cfe-813a-4bf2fd8f3115)
+![image](https://github.com/user-attachments/assets/c1d75eab-ec9c-46dc-a323-233fee303519)
 <br/>If reminder time has already passed, no reminder will be send again to remind before event start.
 
 ![image](https://github.com/user-attachments/assets/1614bced-ebbc-48f5-9b37-da33240adc0e)
