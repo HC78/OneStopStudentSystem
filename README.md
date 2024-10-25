@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/0438f333-2d2f-4460-9a97-8e15bc55b998)<b>Abstract</b><br/>
+![image](https://github.com/user-attachments/assets/ef56ab84-c19d-45b7-b60a-b6f72a5a1bc1)<b>Abstract</b><br/>
 This One-Stop Student System aims to solve common challenges faced by students such as browser cluttering and memory usage, physical health concerns, time management issues, lack of motivation and goal setting, information access and communication barriers problem. This system provides a comprehensive study system that simplifies and enhances the student experience by integrating academic, health and personal management tools into a single interface. The system scope is the three main modules, study, health and personal categories, each of the categories containing multiple features to meet a wide range of student needs and expectations. For instance, the study module consists of note taking, grade calculator, measurement converter, video teaching pronunciation and calendar reminder function for academic support, the health module offers BMI calculator, calorie calculator and exercise workout schedule for health monitoring and the personal module include to-do list, goal getter and AI chatbot to assist with various daily tasks.
 <br/><br/>The Feature-Driven Development (Agile methodology) is adopted throughout the development process to ensure frequent progress updates, early feedback and adaptability to changing requirements. Thorough testing is conducted to ensure the system's usability, reliability and functionality to ensure that the system is user-friendly and well-functioning.
 <br/><br/>The four objectives of the system have been achieved with all the functions provided in the system. However, the system also highlighted some potential areas for future improvement, such as adding a game module to help students relax and integrating VR technology to allow students to explore the campus environment virtually which are outside the current project scope. Overall, the One-Stop Student System provides students with convenient access to a wide range of study, health and personal category functions which ease the students’ study journey. 
@@ -15,13 +15,13 @@ This system uses the Google Calendar API to integrate with Google Calendar which
 
 <i>Note Taking</i><br/>
 ![image](https://github.com/user-attachments/assets/dc2d4773-12af-4cc8-b12c-9de0b568ee2c)
-<br/>You can add note, edit note, delete note. To ease user, there will be an apply function which system will detect when there is a new course and color, then it will shown up in left hand side to let user to apply existing course and color. Therefore, user no need to waste their memory remember or to find which course is pair with which color. 
+<br/>User can add note, edit note, delete note. To ease user, there will be an apply function which system will detect when there is a new course and color, then it will shown up in left hand side to let user to apply existing course and color. Therefore, user no need to waste their memory remember or to find which course is pair with which color. 
 
 ![image](https://github.com/user-attachments/assets/6912be65-efee-4c93-bd22-7ffee11771d0)
-<br/>You can search by week or by course or both. 
+<br/>User can search by week or by course or both. 
 
 ![image](https://github.com/user-attachments/assets/ec697805-d79a-4fcf-aa2e-a5c96e895a88)
-<br/>Once you upload a photo in a particular note, then you would like to edit the note by uploading photos, it will detect whether you have uploaded duplicate photo and not allowed to have duplicate photo exist. 
+<br/>Once user uploads a photo in a particular note, then user would like to edit the note by uploading photos, it will detect whether user have uploaded duplicate photo and not allowed to have duplicate photo exist. 
 <br/> ---------------------------------------------------------------------------------------------------------------------------------<br/>
 
 <i>GPA Grade Calculator </i><br/>
@@ -32,7 +32,7 @@ This system uses the Google Calendar API to integrate with Google Calendar which
 <br/>It will check whether all the input field are valid. 
 
 ![image](https://github.com/user-attachments/assets/18e10b4c-f773-41c4-8436-4c3df2fc9dc8)
-<br/>Students can adjust the number of subject input self but can only take up to 7 subjects in a semester.
+<br/>User can adjust the number of subject input self but can only take up to 7 subjects in a semester.
 <br/> ---------------------------------------------------------------------------------------------------------------------------------<br/>
 
 <i>Measurement Converter</i><br/>
@@ -113,8 +113,26 @@ This system uses the Google Calendar API to integrate with Google Calendar which
 <br/> ---------------------------------------------------------------------------------------------------------------------------------<br/>
 
 <i>To-Do List</i><br/>
-![image](https://github.com/user-attachments/assets/c6725816-e4cd-4a79-b578-f73c31377d2b)
+![image](https://github.com/user-attachments/assets/ee58d19b-2ba2-470d-9dbc-81993ca5ccb7)
+<br/>User can input the task, select importance and urgency to categories the task into one of the four category of Eisenhower matrix. Them, user can edit or delete the task. User also can mark tasks as complete or incomplete directly from the grid view by strike through the task.
 
+![image](https://github.com/user-attachments/assets/d2d1ffb3-a639-4c08-8c42-c7ee295efb91)
+<br/>User can search the to-do task using category importance or urgence or both. 
 
+![image](https://github.com/user-attachments/assets/faeea95c-684c-4e1d-a46b-40ac206ca4f1)
+<br/>User can also select the check box to show only not completed task. 
 
+![image](https://github.com/user-attachments/assets/ef4e4164-363f-4d3f-b7f0-12bfde272fdd)
+<br/>Another UI version.
+<br/> ---------------------------------------------------------------------------------------------------------------------------------<br/>
+
+<i>Goal Getter</i><br/>
+![image](https://github.com/user-attachments/assets/a80f3792-282d-4107-b70c-14a2a75b9ad7)
+<br/>Similar like to-do list, user can add, edit and delete goal.
+
+<br/> ---------------------------------------------------------------------------------------------------------------------------------<br/>
+
+<i>AI Chatbot</i><br/>
+![image](https://github.com/user-attachments/assets/bffcf366-f290-41d6-b3da-976991f0b777)
+<br/>New student can ask queries related to TAR UMT university and get response in real time. User can ask  
 
