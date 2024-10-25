@@ -149,6 +149,6 @@ This system uses the Google Calendar API to integrate with Google Calendar which
 <i>Role Management</i><br/>
 ![image](https://github.com/user-attachments/assets/8cbd8e8f-a8e0-4823-9e6e-aba01dd052e6)
 <br/>Admin can select the role admin or student to view their details. Student role has extra 3 field which are FailedLoginAttempts, IsAccountLocked and AccountLockTime.
-<br/>The admin can view student accounts that have been locked due to three invalid login attempts by click the Locked Account Users checkbox and has the button to unlock these accounts.
+<br/>The admin can view student accounts that have been locked due to three invalid login attempts by clicking the Locked Account Users checkbox and has the button to unlock these accounts.
 <br/> ---------------------------------------------------------------------------------------------------------------------------------<br/>
 
