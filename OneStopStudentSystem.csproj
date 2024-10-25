@@ -557,7 +557,6 @@
     <Content Include="appsettings.json" />
     <Content Include="credentials.json" />
     <Content Include="College Chatbot.ipynb" />
-    <Content Include="App_Data\GC.json" />
     <Content Include="intents.json" />
     <None Include="packages.config" />
     <Content Include="Site1.Master" />
