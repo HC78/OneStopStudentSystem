@@ -152,3 +152,6 @@ This system uses the Google Calendar API to integrate with Google Calendar which
 <br/>The admin can view student accounts that have been locked due to three invalid login attempts by clicking the Locked Account Users checkbox and has the button to unlock these accounts.
 <br/> ---------------------------------------------------------------------------------------------------------------------------------<br/>
 
+<b>Note:</b> 
+<br/>1. To use the Calendar Reminder function, user need to login with Google account and give the permission. 
+<br/>2. Others details can look at the pdf document. 
