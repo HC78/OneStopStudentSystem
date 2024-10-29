@@ -12,6 +12,42 @@ The application includes a chatbot feature developed using Python. The chatbot i
 This system uses the Google Calendar API to integrate with Google Calendar which allows student to add, edit, delete events directly from this system. Youtube API is used to allow students to search for YouTube videos and display the results directly on the page. It also uses Gmail's SMTP (Simple Mail Transfer Protocol) server for sending email reminders which implemented using .NET's SmtpClient class. 
 
 <br/> ---------------------------------------------------------------------------------------------------------------------------------<br/>
+<i>Register</i><br/>
+![image](https://github.com/user-attachments/assets/f981e582-d708-4b94-9690-966abda8eb70)
+<br/>User can register an account for this system. 
+
+![image](https://github.com/user-attachments/assets/cae5b6e0-1207-418e-b5ed-24b4d331dd29)
+<br/>It will validate all the input field before allowed to register and save into database. In this picture, It shown that mobile number and email address need to be correct format.
+
+![image](https://github.com/user-attachments/assets/a4830598-c716-415e-b48d-cc1fa5877e74)
+<br/>It will have hint to guide user to enter the correct password format.
+<br/>Only university students who are 18 years old or older are eligible to register an account.
+
+![image](https://github.com/user-attachments/assets/a97a452b-c66e-4304-9026-ff0327008795)
+<br/>Username, email address and mobile number must be unique, it does not allow any duplicated username, email address and mobile number.
+<br/> ---------------------------------------------------------------------------------------------------------------------------------<br/>
+
+<i>Login</i><br/>
+![image](https://github.com/user-attachments/assets/32f34e75-da0c-4d23-8119-4a215ea43ac8)
+<br/>User can choose either login with Google Account or login with username or email address and password that registered before. While login using Google Account, there is no password needed.
+<br/> ---------------------------------------------------------------------------------------------------------------------------------<br/>
+
+<i>Reset Password</i><br/>
+<br/>For this reset password, there will be 2 situation：
+1. ![image](https://github.com/user-attachments/assets/ec67eea8-64e3-44c7-bfac-7bfe4f7167cd)
+<br/>When user login with Google Account without setting any password before, then there will be no any old password, hence, if user input any old password and there will be shown error message.
+<br/>It will validate the password format as well.
+![image](https://github.com/user-attachments/assets/649a8742-a061-4598-adfa-819cc83a24c4)
+<br/>In this case, user just ignore the old password field and directly set a new password.
+
+2.![image](https://github.com/user-attachments/assets/674bb88a-a700-4b60-b33a-08f18b05424b)
+<br/>When user has set a password before, then it need to match the old password to reset the password.
+![image](https://github.com/user-attachments/assets/877ca879-c45d-4a0a-8280-5daf023202bd)
+<br/>It will also validate if there is same old password and new password.
+![image](https://github.com/user-attachments/assets/716f5cfe-86af-4c58-9798-0963f5628f20)
+<br/>Example of successfully reset password. 
+
+<br/> ---------------------------------------------------------------------------------------------------------------------------------<br/>
 
 <i>Note Taking</i><br/>
 ![image](https://github.com/user-attachments/assets/dc2d4773-12af-4cc8-b12c-9de0b568ee2c)
@@ -154,4 +190,4 @@ This system uses the Google Calendar API to integrate with Google Calendar which
 
 <b>Note:</b> 
 <br/>1. To use the Calendar Reminder function, user need to login with Google account and give the permission. 
-<br/>2. Others details can look at the pdf document. 
+<br/>2. Others details can look at the pdf document. Download <a>SeowHuiChee_OneStopStudentSystem.pdf.</a>
